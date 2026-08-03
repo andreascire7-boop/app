@@ -9,6 +9,7 @@ import '../../core/widgets/skeleton_box.dart';
 import '../calendar/competitions_screen.dart';
 import '../nutrition/nutrition_hub_screen.dart';
 import '../profile/profile_tab.dart';
+import '../programming/programma_tab.dart';
 import '../risk/risk_center_screen.dart';
 import '../session/session_detail_screen.dart';
 
@@ -33,10 +34,12 @@ class _HomeScreenState extends State<HomeScreen> {
 
     final tabs = [
       const _HomeTab(),
-      const _PlaceholderTab(
-        title: 'Programma',
-        subtitle: 'Timeline macro/meso/microciclo — in arrivo (milestone M1.2, FASE 9).',
-      ),
+      athleteId != null
+          ? ProgrammaTab(athleteId: athleteId)
+          : const _PlaceholderTab(
+              title: 'Programma',
+              subtitle: 'Completa prima l\'onboarding per vedere il tuo piano.',
+            ),
       athleteId != null
           ? NutritionHubScreen(athleteId: athleteId)
           : const _PlaceholderTab(

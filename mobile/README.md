@@ -26,7 +26,9 @@ autoregulation and shows the result if the next session got adjusted), the
 calendar (S11 list/add torneo → S12 detail with cancel/restore), the risk center
 (S13, semaforo + fattori + raccomandazione), the nutrition hub (S15 daily
 guidance, S16 supplements, S17 folded in as the guardrail-suspended state rather
-than a separate route), and a paywall (S21) reachable from the Profilo tab.
+than a separate route), a paywall (S21) reachable from the Profilo tab, and the
+Programma tab (S7 — mesocycle timeline with a tap-to-explain block detail, plus
+the full list of planned sessions across the current macrocycle).
 
 **The paywall is a scaffold, not a real payment integration**: `POST
 /athletes/:id/subscriptions` on the Core API creates a `Subscription` row
@@ -35,9 +37,8 @@ environment has no payment provider credentials. Wire in the real RevenueCat
 SDK (docs/product-design FASE 4 §4.8) before shipping — the backend model
 (plans, subscriptions, entitlements) is already in place to build on.
 
-Not yet built: the Programma tab (macro/meso/microciclo timeline) and the coach
-dashboard (that's a separate Next.js web app per FASE 4 §4.1, not part of this
-Flutter codebase).
+Not yet built: the coach dashboard (that's a separate Next.js web app per
+FASE 4 §4.1, not part of this Flutter codebase).
 
 `ApiClient.baseUrl` points at `http://localhost:3000` (`10.0.2.2` on the Android
 emulator). There is no real auth yet (M1.1 is unfinished): the onboarding flow

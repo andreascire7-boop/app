@@ -82,6 +82,14 @@ class ApiClient {
     return _decode(res);
   }
 
+  /// Returns null if no macrocycle exists yet (404) instead of throwing —
+  /// callers treat that as an empty state, not an error.
+  Future<Map<String, dynamic>?> getCurrentMacrocycle(String athleteId) async {
+    final res = await _client.get(Uri.parse('$baseUrl/athletes/$athleteId/programming/macrocycle'));
+    if (res.statusCode == 404) return null;
+    return _decode(res);
+  }
+
   Future<List<dynamic>> listSessions(String athleteId) async {
     final res = await _client.get(Uri.parse('$baseUrl/athletes/$athleteId/sessions'));
     if (res.statusCode < 200 || res.statusCode >= 300) {
