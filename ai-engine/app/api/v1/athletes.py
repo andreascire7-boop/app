@@ -4,6 +4,7 @@ from app.engine.autoregulation import evaluate_autoregulation
 from app.engine.exercise_substitution import evaluate_substitution
 from app.engine.explainability import explain
 from app.engine.injury_risk import assess_risk
+from app.engine.nutrition import build_nutrition_recommendation
 from app.engine.periodization import generate_macrocycle
 from app.engine.readiness import compute_readiness
 from app.engine.session_builder import build_sessions
@@ -15,6 +16,8 @@ from app.models.schemas import (
     InjuryRiskInput,
     InjuryRiskOutput,
     MacrocycleOutput,
+    NutritionRecommendationOutput,
+    NutritionRequest,
     ReadinessInput,
     ReadinessOutput,
     SessionPlanRequest,
@@ -80,4 +83,12 @@ def post_readiness(athlete_id: str, payload: ReadinessInput) -> ReadinessOutput:
     payload.athlete_id = athlete_id
     result = compute_readiness(payload)
     result.recommendation = explain(result.recommendation)
+    return result
+
+
+@router.post("/{athlete_id}/nutrition-recommendation", response_model=NutritionRecommendationOutput)
+def post_nutrition_recommendation(athlete_id: str, payload: NutritionRequest) -> NutritionRecommendationOutput:
+    payload.athlete_id = athlete_id
+    result = build_nutrition_recommendation(payload)
+    result.explanation = explain(result.explanation)
     return result

@@ -153,6 +153,24 @@ export interface ReadinessResult {
   engine_version: string;
 }
 
+export interface NutritionPayload {
+  athlete_id: string;
+  context: string;
+  is_minor: boolean;
+  disordered_eating_flag: boolean;
+  body_comp_goal?: string;
+  competition_duration_minutes?: number;
+}
+
+export interface NutritionResult {
+  athlete_id: string;
+  numeric_guidance_suspended: boolean;
+  macro_guidance: Record<string, string>;
+  peri_match_guidance: string | null;
+  explanation: string;
+  engine_version: string;
+}
+
 // Thin HTTP client towards the AI/Decision Engine microservice (Python/FastAPI).
 // The Core API never re-implements periodization/risk logic itself — see
 // docs/product-design FASE 4 (§4.9) and FASE 7 for why the split exists.
@@ -196,6 +214,10 @@ export class AiEngineClient {
 
   async computeReadiness(athleteId: string, payload: ReadinessPayload): Promise<ReadinessResult> {
     return this.post(`/v1/athletes/${athleteId}/readiness`, payload);
+  }
+
+  async computeNutritionRecommendation(athleteId: string, payload: NutritionPayload): Promise<NutritionResult> {
+    return this.post(`/v1/athletes/${athleteId}/nutrition-recommendation`, payload);
   }
 
   private async post<T>(path: string, payload: unknown): Promise<T> {

@@ -121,6 +121,47 @@ const exercises = [
   },
 ];
 
+// Evidence-tier supplement reference (docs/product-design FASE 2 §2.6/FASE 3 F8),
+// grounded only in nutrizione.md — "priorità: prima la dieta di base e il sonno".
+const supplements = [
+  {
+    name: 'Creatina monoidrato',
+    evidenceTier: 'alta',
+    typicalDosage: '3-5 g/die (carico iniziale opzionale ~20 g/die per 5-7 giorni)',
+    cautions: "Tra gli integratori più supportati e sicuri; verificare la certificazione anti-doping per atleti tesserati.",
+  },
+  {
+    name: 'Caffeina',
+    evidenceTier: 'alta',
+    typicalDosage: '~3-6 mg/kg pre-performance',
+    cautions: 'Attenzione a tolleranza individuale e impatto sul sonno.',
+  },
+  {
+    name: 'Beta-alanina',
+    evidenceTier: 'media-alta',
+    typicalDosage: 'Carico cronico giornaliero',
+    cautions: 'Utile per sforzi ripetuti di 1-4 minuti; possibile parestesia transitoria.',
+  },
+  {
+    name: 'Bicarbonato di sodio',
+    evidenceTier: 'media',
+    typicalDosage: 'Da assumere con supervisione per timing/dosaggio',
+    cautions: 'Possibili disturbi gastrointestinali.',
+  },
+  {
+    name: 'Nitrati (succo di barbabietola)',
+    evidenceTier: 'media',
+    typicalDosage: 'Variabile, alcune ore prima della performance',
+    cautions: 'Benefici principalmente su endurance/economia di movimento.',
+  },
+  {
+    name: 'Proteine in polvere',
+    evidenceTier: 'alta (come comodità, non come sostanza magica)',
+    typicalDosage: 'A completamento del fabbisogno proteico giornaliero',
+    cautions: 'Non superiore al cibo intero a parità di apporto proteico totale.',
+  },
+];
+
 async function main() {
   // exercise_library has no natural unique key besides the generated id, so seeding
   // is idempotent by name (find-or-update) rather than a Prisma-level upsert.
@@ -133,6 +174,16 @@ async function main() {
     }
   }
   console.log(`Seeded ${exercises.length} exercises.`);
+
+  for (const supplement of supplements) {
+    const existing = await prisma.supplementReference.findFirst({ where: { name: supplement.name } });
+    if (existing) {
+      await prisma.supplementReference.update({ where: { id: existing.id }, data: supplement });
+    } else {
+      await prisma.supplementReference.create({ data: supplement });
+    }
+  }
+  console.log(`Seeded ${supplements.length} supplements.`);
 }
 
 main()

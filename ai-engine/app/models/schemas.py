@@ -209,3 +209,34 @@ class ReadinessOutput(BaseModel):
     contributing_factors: list[str]
     recommendation: str
     engine_version: str
+
+
+class NutritionContext(str, Enum):
+    daily = "daily"
+    pre_match = "pre_match"
+    during_match = "during_match"
+    post_match = "post_match"
+
+
+class BodyCompGoal(str, Enum):
+    gain_muscle = "gain_muscle"
+    lose_fat = "lose_fat"
+    maintain = "maintain"
+
+
+class NutritionRequest(BaseModel):
+    athlete_id: str
+    context: NutritionContext
+    is_minor: bool = False
+    disordered_eating_flag: bool = False
+    body_comp_goal: Optional[BodyCompGoal] = None
+    competition_duration_minutes: Optional[int] = None
+
+
+class NutritionRecommendationOutput(BaseModel):
+    athlete_id: str
+    numeric_guidance_suspended: bool
+    macro_guidance: dict[str, str]
+    peri_match_guidance: Optional[str]
+    explanation: str
+    engine_version: str

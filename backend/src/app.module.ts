@@ -9,6 +9,7 @@ import { SessionsModule } from './modules/sessions/sessions.module';
 import { RiskModule } from './modules/risk/risk.module';
 import { CompetitionsModule } from './modules/competitions/competitions.module';
 import { WellnessModule } from './modules/wellness/wellness.module';
+import { NutritionModule } from './modules/nutrition/nutrition.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { WellnessModule } from './modules/wellness/wellness.module';
     RiskModule,
     CompetitionsModule,
     WellnessModule,
+    NutritionModule,
   ],
 })
 export class AppModule {}
