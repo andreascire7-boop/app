@@ -37,3 +37,17 @@ services:
         # here, then manually redeploy sc-backend. See infra/DEPLOY.md.
         value: "REPLACE_AFTER_FIRST_DEPLOY"
     healthCheckPath: /health
+
+  - type: web
+    name: sc-mobile-web
+    runtime: docker
+    dockerfilePath: ./mobile/Dockerfile
+    dockerContext: ./mobile
+    plan: free
+    envVars:
+      - key: API_BASE_URL
+        # Same manual-paste step as AI_ENGINE_BASE_URL above, but this one is
+        # baked in at build time (Flutter web has no runtime env vars), so
+        # changing it requires a manual redeploy, not just a restart. Paste
+        # sc-backend's URL here once it's live, then redeploy this service.
+        value: "REPLACE_AFTER_FIRST_DEPLOY"

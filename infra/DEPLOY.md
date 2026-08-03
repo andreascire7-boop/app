@@ -13,19 +13,26 @@ da Render/Vercel sui piani free usati qui).
 2. **New +** → **Blueprint**.
 3. Seleziona il repo `andreascire7-boop/app`, branch
    `claude/strength-conditioning-tennis-app-lg57zd`.
-4. Render legge `render.yaml` alla radice del repo e propone 3 risorse:
-   `sc-postgres` (database), `sc-ai-engine`, `sc-backend`. Conferma il deploy.
+4. Render legge `render.yaml` alla radice del repo e propone 4 risorse:
+   `sc-postgres` (database), `sc-ai-engine`, `sc-backend`, `sc-mobile-web`
+   (la build web dell'app Flutter vera). Conferma il deploy.
 5. Aspetta che `sc-ai-engine` diventi "Live" (pochi minuti), poi apri quel
    servizio e copia il suo URL pubblico (tipo
    `https://sc-ai-engine-xxxx.onrender.com`).
 6. Apri `sc-backend` → **Environment** → modifica `AI_ENGINE_BASE_URL`
    incollando l'URL copiato al punto 5 → **Save, rebuild and deploy**.
 7. Quando anche `sc-backend` è "Live", copia il suo URL pubblico (es.
-   `https://sc-backend-xxxx.onrender.com`) — ti serve al passo successivo.
+   `https://sc-backend-xxxx.onrender.com`) — ti serve ai passi successivi.
+8. Apri `sc-mobile-web` → **Environment** → modifica `API_BASE_URL`
+   incollando l'URL di `sc-backend` (punto 7) → **Save, rebuild and deploy**
+   (qui serve un rebuild vero, non solo un restart, perché Flutter web
+   compila l'URL dentro il bundle — richiede un paio di minuti in più).
 
-Nota piano free di Render: il servizio "dorme" dopo ~15 minuti di
+Nota piano free di Render: ogni servizio "dorme" dopo ~15 minuti di
 inattività e il primo caricamento dopo la pausa richiede ~30-50 secondi:
-normale, non è un errore.
+normale, non è un errore. `sc-mobile-web` in particolare la prima build può
+richiedere qualche minuto in più delle altre (scarica l'immagine Docker con
+Flutter incluso).
 
 ## 2. Web-dashboard / app atleta (Vercel)
 
@@ -41,12 +48,23 @@ Al termine avrai un URL tipo `https://tuo-progetto.vercel.app` — aprilo,
 clicca "Prova l'app come atleta" e segui l'onboarding: è il prodotto vero,
 motore AI reale incluso, non una demo statica.
 
-## 3. (Opzionale, la UI mobile vera) Provare la build web di Flutter
+## 3. La UI mobile vera (già online dopo il passo 1.8)
 
-L'app Flutter reale (quella pensata per iPhone/Android) compila anche per il
-browser — l'ho verificato in questa sessione. Non è ancora collegata a un
-hosting pubblico one-click come i due passi sopra, ma puoi provarla in
-locale se hai un computer con Flutter installato:
+`sc-mobile-web` (deployato al passo 1) è la vera app Flutter — quella
+pensata per iPhone/Android — compilata per il browser, non il
+web-dashboard. Il suo URL pubblico (es.
+`https://sc-mobile-web-xxxx.onrender.com`) è già pronto dopo il passo 1.8:
+apri il servizio su Render e copia l'URL da lì.
+
+Avviso: questo servizio l'ho verificato con `flutter build web` +
+`flutter analyze` (puliti) e con un browser automatizzato (la vera schermata
+di login renderizza correttamente), ma **non ho potuto testare la build via
+Docker in questo ambiente** (nessun demone Docker disponibile qui) — è lo
+stesso identico Dockerfile che Render userà, quindi dovrebbe funzionare, ma
+se la prima build fallisce dimmelo e la sistemo.
+
+Se preferisci provarla in locale invece che online, con un computer che ha
+Flutter installato:
 
 ```bash
 cd mobile
