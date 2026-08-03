@@ -41,3 +41,29 @@ export function getPendingLinks(coachId: string) {
 export function acceptLink(coachId: string, linkId: string) {
   return request<unknown>(`/coaches/${coachId}/athlete-links/${linkId}/accept`, { method: "PATCH" });
 }
+
+export interface AthleteSession {
+  id: string;
+  scheduledDate: string;
+  status: string;
+  sessionFocus: string | null;
+}
+
+export interface RiskAssessment {
+  riskLevel: "GREEN" | "YELLOW" | "RED";
+  assessmentDate: string;
+  contributingFactors: string[];
+  recommendationText: string | null;
+}
+
+// S25 (docs/product-design FASE 6): drill-down atleta — sessioni e ultima
+// valutazione di rischio. Nota: questi endpoint sul Core API non applicano
+// ancora un controllo "solo il coach collegato può leggerli" (RLS reale è
+// pianificata per la migrazione auth, FASE 4 §4.4) — limite noto, non nuovo.
+export function getAthleteSessions(athleteId: string) {
+  return request<AthleteSession[]>(`/athletes/${athleteId}/sessions`);
+}
+
+export function getAthleteRisk(athleteId: string) {
+  return request<RiskAssessment | null>(`/athletes/${athleteId}/risk`);
+}

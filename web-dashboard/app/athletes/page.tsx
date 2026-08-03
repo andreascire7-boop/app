@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import {
   acceptLink,
@@ -10,18 +11,7 @@ import {
   getPendingLinks,
   type PendingLink,
 } from "@/lib/api";
-
-const RISK_COLOR: Record<string, string> = {
-  RED: "#B3261E",
-  YELLOW: "#C77700",
-  GREEN: "#1F7A6C",
-};
-
-const RISK_LABEL: Record<string, string> = {
-  RED: "Rosso",
-  YELLOW: "Giallo",
-  GREEN: "Verde",
-};
+import { RISK_COLOR, RISK_LABEL } from "@/lib/risk";
 
 // S24 (docs/product-design FASE 6): lista atleti ordinata di default per
 // rischio (già ordinata lato Core API — F11), più le richieste di
@@ -128,7 +118,7 @@ export default function AthletesPage() {
               </p>
             ) : (
               athletes.map(({ athlete, latestRisk }) => (
-                <div key={athlete.id} style={styles.row}>
+                <Link key={athlete.id} href={`/athletes/${athlete.id}`} style={{ ...styles.row, ...styles.rowLink }}>
                   <div>
                     <strong>{athlete.fullName}</strong>
                     <div style={styles.muted}>{athlete.email}</div>
@@ -142,7 +132,7 @@ export default function AthletesPage() {
                   >
                     {latestRisk ? RISK_LABEL[latestRisk.riskLevel] : "Nessuna valutazione"}
                   </span>
-                </div>
+                </Link>
               ))
             )}
           </section>
@@ -176,6 +166,7 @@ const styles: Record<string, React.CSSProperties> = {
     borderRadius: 10,
     marginBottom: "0.5rem",
   },
+  rowLink: { textDecoration: "none", color: "inherit", cursor: "pointer" },
   muted: { color: "#5A6B76", fontSize: 13 },
   errorBox: { color: "#B3261E" },
   badge: { padding: "0.3rem 0.7rem", borderRadius: 999, fontSize: 13, fontWeight: 600 },
