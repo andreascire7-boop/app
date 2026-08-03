@@ -1,6 +1,6 @@
 import 'dart:convert';
-import 'dart:io' show Platform;
 
+import 'package:flutter/foundation.dart' show TargetPlatform, defaultTargetPlatform, kIsWeb;
 import 'package:http/http.dart' as http;
 
 /// Thin HTTP client for the Core API (NestJS — docs/product-design FASE 4 §4.2).
@@ -10,13 +10,21 @@ class ApiClient {
 
   final http.Client _client;
 
-  // Android emulator can't reach the host's "localhost" directly — 10.0.2.2 is its
-  // alias for the host loopback. iOS simulator and physical devices need adjusting
-  // (see mobile/README.md) once this moves past local dev. Mobile-only app (the web
-  // dashboard is a separate Next.js codebase per docs/product-design FASE 4 §4.1),
-  // so a dart:io Platform check is always safe here.
+  // Overridable at build time (--dart-define=API_BASE_URL=https://...) so the
+  // web build can point at a publicly deployed Core API instead of localhost —
+  // see infra/DEPLOY.md. Falls back to the local-dev defaults otherwise:
+  // Android emulator can't reach the host's "localhost" directly — 10.0.2.2 is
+  // its alias for the host loopback. iOS simulator and physical devices need
+  // adjusting (see mobile/README.md). Uses package:flutter/foundation.dart
+  // instead of dart:io Platform because this app also targets web — dart:io
+  // throws at runtime there.
+  static const _apiBaseUrlOverride = String.fromEnvironment('API_BASE_URL');
+
   static String get baseUrl {
-    if (Platform.isAndroid) {
+    if (_apiBaseUrlOverride.isNotEmpty) {
+      return _apiBaseUrlOverride;
+    }
+    if (!kIsWeb && defaultTargetPlatform == TargetPlatform.android) {
       return 'http://10.0.2.2:3000';
     }
     return 'http://localhost:3000';

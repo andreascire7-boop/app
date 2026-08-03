@@ -4,9 +4,12 @@ Athlete-facing app — iOS + Android from one codebase (docs/product-design FASE
 
 ## Status (M0.3 of the roadmap, FASE 9)
 
-This scaffold was authored without a local Flutter SDK available in the dev
-environment that generated it, so the native `android/` and `ios/` platform folders
-are **not** included yet. Before running the app:
+Most of this app was authored without a local Flutter SDK available in the dev
+environment, so `android/` and `ios/` platform folders are **not** included
+yet. `web/` was later generated and verified (`flutter build web` builds
+clean and boots — this is how Andrea can try the real Flutter UI in a
+browser without an Android/iOS toolchain; see `infra/DEPLOY.md`). Before
+running natively:
 
 ```bash
 flutter create . --platforms=android,ios   # generates the missing platform folders

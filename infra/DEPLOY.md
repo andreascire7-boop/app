@@ -41,6 +41,26 @@ Al termine avrai un URL tipo `https://tuo-progetto.vercel.app` — aprilo,
 clicca "Prova l'app come atleta" e segui l'onboarding: è il prodotto vero,
 motore AI reale incluso, non una demo statica.
 
+## 3. (Opzionale, la UI mobile vera) Provare la build web di Flutter
+
+L'app Flutter reale (quella pensata per iPhone/Android) compila anche per il
+browser — l'ho verificato in questa sessione. Non è ancora collegata a un
+hosting pubblico one-click come i due passi sopra, ma puoi provarla in
+locale se hai un computer con Flutter installato:
+
+```bash
+cd mobile
+flutter pub get
+flutter build web --release --no-web-resources-cdn \
+  --dart-define=API_BASE_URL=https://sc-backend-xxxx.onrender.com   # l'URL del passo 1.7
+cd build/web && python3 -m http.server 8080
+```
+
+Poi apri `http://localhost:8080`. Nota `--no-web-resources-cdn`: senza
+questo flag Flutter scarica CanvasKit da una CDN Google invece di usare i
+file già inclusi nella build — di solito non serve, ma se il rendering
+resta bianco è il primo sospetto.
+
 ## Aggiornare dopo nuove modifiche
 
 Sia Render che Vercel sono collegati al branch: ogni nuovo push che faccio
