@@ -1,6 +1,7 @@
 from fastapi import APIRouter
 
 from app.engine.autoregulation import evaluate_autoregulation
+from app.engine.conditioning import build_conditioning_plan
 from app.engine.exercise_substitution import evaluate_substitution
 from app.engine.explainability import explain
 from app.engine.injury_risk import assess_risk
@@ -13,6 +14,8 @@ from app.models.schemas import (
     AthleteNeedsInput,
     AutoregulationInput,
     AutoregulationOutput,
+    ConditioningPlanInput,
+    ConditioningPlanOutput,
     InjuryRiskInput,
     InjuryRiskOutput,
     MacrocycleOutput,
@@ -90,5 +93,13 @@ def post_readiness(athlete_id: str, payload: ReadinessInput) -> ReadinessOutput:
 def post_nutrition_recommendation(athlete_id: str, payload: NutritionRequest) -> NutritionRecommendationOutput:
     payload.athlete_id = athlete_id
     result = build_nutrition_recommendation(payload)
+    result.explanation = explain(result.explanation)
+    return result
+
+
+@router.post("/{athlete_id}/conditioning-plan", response_model=ConditioningPlanOutput)
+def post_conditioning_plan(athlete_id: str, payload: ConditioningPlanInput) -> ConditioningPlanOutput:
+    payload.athlete_id = athlete_id
+    result = build_conditioning_plan(payload)
     result.explanation = explain(result.explanation)
     return result

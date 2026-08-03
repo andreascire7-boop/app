@@ -240,3 +240,47 @@ class NutritionRecommendationOutput(BaseModel):
     peri_match_guidance: Optional[str]
     explanation: str
     engine_version: str
+
+
+class AgilityMode(str, Enum):
+    chiuso = "chiuso"  # closed COD drills
+    reattivo = "reattivo"  # open/reactive agility
+
+
+class EnergySystemTarget(str, Enum):
+    fosfageni = "fosfageni"
+    glicolitico = "glicolitico"
+    ossidativo = "ossidativo"
+
+
+class SprintPrescription(BaseModel):
+    reps: int
+    distance_m: int
+    recovery: str
+
+
+class IntervalPrescription(BaseModel):
+    energy_system: EnergySystemTarget
+    work_seconds: int
+    rest_seconds: int
+    repetitions: int
+    note: str
+
+
+class ConditioningPlanInput(BaseModel):
+    athlete_id: str
+    level: AthleteLevel
+    primary_sport: Sport
+    block_type: Optional[BlockType] = None
+    weeks_until_event: Optional[int] = None
+
+
+class ConditioningPlanOutput(BaseModel):
+    athlete_id: str
+    agility_mode: AgilityMode
+    sprint: SprintPrescription
+    rsa: IntervalPrescription
+    energy_system_targets: list[EnergySystemTarget]
+    interference_note: str
+    explanation: str
+    engine_version: str
