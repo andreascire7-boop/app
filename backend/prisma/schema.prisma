@@ -1,0 +1,749 @@
+// Prisma schema — Core API database.
+// Maps the logical design in docs/product-design (FASE 5) onto PostgreSQL + TimescaleDB.
+// wearable_data and load_metrics are converted to TimescaleDB hypertables via a raw-SQL
+// migration step (see infra/db/hypertables.sql) — Prisma has no native hypertable primitive.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ───────────────────────── A — Identity & Access ─────────────────────────
+
+enum UserRole {
+  ATHLETE
+  COACH
+  ORG_ADMIN
+  SUPERADMIN
+}
+
+model User {
+  id             String    @id @default(uuid())
+  email          String    @unique
+  authProviderId String    @map("auth_provider_id")
+  fullName       String    @map("full_name")
+  dateOfBirth    DateTime? @map("date_of_birth")
+  role           UserRole  @default(ATHLETE)
+  locale         String    @default("it-IT")
+  createdAt      DateTime  @default(now()) @map("created_at")
+  deletedAt      DateTime? @map("deleted_at")
+
+  athleteProfile        AthleteProfile?
+  injuryHistory         InjuryHistory[]
+  athleteGoals          AthleteGoal[]
+  guardianOf            GuardianLink[]          @relation("GuardianUser")
+  guardedBy             GuardianLink[]          @relation("AthleteUser")
+  consents              Consent[]
+  coachLinksAsCoach      CoachAthleteLink[]      @relation("CoachUser")
+  coachLinksAsAthlete    CoachAthleteLink[]      @relation("AthleteUserLink")
+  orgMemberships         OrgMembership[]
+  ownedOrganizations     Organization[]          @relation("BillingOwner")
+  competitions           Competition[]
+  macrocycles            Macrocycle[]
+  sessions               Session[]
+  sessionFeedback        SessionFeedback[]
+  painReports            PainReport[]
+  wellnessCheckins       WellnessCheckin[]
+  riskAssessments        RiskAssessment[]
+  aiDecisionLogs         AiDecisionLog[]
+  nutritionProfile       NutritionProfile?
+  nutritionRecommendations NutritionRecommendation[]
+  nutritionFlagEvents    NutritionFlagEvent[]
+  subscriptions          Subscription[]
+  notificationPreferences NotificationPreference[]
+  notificationLogs       NotificationLog[]
+  auditLogsAsActor       AuditLog[]
+  dataSubjectRequests    DataSubjectRequest[]
+
+  @@map("users")
+}
+
+enum OrganizationType {
+  ACADEMY
+  CLUB
+  FEDERATION
+}
+
+model Organization {
+  id               String           @id @default(uuid())
+  name             String
+  type             OrganizationType
+  billingOwnerId   String           @map("billing_owner_user_id")
+  billingOwner     User             @relation("BillingOwner", fields: [billingOwnerId], references: [id])
+  createdAt        DateTime         @default(now()) @map("created_at")
+
+  memberships   OrgMembership[]
+  subscriptions Subscription[]
+  invoices      Invoice[]
+
+  @@map("organizations")
+}
+
+enum OrgRole {
+  COACH
+  ADMIN
+  ATHLETE_MANAGED
+}
+
+model OrgMembership {
+  id             String       @id @default(uuid())
+  organizationId String       @map("organization_id")
+  organization   Organization @relation(fields: [organizationId], references: [id])
+  userId         String       @map("user_id")
+  user           User         @relation(fields: [userId], references: [id])
+  orgRole        OrgRole      @map("org_role")
+
+  @@unique([organizationId, userId])
+  @@map("org_memberships")
+}
+
+enum LinkStatus {
+  PENDING
+  ACTIVE
+  REVOKED
+}
+
+model CoachAthleteLink {
+  id             String     @id @default(uuid())
+  coachId        String     @map("coach_id")
+  coach          User       @relation("CoachUser", fields: [coachId], references: [id])
+  athleteId      String     @map("athlete_id")
+  athlete        User       @relation("AthleteUserLink", fields: [athleteId], references: [id])
+  status         LinkStatus @default(PENDING)
+  grantedScopes  Json       @default("{}") @map("granted_scopes")
+  createdAt      DateTime   @default(now()) @map("created_at")
+  revokedAt      DateTime?  @map("revoked_at")
+
+  @@unique([coachId, athleteId])
+  @@index([status])
+  @@map("coach_athlete_links")
+}
+
+enum ConsentType {
+  HEALTH_DATA_PROCESSING
+  MARKETING
+  THIRD_PARTY_WEARABLE
+  MINORS_GUARDIAN
+}
+
+model Consent {
+  id          String      @id @default(uuid())
+  userId      String      @map("user_id")
+  user        User        @relation(fields: [userId], references: [id])
+  consentType ConsentType @map("consent_type")
+  granted     Boolean
+  version     String
+  grantedAt   DateTime    @default(now()) @map("granted_at")
+  revokedAt   DateTime?   @map("revoked_at")
+
+  @@map("consents")
+}
+
+// ───────────────────────── B — Profilo Atleta ─────────────────────────
+
+enum Sport {
+  TENNIS
+  PADEL
+  BOTH
+}
+
+enum AthleteLevel {
+  BEGINNER
+  INTERMEDIATE
+  ADVANCED
+  SEMI_PRO
+  PRO
+}
+
+model AthleteProfile {
+  userId                  String       @id @map("user_id")
+  user                    User         @relation(fields: [userId], references: [id])
+  primarySport            Sport        @map("primary_sport")
+  level                   AthleteLevel
+  dominantHand            String?      @map("dominant_hand")
+  weeklyAvailabilityDays  Int          @map("weekly_availability_days")
+  goalPrimary             String?      @map("goal_primary")
+  onboardingCompletedAt   DateTime?    @map("onboarding_completed_at")
+
+  @@map("athlete_profiles")
+}
+
+enum BodyArea {
+  SPALLA
+  GOMITO
+  LOMBARE
+  GINOCCHIO
+  CAVIGLIA
+  ALTRO
+}
+
+enum InjuryStatus {
+  ACTIVE
+  RESOLVED
+}
+
+model InjuryHistory {
+  id                String       @id @default(uuid())
+  athleteId         String       @map("athlete_id")
+  athlete           User         @relation(fields: [athleteId], references: [id])
+  bodyArea          BodyArea     @map("body_area")
+  description       String?
+  severityAtReport  Int          @map("severity_at_report")
+  status            InjuryStatus @default(ACTIVE)
+  reportedAt        DateTime     @default(now()) @map("reported_at")
+  resolvedAt        DateTime?    @map("resolved_at")
+
+  @@index([athleteId, bodyArea])
+  @@map("injury_history")
+}
+
+model AthleteGoal {
+  id         String    @id @default(uuid())
+  athleteId  String    @map("athlete_id")
+  athlete    User      @relation(fields: [athleteId], references: [id])
+  goalType   String    @map("goal_type")
+  targetDate DateTime? @map("target_date")
+  notes      String?
+
+  @@map("athlete_goals")
+}
+
+model GuardianLink {
+  id           String    @id @default(uuid())
+  athleteId    String    @map("athlete_id")
+  athlete      User      @relation("AthleteUser", fields: [athleteId], references: [id])
+  guardianId   String    @map("guardian_user_id")
+  guardian     User      @relation("GuardianUser", fields: [guardianId], references: [id])
+  verifiedAt   DateTime? @map("verified_at")
+
+  @@map("guardian_links")
+}
+
+// ───────────────────────── C — Calendario Gare ─────────────────────────
+
+enum CompetitionImportance {
+  LOCALE
+  REGIONALE
+  NAZIONALE
+}
+
+enum CompetitionStatus {
+  SCHEDULED
+  COMPLETED
+  CANCELLED
+}
+
+model Competition {
+  id              String                @id @default(uuid())
+  athleteId       String                @map("athlete_id")
+  athlete         User                  @relation(fields: [athleteId], references: [id])
+  sport           Sport
+  eventDate       DateTime              @map("event_date")
+  importance      CompetitionImportance
+  expectedMatches Int?                  @map("expected_matches")
+  status          CompetitionStatus     @default(SCHEDULED)
+  createdAt       DateTime              @default(now()) @map("created_at")
+
+  matches                  Match[]
+  nutritionRecommendations NutritionRecommendation[]
+
+  @@index([athleteId, eventDate])
+  @@map("competitions")
+}
+
+model Match {
+  id              String      @id @default(uuid())
+  competitionId   String      @map("competition_id")
+  competition     Competition @relation(fields: [competitionId], references: [id])
+  playedAt        DateTime?   @map("played_at")
+  durationMinutes Int?        @map("duration_minutes")
+  result          String?
+  rpeReported     Int?        @map("rpe_reported")
+  notes           String?
+
+  @@map("matches")
+}
+
+// ───────────────────────── D — Programmazione ─────────────────────────
+
+enum PeriodizationModel {
+  LINEARE
+  ONDULATA
+  A_BLOCCHI
+}
+
+model Macrocycle {
+  id           String             @id @default(uuid())
+  athleteId    String             @map("athlete_id")
+  athlete      User               @relation(fields: [athleteId], references: [id])
+  modelType    PeriodizationModel @map("model_type")
+  startDate    DateTime           @map("start_date")
+  endDate      DateTime           @map("end_date")
+  primaryGoal  String?            @map("primary_goal")
+
+  mesocycles Mesocycle[]
+
+  @@map("macrocycles")
+}
+
+enum BlockType {
+  ACCUMULO
+  TRASMUTAZIONE
+  REALIZZAZIONE
+}
+
+model Mesocycle {
+  id              String      @id @default(uuid())
+  macrocycleId    String      @map("macrocycle_id")
+  macrocycle      Macrocycle  @relation(fields: [macrocycleId], references: [id])
+  blockType       BlockType?  @map("block_type")
+  startDate       DateTime    @map("start_date")
+  endDate         DateTime    @map("end_date")
+  targetQualities Json        @default("{}") @map("target_qualities")
+
+  microcycles Microcycle[]
+
+  @@map("mesocycles")
+}
+
+enum MicrocycleType {
+  ORDINARIO
+  SHOCK
+  SCARICO
+  RIFINITURA
+  COMPETITIVO
+}
+
+model Microcycle {
+  id                    String         @id @default(uuid())
+  mesocycleId           String         @map("mesocycle_id")
+  mesocycle             Mesocycle      @relation(fields: [mesocycleId], references: [id])
+  weekStartDate         DateTime       @map("week_start_date")
+  type                  MicrocycleType @default(ORDINARIO)
+  plannedVolumeIndex    Float?         @map("planned_volume_index")
+  plannedIntensityIndex Float?         @map("planned_intensity_index")
+
+  sessions Session[]
+
+  @@map("microcycles")
+}
+
+enum SessionStatus {
+  PLANNED
+  COMPLETED
+  SKIPPED
+  MODIFIED
+}
+
+model Session {
+  id             String        @id @default(uuid())
+  microcycleId   String        @map("microcycle_id")
+  microcycle     Microcycle    @relation(fields: [microcycleId], references: [id])
+  athleteId      String        @map("athlete_id")
+  athlete        User          @relation(fields: [athleteId], references: [id])
+  scheduledDate  DateTime      @map("scheduled_date")
+  status         SessionStatus @default(PLANNED)
+  sessionFocus   String?       @map("session_focus")
+
+  exercises SessionExercise[]
+  feedback  SessionFeedback[]
+
+  @@index([athleteId, scheduledDate])
+  @@map("sessions")
+}
+
+model ExerciseLibrary {
+  id                  String   @id @default(uuid())
+  name                String
+  movementPattern     String   @map("movement_pattern")
+  primaryMuscleGroups Json     @default("[]") @map("primary_muscle_groups")
+  bodyAreaRiskTags    Json     @default("[]") @map("body_area_risk_tags")
+  equipmentRequired   String?  @map("equipment_required")
+  difficultyLevel     String?  @map("difficulty_level")
+  mediaId             String?  @map("media_id")
+  media               ExerciseMedia? @relation(fields: [mediaId], references: [id])
+
+  sessionExercises SessionExercise[] @relation("ExerciseInSession")
+  substitutedFor   SessionExercise[] @relation("SubstitutedFrom")
+
+  @@map("exercise_library")
+}
+
+model SessionExercise {
+  id                String           @id @default(uuid())
+  sessionId         String           @map("session_id")
+  session           Session          @relation(fields: [sessionId], references: [id])
+  exerciseId        String           @map("exercise_id")
+  exercise          ExerciseLibrary  @relation("ExerciseInSession", fields: [exerciseId], references: [id])
+  orderIndex        Int              @map("order_index")
+  targetSets        Int?             @map("target_sets")
+  targetReps        Int?             @map("target_reps")
+  targetLoad        Float?           @map("target_load")
+  targetRpe         Float?           @map("target_rpe")
+  substitutedFromId String?          @map("substituted_from_id")
+  substitutedFrom   ExerciseLibrary? @relation("SubstitutedFrom", fields: [substitutedFromId], references: [id])
+
+  logs             ExerciseLog[]
+  substitutionLogs ExerciseSubstitutionLog[]
+
+  @@map("session_exercises")
+}
+
+model ExerciseLog {
+  id                String          @id @default(uuid())
+  sessionExerciseId String          @map("session_exercise_id")
+  sessionExercise   SessionExercise @relation(fields: [sessionExerciseId], references: [id])
+  setNumber         Int             @map("set_number")
+  actualReps        Int?            @map("actual_reps")
+  actualLoad        Float?          @map("actual_load")
+  actualRpe         Float?          @map("actual_rpe")
+  loggedAt          DateTime        @default(now()) @map("logged_at")
+
+  @@map("exercise_logs")
+}
+
+// ───────────────────────── E — Feedback & Monitoraggio ─────────────────────────
+
+model SessionFeedback {
+  id          String   @id @default(uuid())
+  sessionId   String   @map("session_id")
+  session     Session  @relation(fields: [sessionId], references: [id])
+  athleteId   String   @map("athlete_id")
+  athlete     User     @relation(fields: [athleteId], references: [id])
+  sessionRpe  Float?   @map("session_rpe")
+  energyLevel Int?     @map("energy_level")
+  notes       String?
+  submittedAt DateTime @default(now()) @map("submitted_at")
+
+  @@map("session_feedback")
+}
+
+enum PainContext {
+  ALLENAMENTO
+  GARA
+  QUOTIDIANO
+}
+
+model PainReport {
+  id         String      @id @default(uuid())
+  athleteId  String      @map("athlete_id")
+  athlete    User        @relation(fields: [athleteId], references: [id])
+  bodyArea   BodyArea    @map("body_area")
+  painLevel  Int         @map("pain_level")
+  context    PainContext
+  reportedAt DateTime    @default(now()) @map("reported_at")
+
+  @@index([athleteId, bodyArea, reportedAt])
+  @@map("pain_reports")
+}
+
+model WellnessCheckin {
+  id             String   @id @default(uuid())
+  athleteId      String   @map("athlete_id")
+  athlete        User     @relation(fields: [athleteId], references: [id])
+  checkDate      DateTime @map("check_date") @db.Date
+  sleepQuality   Int?     @map("sleep_quality")
+  sleepHours     Float?   @map("sleep_hours")
+  stressLevel    Int?     @map("stress_level")
+  readinessScore Float?   @map("readiness_score")
+
+  @@unique([athleteId, checkDate])
+  @@map("wellness_checkins")
+}
+
+// wearable_data and load_metrics are converted to TimescaleDB hypertables post-migration
+// (infra/db/hypertables.sql) — modeled here as plain tables for Prisma's sake.
+
+enum WearableMetricType {
+  HR
+  HRV
+  SLEEP_STAGE
+  STEPS
+}
+
+model WearableDatum {
+  time         DateTime
+  athleteId    String             @map("athlete_id")
+  metricType   WearableMetricType @map("metric_type")
+  value        Float
+  sourceDevice String?            @map("source_device")
+
+  @@id([time, athleteId, metricType])
+  @@index([athleteId, time])
+  @@map("wearable_data")
+}
+
+model LoadMetric {
+  day            DateTime @db.Date
+  athleteId      String   @map("athlete_id")
+  acuteLoad      Float?   @map("acute_load")
+  chronicLoad    Float?   @map("chronic_load")
+  acwr           Float?
+  monotonyIndex  Float?   @map("monotony_index")
+  computedAt     DateTime @default(now()) @map("computed_at")
+
+  @@id([day, athleteId])
+  @@map("load_metrics")
+}
+
+// ───────────────────────── F — Motore Rischio / AI ─────────────────────────
+
+enum RiskLevel {
+  GREEN
+  YELLOW
+  RED
+}
+
+model RiskAssessment {
+  id                   String    @id @default(uuid())
+  athleteId            String    @map("athlete_id")
+  athlete              User      @relation(fields: [athleteId], references: [id])
+  assessmentDate       DateTime  @map("assessment_date") @db.Date
+  riskLevel            RiskLevel @map("risk_level")
+  contributingFactors  Json      @default("{}") @map("contributing_factors")
+  recommendationText   String?   @map("recommendation_text")
+  createdAt            DateTime  @default(now()) @map("created_at")
+
+  @@index([athleteId, assessmentDate])
+  @@map("risk_assessments")
+}
+
+enum AiDecisionType {
+  VOLUME_ADJUSTMENT
+  TAPER_START
+  EXERCISE_SUBSTITUTION
+  NUTRITION_FLAG
+}
+
+model AiDecisionLog {
+  id             String         @id @default(uuid())
+  athleteId      String         @map("athlete_id")
+  athlete        User           @relation(fields: [athleteId], references: [id])
+  decisionType   AiDecisionType @map("decision_type")
+  engineVersion  String         @map("engine_version")
+  inputSnapshot  Json           @map("input_snapshot")
+  outputDecision Json           @map("output_decision")
+  explanationText String?       @map("explanation_text")
+  createdAt      DateTime       @default(now()) @map("created_at")
+
+  @@map("ai_decision_log")
+}
+
+enum SubstitutionReason {
+  PAIN
+  EQUIPMENT_MISSING
+  USER_OVERRIDE
+}
+
+model ExerciseSubstitutionLog {
+  id                 String             @id @default(uuid())
+  sessionExerciseId  String             @map("session_exercise_id")
+  sessionExercise    SessionExercise    @relation(fields: [sessionExerciseId], references: [id])
+  reason             SubstitutionReason
+  overriddenByUser   Boolean            @default(false) @map("overridden_by_user")
+
+  @@map("exercise_substitution_log")
+}
+
+// ───────────────────────── G — Nutrizione ─────────────────────────
+
+model NutritionProfile {
+  userId                 String   @id @map("user_id")
+  user                   User     @relation(fields: [userId], references: [id])
+  bodyCompGoal           String?  @map("body_comp_goal")
+  dietaryRestrictions    Json     @default("[]") @map("dietary_restrictions")
+  disorderedEatingFlag   Boolean  @default(false) @map("disordered_eating_flag")
+
+  @@map("nutrition_profiles")
+}
+
+enum NutritionContext {
+  DAILY
+  PRE_MATCH
+  DURING_MATCH
+  POST_MATCH
+}
+
+model NutritionRecommendation {
+  id                  String           @id @default(uuid())
+  athleteId           String           @map("athlete_id")
+  athlete             User             @relation(fields: [athleteId], references: [id])
+  context             NutritionContext
+  macroTargets        Json             @default("{}") @map("macro_targets")
+  generatedAt         DateTime         @default(now()) @map("generated_at")
+  linkedCompetitionId String?          @map("linked_competition_id")
+  linkedCompetition   Competition?     @relation(fields: [linkedCompetitionId], references: [id])
+
+  @@map("nutrition_recommendations")
+}
+
+model SupplementReference {
+  id             String @id @default(uuid())
+  name           String
+  evidenceTier   String @map("evidence_tier")
+  typicalDosage  String? @map("typical_dosage")
+  cautions       String?
+
+  @@map("supplement_reference")
+}
+
+model NutritionFlagEvent {
+  id            String   @id @default(uuid())
+  athleteId     String   @map("athlete_id")
+  athlete       User     @relation(fields: [athleteId], references: [id])
+  triggerReason String   @map("trigger_reason")
+  actionTaken   String   @map("action_taken")
+  createdAt     DateTime @default(now()) @map("created_at")
+
+  @@map("nutrition_flag_events")
+}
+
+// ───────────────────────── H — Pagamenti ─────────────────────────
+
+enum PlanTier {
+  FREE
+  PREMIUM
+  PRO
+  B2B
+}
+
+model Plan {
+  id            String   @id @default(uuid())
+  name          String
+  tier          PlanTier
+  price         Float
+  billingPeriod String   @map("billing_period")
+
+  subscriptions Subscription[]
+
+  @@map("plans")
+}
+
+enum SubscriptionStatus {
+  ACTIVE
+  PAST_DUE
+  CANCELLED
+}
+
+enum PaymentProvider {
+  REVENUECAT
+  STRIPE
+}
+
+model Subscription {
+  id             String             @id @default(uuid())
+  userId         String?            @map("user_id")
+  user           User?              @relation(fields: [userId], references: [id])
+  organizationId String?            @map("organization_id")
+  organization   Organization?      @relation(fields: [organizationId], references: [id])
+  planId         String             @map("plan_id")
+  plan           Plan               @relation(fields: [planId], references: [id])
+  status         SubscriptionStatus @default(ACTIVE)
+  provider       PaymentProvider
+  externalRef    String?            @map("external_ref")
+
+  @@map("subscriptions")
+}
+
+model Invoice {
+  id              String       @id @default(uuid())
+  organizationId  String       @map("organization_id")
+  organization    Organization @relation(fields: [organizationId], references: [id])
+  amount          Float
+  status          String
+  issuedAt        DateTime     @default(now()) @map("issued_at")
+  stripeInvoiceId String?      @map("stripe_invoice_id")
+
+  @@map("invoices")
+}
+
+// ───────────────────────── I — Notifiche ─────────────────────────
+
+enum NotificationChannel {
+  PUSH
+  EMAIL
+}
+
+enum NotificationCategory {
+  SESSION_REMINDER
+  RISK_ALERT
+  COMPETITION_TAPER
+  REPORT
+}
+
+model NotificationPreference {
+  userId   String               @map("user_id")
+  user     User                 @relation(fields: [userId], references: [id])
+  channel  NotificationChannel
+  category NotificationCategory
+  enabled  Boolean              @default(true)
+
+  @@id([userId, channel, category])
+  @@map("notification_preferences")
+}
+
+model NotificationLog {
+  id       String               @id @default(uuid())
+  userId   String               @map("user_id")
+  user     User                 @relation(fields: [userId], references: [id])
+  category NotificationCategory
+  sentAt   DateTime             @default(now()) @map("sent_at")
+  openedAt DateTime?            @map("opened_at")
+
+  @@map("notification_log")
+}
+
+// ───────────────────────── J — Contenuti ─────────────────────────
+
+enum MediaType {
+  VIDEO
+  IMAGE
+}
+
+model ExerciseMedia {
+  id              String    @id @default(uuid())
+  storageUrl      String    @map("storage_url")
+  type            MediaType
+  durationSeconds Int?      @map("duration_seconds")
+
+  exercises ExerciseLibrary[]
+
+  @@map("exercise_media")
+}
+
+// ───────────────────────── K — Audit & Sicurezza ─────────────────────────
+
+model AuditLog {
+  id           String   @id @default(uuid())
+  actorUserId  String?  @map("actor_user_id")
+  actorUser    User?    @relation(fields: [actorUserId], references: [id])
+  action       String
+  targetTable  String   @map("target_table")
+  targetId     String   @map("target_id")
+  diff         Json     @default("{}")
+  createdAt    DateTime @default(now()) @map("created_at")
+
+  @@index([targetTable, targetId, createdAt])
+  @@map("audit_log")
+}
+
+enum DataRequestType {
+  EXPORT
+  ERASURE
+}
+
+model DataSubjectRequest {
+  id           String          @id @default(uuid())
+  userId       String          @map("user_id")
+  user         User            @relation(fields: [userId], references: [id])
+  requestType  DataRequestType @map("request_type")
+  status       String          @default("pending")
+  requestedAt  DateTime        @default(now()) @map("requested_at")
+  completedAt  DateTime?       @map("completed_at")
+
+  @@map("data_subject_requests")
+}

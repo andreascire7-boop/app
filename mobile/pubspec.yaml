@@ -1,0 +1,22 @@
+name: sc_platform_mobile
+description: >
+  Strength & Conditioning Intelligence Platform — athlete-facing app (tennis & padel).
+  See docs/product-design for the full FASE 1-9 design.
+publish_to: "none"
+version: 0.1.0
+
+environment:
+  sdk: ">=3.3.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+flutter:
+  uses-material-design: true
