@@ -8,6 +8,7 @@ import '../../core/widgets/error_state.dart';
 import '../../core/widgets/skeleton_box.dart';
 import '../calendar/competitions_screen.dart';
 import '../nutrition/nutrition_hub_screen.dart';
+import '../profile/profile_tab.dart';
 import '../risk/risk_center_screen.dart';
 import '../session/session_detail_screen.dart';
 
@@ -42,10 +43,12 @@ class _HomeScreenState extends State<HomeScreen> {
               title: 'Nutrizione',
               subtitle: 'Completa prima l\'onboarding per vedere le tue linee guida.',
             ),
-      const _PlaceholderTab(
-        title: 'Profilo',
-        subtitle: 'Impostazioni account e abbonamento — in arrivo (milestone M3.1, FASE 9).',
-      ),
+      athleteId != null
+          ? ProfileTab(athleteId: athleteId)
+          : const _PlaceholderTab(
+              title: 'Profilo',
+              subtitle: 'Completa prima l\'onboarding per vedere il tuo abbonamento.',
+            ),
     ];
 
     return Scaffold(

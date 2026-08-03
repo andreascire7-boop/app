@@ -265,6 +265,30 @@ class ApiClient {
     return _decodeList(res);
   }
 
+  // --- Abbonamenti (scaffolding — nessun addebito reale, vedi mobile/README.md) ---
+
+  Future<List<dynamic>> listPlans() async {
+    final res = await _client.get(Uri.parse('$baseUrl/plans'));
+    return _decodeList(res);
+  }
+
+  Future<Map<String, dynamic>?> getCurrentSubscription(String athleteId) async {
+    final res = await _client.get(Uri.parse('$baseUrl/athletes/$athleteId/subscription'));
+    if (res.statusCode == 200 && res.body.isNotEmpty && res.body != 'null') {
+      return jsonDecode(res.body) as Map<String, dynamic>;
+    }
+    return null;
+  }
+
+  Future<Map<String, dynamic>> subscribeToPlan({required String athleteId, required String planId}) async {
+    final res = await _client.post(
+      Uri.parse('$baseUrl/athletes/$athleteId/subscriptions'),
+      headers: {'Content-Type': 'application/json'},
+      body: jsonEncode({'planId': planId}),
+    );
+    return _decode(res);
+  }
+
   Map<String, dynamic> _decode(http.Response res) {
     if (res.statusCode < 200 || res.statusCode >= 300) {
       throw ApiException('Richiesta fallita (${res.statusCode}): ${res.body}');

@@ -162,6 +162,15 @@ const supplements = [
   },
 ];
 
+// Pricing tiers (docs/product-design FASE 8 §8.4) — indicative prices to be
+// validated with real A/B tests, not market data.
+const plans = [
+  { name: 'Free', tier: 'FREE' as const, price: 0, billingPeriod: 'monthly' },
+  { name: 'Premium', tier: 'PREMIUM' as const, price: 9.99, billingPeriod: 'monthly' },
+  { name: 'Pro', tier: 'PRO' as const, price: 19.99, billingPeriod: 'monthly' },
+  { name: 'B2B per atleta', tier: 'B2B' as const, price: 6, billingPeriod: 'monthly' },
+];
+
 async function main() {
   // exercise_library has no natural unique key besides the generated id, so seeding
   // is idempotent by name (find-or-update) rather than a Prisma-level upsert.
@@ -184,6 +193,16 @@ async function main() {
     }
   }
   console.log(`Seeded ${supplements.length} supplements.`);
+
+  for (const plan of plans) {
+    const existing = await prisma.plan.findFirst({ where: { name: plan.name } });
+    if (existing) {
+      await prisma.plan.update({ where: { id: existing.id }, data: plan });
+    } else {
+      await prisma.plan.create({ data: plan });
+    }
+  }
+  console.log(`Seeded ${plans.length} plans.`);
 }
 
 main()
