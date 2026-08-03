@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 // S23 (docs/product-design FASE 6): login/setup organizzazione. Placeholder di
@@ -43,6 +44,9 @@ export default function CoachLoginPage() {
             Entra
           </button>
         </form>
+        <Link href="/athlete" style={styles.athleteLink}>
+          Prova l&apos;app come atleta →
+        </Link>
       </div>
     </main>
   );
@@ -84,4 +88,12 @@ const styles: Record<string, React.CSSProperties> = {
     cursor: "pointer",
   },
   error: { color: "#B3261E", fontSize: 13, margin: 0 },
+  athleteLink: {
+    display: "block",
+    textAlign: "center",
+    marginTop: 20,
+    color: "#1F7A6C",
+    fontSize: 13,
+    textDecoration: "none",
+  },
 };

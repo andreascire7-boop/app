@@ -67,3 +67,102 @@ export function getAthleteSessions(athleteId: string) {
 export function getAthleteRisk(athleteId: string) {
   return request<RiskAssessment | null>(`/athletes/${athleteId}/risk`);
 }
+
+// Flusso "prova come atleta" (auto-onboarding dal browser, senza app Flutter):
+// stesso Core API e stesso motore AI reali usati dall'app mobile, solo con
+// un client web al posto di quello Flutter.
+export interface CreateUserInput {
+  email: string;
+  authProviderId: string;
+  fullName: string;
+  role: "ATHLETE";
+}
+
+export function createUser(input: CreateUserInput) {
+  return request<{ id: string }>("/users", { method: "POST", body: JSON.stringify(input) });
+}
+
+export interface AthleteProfileInput {
+  primarySport: "TENNIS" | "PADEL" | "BOTH";
+  level: "BEGINNER" | "INTERMEDIATE" | "ADVANCED" | "SEMI_PRO" | "PRO";
+  weeklyAvailabilityDays: number;
+  goalPrimary?: string;
+}
+
+export function upsertAthleteProfile(athleteId: string, input: AthleteProfileInput) {
+  return request<unknown>(`/athletes/${athleteId}/profile`, { method: "POST", body: JSON.stringify(input) });
+}
+
+export function generateMacrocycle(athleteId: string) {
+  return request<unknown>(`/athletes/${athleteId}/programming/macrocycle`, { method: "POST" });
+}
+
+export interface ExerciseInSession {
+  id: string;
+  orderIndex: number;
+  targetSets: number | null;
+  targetReps: number | null;
+  targetRpe: number | null;
+  exercise: { id: string; name: string; movementPattern: string };
+}
+
+export interface SessionDetail {
+  id: string;
+  scheduledDate: string;
+  status: string;
+  sessionFocus: string | null;
+  exercises: ExerciseInSession[];
+}
+
+export interface Microcycle {
+  id: string;
+  weekStartDate: string;
+  type: string;
+  sessions: SessionDetail[];
+}
+
+export interface Mesocycle {
+  id: string;
+  blockType: string | null;
+  startDate: string;
+  endDate: string;
+  targetQualities: string[];
+  microcycles: Microcycle[];
+}
+
+export interface Macrocycle {
+  id: string;
+  modelType: string;
+  startDate: string;
+  endDate: string;
+  mesocycles: Mesocycle[];
+}
+
+export function getMacrocycle(athleteId: string) {
+  return request<Macrocycle>(`/athletes/${athleteId}/programming/macrocycle`);
+}
+
+export function getSession(athleteId: string, sessionId: string) {
+  return request<SessionDetail>(`/athletes/${athleteId}/sessions/${sessionId}`);
+}
+
+export interface SessionFeedbackInput {
+  sessionRpe?: number;
+  energyLevel?: number;
+  notes?: string;
+  painArea?: "SPALLA" | "GOMITO" | "LOMBARE" | "GINOCCHIO" | "CAVIGLIA" | "ALTRO";
+  painLevel?: number;
+}
+
+export interface SessionFeedbackResult {
+  feedback: { id: string };
+  autoregulation: { volume_adjustment_factor: number; explanation: string };
+  adjustedNextSessionId: string | null;
+}
+
+export function submitSessionFeedback(athleteId: string, sessionId: string, input: SessionFeedbackInput) {
+  return request<SessionFeedbackResult>(`/athletes/${athleteId}/sessions/${sessionId}/feedback`, {
+    method: "POST",
+    body: JSON.stringify(input),
+  });
+}
