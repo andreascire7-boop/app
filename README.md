@@ -11,13 +11,15 @@ database, UX, sistema AI, business model, roadmap) è in
 ## Struttura del monorepo
 
 ```
-mobile/       Flutter — app athlete-facing iOS/Android (FASE 4 §4.1, FASE 6)
-backend/      NestJS — Core API, business logic, Prisma/PostgreSQL (FASE 4 §4.2, FASE 5)
-ai-engine/    FastAPI — motore a regole/ML per periodizzazione, rischio infortuni,
-              sostituzione esercizi, spiegabilità (FASE 4 §4.9, FASE 7)
-infra/        docker-compose per lo sviluppo locale (Postgres+TimescaleDB, Redis)
-docs/         Documento di progettazione di prodotto (markdown + PDF sorgente)
-.github/      CI (GitHub Actions) per backend, ai-engine, mobile
+mobile/         Flutter — app athlete-facing iOS/Android (FASE 4 §4.1, FASE 6)
+backend/        NestJS — Core API, business logic, Prisma/PostgreSQL (FASE 4 §4.2, FASE 5)
+ai-engine/      FastAPI — motore a regole/ML per periodizzazione, rischio infortuni,
+                tapering, nutrizione, recupero, sostituzione esercizi, spiegabilità
+                (FASE 4 §4.9, FASE 7)
+web-dashboard/  Next.js — dashboard coach B2B (FASE 4 §4.1, F11)
+infra/          docker-compose per lo sviluppo locale (Postgres+TimescaleDB, Redis)
+docs/           Documento di progettazione di prodotto (markdown + PDF sorgente)
+.github/        CI (GitHub Actions) per backend, ai-engine, mobile
 ```
 
 ## Quickstart sviluppo locale
@@ -31,6 +33,9 @@ cd ../ai-engine && python3 -m venv .venv && ./.venv/bin/pip install -r requireme
 ./.venv/bin/python -m uvicorn app.main:app --reload --port 8000   # AI engine su :8000
 
 cd ../mobile && flutter create . --platforms=android,ios && flutter pub get && flutter run
+
+cd ../web-dashboard && npm install && cp .env.local.example .env.local
+npm run dev -- -p 3001    # Dashboard coach su :3001
 ```
 
 Dettagli e troubleshooting in `infra/README.md`, `backend/README.md` (TODO),
@@ -38,16 +43,30 @@ Dettagli e troubleshooting in `infra/README.md`, `backend/README.md` (TODO),
 
 ## Stato di avanzamento
 
-Questo scaffolding copre la **milestone M0 (Fondazione tecnica)** e una fetta della
-**M1.1 (Auth + Onboarding)** della roadmap (FASE 9): struttura del monorepo, schema
-database completo (FASE 5) validato via `prisma generate`/`nest build`, un primo
-motore a regole funzionante lato AI engine (periodizzazione F2, rischio infortuni F5,
-sostituzione esercizi F6 — con test unitari verdi), e uno scheletro Flutter con design
-system e le prime 3 schermate (Splash, Login, Home).
+Copre le milestone **M0-M2 e una fetta di M3/M4** della roadmap (FASE 9), tutto
+verificato end-to-end (non solo compilato) contro un Postgres reale e i servizi
+in esecuzione:
 
-Non ancora implementato (vedi FASE 9 per sequenza/priorità): tapering automatico (F3),
-loop di autoregolazione end-to-end (F4), modulo nutrizione (F8), dashboard coach
-(F11), pagamenti, e tutte le schermate mobile restanti (FASE 6).
+- **Onboarding → primo piano** (F1/F2): assessment, generazione macrociclo/mesocicli
+  e della prima settimana di sedute con esercizi reali dal catalogo.
+- **Esecuzione e feedback** (F9/F4): log delle serie, check-in post-sessione che
+  innesca l'autoregolazione e adatta davvero la seduta successiva.
+- **Prevenzione infortuni** (F5/F6): rischio (ACWR + storico + dolore), sostituzione
+  automatica di esercizi con log e rimando a professionista nei casi severi.
+- **Calendario gare e tapering** (F3): creare un torneo riduce automaticamente il
+  volume delle sedute nella finestra di taper e annullarlo ripristina i valori
+  originali (snapshot pre-taper).
+- **Recupero/readiness** (F7) e **nutrizione con guardrail di sicurezza** (F8,
+  inclusi i casi minorenne e segnale di rapporto disfunzionale col cibo).
+- **B2B coach** (F11): richiesta/accettazione/revoca del collegamento coach-atleta,
+  dashboard web (Next.js) con lista atleti ordinata per rischio.
+- **Mobile**: onboarding, home con readiness e sessione del giorno, esecuzione
+  sessione, calendario gare, centro rischio, hub nutrizionale.
+
+Non ancora implementato: pagamenti/abbonamenti reali (Stripe/RevenueCat — solo
+scaffolding dati), dashboard coach oltre la lista atleti (drill-down, override
+piano), motore ML v2, e la tab "Programma" (timeline macro/meso/microciclo) lato
+mobile.
 
 ## Principio guida per chi contribuisce
 
