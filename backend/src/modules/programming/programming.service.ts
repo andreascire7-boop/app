@@ -66,6 +66,36 @@ export class ProgrammingService {
     return { ...macrocycle, firstMicrocycle: microcycle };
   }
 
+  // Read-only view for the mobile "Programma" tab (S7, docs/product-design
+  // FASE 6) — the athlete's current macrocycle with its full mesocycle/
+  // microcycle/session breakdown, without regenerating anything.
+  async getCurrentMacrocycle(athleteId: string) {
+    const macrocycle = await this.prisma.macrocycle.findFirst({
+      where: { athleteId },
+      orderBy: { startDate: 'desc' },
+      include: {
+        mesocycles: {
+          orderBy: { startDate: 'asc' },
+          include: {
+            microcycles: {
+              orderBy: { weekStartDate: 'asc' },
+              include: {
+                sessions: {
+                  orderBy: { scheduledDate: 'asc' },
+                  include: { exercises: { include: { exercise: true }, orderBy: { orderIndex: 'asc' } } },
+                },
+              },
+            },
+          },
+        },
+      },
+    });
+    if (!macrocycle) {
+      throw new NotFoundException(`No macrocycle found for athlete ${athleteId} — generate one first`);
+    }
+    return macrocycle;
+  }
+
   private async persistMacrocycle(athleteId: string, aiResult: MacrocycleResult) {
     const startDate = new Date();
     let cursor = new Date(startDate);
