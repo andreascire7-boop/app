@@ -21,6 +21,11 @@ export class CoachController {
     return this.coachService.revokeLink(athleteId, linkId);
   }
 
+  @Get('coaches/:coachId/athlete-links/pending')
+  listPendingForCoach(@Param('coachId') coachId: string) {
+    return this.coachService.listPendingForCoach(coachId);
+  }
+
   @Patch('coaches/:coachId/athlete-links/:linkId/accept')
   acceptLink(@Param('coachId') coachId: string, @Param('linkId') linkId: string) {
     return this.coachService.acceptLink(coachId, linkId);

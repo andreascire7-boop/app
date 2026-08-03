@@ -49,6 +49,14 @@ export class CoachService {
     });
   }
 
+  listPendingForCoach(coachId: string) {
+    return this.prisma.coachAthleteLink.findMany({
+      where: { coachId, status: LinkStatus.PENDING },
+      include: { athlete: { select: { id: true, fullName: true, email: true } } },
+      orderBy: { createdAt: 'asc' },
+    });
+  }
+
   async acceptLink(coachId: string, linkId: string) {
     const link = await this.prisma.coachAthleteLink.findFirst({ where: { id: linkId, coachId } });
     if (!link) {
