@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 
+import '../../core/network/api_client.dart';
+import '../../core/session/app_session.dart';
 import '../../core/theme/app_theme.dart';
 import '../../core/widgets/empty_state.dart';
+import '../../core/widgets/error_state.dart';
 import '../../core/widgets/skeleton_box.dart';
+import '../session/session_detail_screen.dart';
 
 /// S6 (docs/product-design FASE 6): bottom nav Home · Programma · Nutrizione ·
 /// Profilo. Home shows a loading skeleton, then either today's session or a
@@ -61,7 +65,10 @@ class _HomeTab extends StatefulWidget {
 }
 
 class _HomeTabState extends State<_HomeTab> {
+  final _apiClient = ApiClient();
   bool _isLoading = true;
+  String? _error;
+  Map<String, dynamic>? _nextSession;
 
   @override
   void initState() {
@@ -70,11 +77,42 @@ class _HomeTabState extends State<_HomeTab> {
   }
 
   Future<void> _load() async {
-    // TODO(M1.1-M1.2): replace with a real call to the Core API for today's
-    // readiness score and planned session (docs/product-design F2/F7).
-    await Future.delayed(const Duration(milliseconds: 800));
-    if (!mounted) return;
-    setState(() => _isLoading = false);
+    setState(() {
+      _isLoading = true;
+      _error = null;
+    });
+
+    final athleteId = AppSession.athleteId;
+    if (athleteId == null) {
+      // Shouldn't happen once onboarding always runs first, but never crash on it.
+      if (!mounted) return;
+      setState(() {
+        _isLoading = false;
+        _nextSession = null;
+      });
+      return;
+    }
+
+    try {
+      final sessions = await _apiClient.listSessions(athleteId);
+      final upcoming = sessions
+          .cast<Map<String, dynamic>>()
+          .where((s) => s['status'] == 'PLANNED' || s['status'] == 'MODIFIED')
+          .toList()
+        ..sort((a, b) => (a['scheduledDate'] as String).compareTo(b['scheduledDate'] as String));
+
+      if (!mounted) return;
+      setState(() {
+        _nextSession = upcoming.isEmpty ? null : upcoming.first;
+        _isLoading = false;
+      });
+    } on ApiException catch (e) {
+      if (!mounted) return;
+      setState(() {
+        _error = e.message;
+        _isLoading = false;
+      });
+    }
   }
 
   @override
@@ -92,12 +130,64 @@ class _HomeTabState extends State<_HomeTab> {
       );
     }
 
-    return Center(
-      child: EmptyState(
-        icon: Icons.self_improvement,
-        title: 'Oggi è un giorno di riposo pianificato',
-        message: 'Il tuo prossimo allenamento è programmato per domani. '
-            'Ne approfitti per il recupero: priorità al sonno.',
+    if (_error != null) {
+      return Center(child: ErrorState(message: _error!, onRetry: _load));
+    }
+
+    if (_nextSession == null) {
+      return const Center(
+        child: EmptyState(
+          icon: Icons.self_improvement,
+          title: 'Nessuna sessione pianificata',
+          message: 'Il tuo prossimo allenamento non è ancora stato generato, '
+              'oppure oggi è un giorno di riposo. Priorità al recupero: sonno prima di tutto.',
+        ),
+      );
+    }
+
+    final session = _nextSession!;
+    final athleteId = AppSession.athleteId!;
+
+    return Padding(
+      padding: const EdgeInsets.all(AppSpacing.lg),
+      child: Card(
+        child: Padding(
+          padding: const EdgeInsets.all(AppSpacing.lg),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              const Text('Prossima sessione', style: TextStyle(color: AppColors.grey, fontSize: 13)),
+              const SizedBox(height: AppSpacing.xs),
+              Text(
+                session['sessionFocus'] as String? ?? 'Allenamento',
+                style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: AppColors.navy),
+              ),
+              if (session['status'] == 'MODIFIED') ...[
+                const SizedBox(height: AppSpacing.sm),
+                const Text(
+                  'Adattata in base al tuo ultimo feedback.',
+                  style: TextStyle(color: AppColors.warning, fontSize: 12),
+                ),
+              ],
+              const SizedBox(height: AppSpacing.lg),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.of(context)
+                      .push(
+                        MaterialPageRoute(
+                          builder: (_) => SessionDetailScreen(
+                            athleteId: athleteId,
+                            sessionId: session['id'] as String,
+                          ),
+                        ),
+                      )
+                      .then((_) => _load());
+                },
+                child: const Text('Vai alla sessione'),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }

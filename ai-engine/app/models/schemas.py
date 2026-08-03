@@ -113,3 +113,54 @@ class SubstitutionOutput(BaseModel):
     severity: str  # "lieve" | "moderato" | "severo"
     requires_professional_referral: bool
     explanation: str
+
+
+class ExerciseCatalogItem(BaseModel):
+    """The subset of exercise_library (docs/product-design FASE 5) the ai-engine
+    needs to pick a session — the Core API owns the catalog, not this service."""
+
+    id: str
+    movement_pattern: str
+    body_area_risk_tags: list[BodyArea] = []
+
+
+class PlannedSessionExercise(BaseModel):
+    exercise_id: str
+    order_index: int
+    target_sets: Optional[int]
+    target_reps: Optional[int]
+    target_rpe: Optional[float]
+
+
+class PlannedSession(BaseModel):
+    session_focus: str
+    exercises: list[PlannedSessionExercise]
+
+
+class SessionPlanRequest(BaseModel):
+    athlete_id: str
+    available_exercises: list[ExerciseCatalogItem]
+    excluded_body_areas: list[BodyArea] = []
+    block_type: Optional[BlockType] = None
+    sessions_per_week: int = Field(ge=1, le=7, default=2)
+
+
+class SessionPlanResponse(BaseModel):
+    athlete_id: str
+    sessions: list[PlannedSession]
+    explanation: str
+    engine_version: str
+
+
+class AutoregulationInput(BaseModel):
+    athlete_id: str
+    recent_session_rpe: list[float]  # most recent last; ideally >=3 entries
+    expected_rpe: float = 7.0  # the block's planned/target RPE (program-design.md)
+
+
+class AutoregulationOutput(BaseModel):
+    athlete_id: str
+    volume_adjustment_factor: float  # multiply next session's target_sets/reps by this
+    should_trigger_deload: bool
+    explanation: str
+    engine_version: str

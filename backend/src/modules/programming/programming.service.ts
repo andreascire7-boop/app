@@ -1,12 +1,18 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { BlockType, PeriodizationModel } from '@prisma/client';
+import { BlockType, PeriodizationModel, MicrocycleType } from '@prisma/client';
 import { PrismaService } from '../../prisma/prisma.service';
-import { AiEngineClient, MacrocycleResult } from './ai-engine.client';
+import { AiEngineClient, MacrocycleResult, SessionPlanResult } from './ai-engine.client';
 import { toAiEngineEnum, toPrismaEnum } from './mappers';
 
 function addWeeks(date: Date, weeks: number): Date {
   const result = new Date(date);
   result.setDate(result.getDate() + weeks * 7);
+  return result;
+}
+
+function addDays(date: Date, days: number): Date {
+  const result = new Date(date);
+  result.setDate(result.getDate() + days);
   return result;
 }
 
@@ -19,7 +25,8 @@ export class ProgrammingService {
 
   // Orchestrates F2 end to end (docs/product-design FASE 3/7): reads the athlete's
   // profile + active injuries + competition count, asks the AI engine for a
-  // macrocycle, then persists it — the Core API never invents the plan itself.
+  // macrocycle, persists it, then generates and persists the first week of
+  // concrete sessions (F9 prerequisite) for the first mesocycle.
   async generateMacrocycle(athleteId: string) {
     const profile = await this.prisma.athleteProfile.findUnique({ where: { userId: athleteId } });
     if (!profile) {
@@ -59,7 +66,15 @@ export class ProgrammingService {
       },
     });
 
-    return macrocycle;
+    const firstMesocycle = macrocycle.mesocycles[0];
+    const microcycle = await this.generateFirstMicrocycle(
+      athleteId,
+      firstMesocycle.id,
+      profile.weeklyAvailabilityDays,
+      aiResult,
+    );
+
+    return { ...macrocycle, firstMicrocycle: microcycle };
   }
 
   private async persistMacrocycle(athleteId: string, aiResult: MacrocycleResult) {
@@ -85,6 +100,78 @@ export class ProgrammingService {
         mesocycles: { create: mesocyclesData },
       },
       include: { mesocycles: true },
+    });
+  }
+
+  private async generateFirstMicrocycle(
+    athleteId: string,
+    mesocycleId: string,
+    weeklyAvailabilityDays: number,
+    macrocycleResult: MacrocycleResult,
+  ) {
+    const catalog = await this.prisma.exerciseLibrary.findMany({
+      select: { id: true, movementPattern: true, bodyAreaRiskTags: true },
+    });
+    const sessionsPerWeek = Math.max(1, Math.min(weeklyAvailabilityDays, 7));
+    const firstMesocycle = macrocycleResult.mesocycles[0];
+
+    const sessionPlan: SessionPlanResult = await this.aiEngineClient.generateSessionPlan(athleteId, {
+      athlete_id: athleteId,
+      available_exercises: catalog.map((exercise) => ({
+        id: exercise.id,
+        movement_pattern: exercise.movementPattern,
+        body_area_risk_tags: (exercise.bodyAreaRiskTags as string[]) ?? [],
+      })),
+      excluded_body_areas: macrocycleResult.excluded_body_areas,
+      block_type: firstMesocycle?.block_type ?? null,
+      sessions_per_week: sessionsPerWeek,
+    });
+
+    const weekStart = new Date();
+    const dayStep = Math.max(1, Math.floor(7 / sessionsPerWeek));
+
+    const microcycle = await this.prisma.microcycle.create({
+      data: {
+        mesocycleId,
+        weekStartDate: weekStart,
+        type: MicrocycleType.ORDINARIO,
+      },
+    });
+
+    for (const [index, plannedSession] of sessionPlan.sessions.entries()) {
+      await this.prisma.session.create({
+        data: {
+          microcycleId: microcycle.id,
+          athleteId,
+          scheduledDate: addDays(weekStart, index * dayStep),
+          sessionFocus: plannedSession.session_focus,
+          exercises: {
+            create: plannedSession.exercises.map((exercise) => ({
+              exerciseId: exercise.exercise_id,
+              orderIndex: exercise.order_index,
+              targetSets: exercise.target_sets ?? undefined,
+              targetReps: exercise.target_reps ?? undefined,
+              targetRpe: exercise.target_rpe ?? undefined,
+            })),
+          },
+        },
+      });
+    }
+
+    await this.prisma.aiDecisionLog.create({
+      data: {
+        athleteId,
+        decisionType: 'PLAN_GENERATION',
+        engineVersion: sessionPlan.engine_version,
+        inputSnapshot: { sessionsPerWeek, excludedBodyAreas: macrocycleResult.excluded_body_areas } as any,
+        outputDecision: sessionPlan as any,
+        explanationText: sessionPlan.explanation,
+      },
+    });
+
+    return this.prisma.microcycle.findUnique({
+      where: { id: microcycle.id },
+      include: { sessions: { include: { exercises: true } } },
     });
   }
 }

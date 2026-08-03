@@ -82,6 +82,65 @@ class ApiClient {
     return _decode(res);
   }
 
+  Future<List<dynamic>> listSessions(String athleteId) async {
+    final res = await _client.get(Uri.parse('$baseUrl/athletes/$athleteId/sessions'));
+    if (res.statusCode < 200 || res.statusCode >= 300) {
+      throw ApiException('Richiesta fallita (${res.statusCode}): ${res.body}');
+    }
+    return jsonDecode(res.body) as List<dynamic>;
+  }
+
+  Future<Map<String, dynamic>> getSession(String athleteId, String sessionId) async {
+    final res = await _client.get(Uri.parse('$baseUrl/athletes/$athleteId/sessions/$sessionId'));
+    return _decode(res);
+  }
+
+  Future<void> logExerciseSet({
+    required String athleteId,
+    required String sessionId,
+    required String sessionExerciseId,
+    required int setNumber,
+    int? actualReps,
+    double? actualLoad,
+    double? actualRpe,
+  }) async {
+    final res = await _client.post(
+      Uri.parse('$baseUrl/athletes/$athleteId/sessions/$sessionId/logs'),
+      headers: {'Content-Type': 'application/json'},
+      body: jsonEncode({
+        'sessionExerciseId': sessionExerciseId,
+        'setNumber': setNumber,
+        if (actualReps != null) 'actualReps': actualReps,
+        if (actualLoad != null) 'actualLoad': actualLoad,
+        if (actualRpe != null) 'actualRpe': actualRpe,
+      }),
+    );
+    _decode(res);
+  }
+
+  Future<Map<String, dynamic>> submitSessionFeedback({
+    required String athleteId,
+    required String sessionId,
+    double? sessionRpe,
+    int? energyLevel,
+    String? notes,
+    String? painArea,
+    int? painLevel,
+  }) async {
+    final res = await _client.post(
+      Uri.parse('$baseUrl/athletes/$athleteId/sessions/$sessionId/feedback'),
+      headers: {'Content-Type': 'application/json'},
+      body: jsonEncode({
+        if (sessionRpe != null) 'sessionRpe': sessionRpe,
+        if (energyLevel != null) 'energyLevel': energyLevel,
+        if (notes != null && notes.isNotEmpty) 'notes': notes,
+        if (painArea != null) 'painArea': painArea,
+        if (painLevel != null) 'painLevel': painLevel,
+      }),
+    );
+    return _decode(res);
+  }
+
   Map<String, dynamic> _decode(http.Response res) {
     if (res.statusCode < 200 || res.statusCode >= 300) {
       throw ApiException('Richiesta fallita (${res.statusCode}): ${res.body}');
