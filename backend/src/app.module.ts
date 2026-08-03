@@ -8,6 +8,7 @@ import { ProgrammingModule } from './modules/programming/programming.module';
 import { SessionsModule } from './modules/sessions/sessions.module';
 import { RiskModule } from './modules/risk/risk.module';
 import { CompetitionsModule } from './modules/competitions/competitions.module';
+import { WellnessModule } from './modules/wellness/wellness.module';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { CompetitionsModule } from './modules/competitions/competitions.module';
     SessionsModule,
     RiskModule,
     CompetitionsModule,
+    WellnessModule,
   ],
 })
 export class AppModule {}

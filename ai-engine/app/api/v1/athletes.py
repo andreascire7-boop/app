@@ -5,6 +5,7 @@ from app.engine.exercise_substitution import evaluate_substitution
 from app.engine.explainability import explain
 from app.engine.injury_risk import assess_risk
 from app.engine.periodization import generate_macrocycle
+from app.engine.readiness import compute_readiness
 from app.engine.session_builder import build_sessions
 from app.engine.tapering import compute_taper_plan
 from app.models.schemas import (
@@ -14,6 +15,8 @@ from app.models.schemas import (
     InjuryRiskInput,
     InjuryRiskOutput,
     MacrocycleOutput,
+    ReadinessInput,
+    ReadinessOutput,
     SessionPlanRequest,
     SessionPlanResponse,
     SubstitutionInput,
@@ -69,4 +72,12 @@ def post_taper_plan(athlete_id: str, payload: TaperPlanInput) -> TaperPlanOutput
     payload.athlete_id = athlete_id
     result = compute_taper_plan(payload)
     result.explanation = explain(result.explanation)
+    return result
+
+
+@router.post("/{athlete_id}/readiness", response_model=ReadinessOutput)
+def post_readiness(athlete_id: str, payload: ReadinessInput) -> ReadinessOutput:
+    payload.athlete_id = athlete_id
+    result = compute_readiness(payload)
+    result.recommendation = explain(result.recommendation)
     return result

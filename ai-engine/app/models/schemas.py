@@ -191,3 +191,21 @@ class TaperPlanOutput(BaseModel):
     weeks: list[TaperWeek]
     explanation: str
     engine_version: str
+
+
+class ReadinessInput(BaseModel):
+    athlete_id: str
+    sleep_hours: Optional[float] = None
+    sleep_quality: Optional[int] = Field(default=None, ge=1, le=5)
+    recent_session_rpe: list[float] = []
+    recent_pain_reports: int = 0
+    stress_level: Optional[int] = Field(default=None, ge=1, le=10)
+
+
+class ReadinessOutput(BaseModel):
+    athlete_id: str
+    readiness_score: float  # 0-100
+    level: str  # "alta" | "media" | "bassa"
+    contributing_factors: list[str]
+    recommendation: str
+    engine_version: str

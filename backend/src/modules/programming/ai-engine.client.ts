@@ -135,6 +135,24 @@ export interface TaperPlanResult {
   engine_version: string;
 }
 
+export interface ReadinessPayload {
+  athlete_id: string;
+  sleep_hours?: number;
+  sleep_quality?: number;
+  recent_session_rpe: number[];
+  recent_pain_reports: number;
+  stress_level?: number;
+}
+
+export interface ReadinessResult {
+  athlete_id: string;
+  readiness_score: number;
+  level: string;
+  contributing_factors: string[];
+  recommendation: string;
+  engine_version: string;
+}
+
 // Thin HTTP client towards the AI/Decision Engine microservice (Python/FastAPI).
 // The Core API never re-implements periodization/risk logic itself — see
 // docs/product-design FASE 4 (§4.9) and FASE 7 for why the split exists.
@@ -174,6 +192,10 @@ export class AiEngineClient {
 
   async computeTaperPlan(athleteId: string, payload: TaperPlanPayload): Promise<TaperPlanResult> {
     return this.post(`/v1/athletes/${athleteId}/taper-plan`, payload);
+  }
+
+  async computeReadiness(athleteId: string, payload: ReadinessPayload): Promise<ReadinessResult> {
+    return this.post(`/v1/athletes/${athleteId}/readiness`, payload);
   }
 
   private async post<T>(path: string, payload: unknown): Promise<T> {
