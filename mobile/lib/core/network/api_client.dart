@@ -141,11 +141,142 @@ class ApiClient {
     return _decode(res);
   }
 
+  // --- Calendario gare (F3, S11-S12) ---
+
+  Future<List<dynamic>> listCompetitions(String athleteId) async {
+    final res = await _client.get(Uri.parse('$baseUrl/athletes/$athleteId/competitions'));
+    return _decodeList(res);
+  }
+
+  Future<Map<String, dynamic>> createCompetition({
+    required String athleteId,
+    required String sport,
+    required String eventDate,
+    required String importance,
+    int? expectedMatches,
+  }) async {
+    final res = await _client.post(
+      Uri.parse('$baseUrl/athletes/$athleteId/competitions'),
+      headers: {'Content-Type': 'application/json'},
+      body: jsonEncode({
+        'sport': sport,
+        'eventDate': eventDate,
+        'importance': importance,
+        if (expectedMatches != null) 'expectedMatches': expectedMatches,
+      }),
+    );
+    return _decode(res);
+  }
+
+  Future<Map<String, dynamic>> cancelCompetition(String athleteId, String competitionId) async {
+    final res = await _client.patch(
+      Uri.parse('$baseUrl/athletes/$athleteId/competitions/$competitionId/cancel'),
+    );
+    return _decode(res);
+  }
+
+  // --- Centro rischio (F5, S13) ---
+
+  Future<Map<String, dynamic>?> getLatestRisk(String athleteId) async {
+    final res = await _client.get(Uri.parse('$baseUrl/athletes/$athleteId/risk'));
+    if (res.statusCode == 200 && res.body.isNotEmpty && res.body != 'null') {
+      return jsonDecode(res.body) as Map<String, dynamic>;
+    }
+    return null;
+  }
+
+  Future<Map<String, dynamic>> recomputeRisk(String athleteId) async {
+    final res = await _client.post(Uri.parse('$baseUrl/athletes/$athleteId/risk'));
+    return _decode(res);
+  }
+
+  // --- Recupero/readiness (F7) ---
+
+  Future<Map<String, dynamic>?> getTodayCheckin(String athleteId) async {
+    final res = await _client.get(Uri.parse('$baseUrl/athletes/$athleteId/wellness-checkins/today'));
+    if (res.statusCode == 200 && res.body.isNotEmpty && res.body != 'null') {
+      return jsonDecode(res.body) as Map<String, dynamic>;
+    }
+    return null;
+  }
+
+  Future<Map<String, dynamic>> submitWellnessCheckin({
+    required String athleteId,
+    double? sleepHours,
+    int? sleepQuality,
+    int? stressLevel,
+  }) async {
+    final res = await _client.post(
+      Uri.parse('$baseUrl/athletes/$athleteId/wellness-checkins'),
+      headers: {'Content-Type': 'application/json'},
+      body: jsonEncode({
+        if (sleepHours != null) 'sleepHours': sleepHours,
+        if (sleepQuality != null) 'sleepQuality': sleepQuality,
+        if (stressLevel != null) 'stressLevel': stressLevel,
+      }),
+    );
+    return _decode(res);
+  }
+
+  // --- Nutrizione (F8, S15-S17) ---
+
+  Future<Map<String, dynamic>?> getNutritionProfile(String athleteId) async {
+    final res = await _client.get(Uri.parse('$baseUrl/athletes/$athleteId/nutrition/profile'));
+    if (res.statusCode == 200 && res.body.isNotEmpty && res.body != 'null') {
+      return jsonDecode(res.body) as Map<String, dynamic>;
+    }
+    return null;
+  }
+
+  Future<Map<String, dynamic>> upsertNutritionProfile({
+    required String athleteId,
+    String? bodyCompGoal,
+    bool? disorderedEatingFlag,
+  }) async {
+    final res = await _client.post(
+      Uri.parse('$baseUrl/athletes/$athleteId/nutrition/profile'),
+      headers: {'Content-Type': 'application/json'},
+      body: jsonEncode({
+        if (bodyCompGoal != null) 'bodyCompGoal': bodyCompGoal,
+        if (disorderedEatingFlag != null) 'disorderedEatingFlag': disorderedEatingFlag,
+      }),
+    );
+    return _decode(res);
+  }
+
+  Future<Map<String, dynamic>> createNutritionRecommendation({
+    required String athleteId,
+    required String context,
+    int? competitionDurationMinutes,
+  }) async {
+    final res = await _client.post(
+      Uri.parse('$baseUrl/athletes/$athleteId/nutrition/recommendations'),
+      headers: {'Content-Type': 'application/json'},
+      body: jsonEncode({
+        'context': context,
+        if (competitionDurationMinutes != null) 'competitionDurationMinutes': competitionDurationMinutes,
+      }),
+    );
+    return _decode(res);
+  }
+
+  Future<List<dynamic>> listSupplements(String athleteId) async {
+    final res = await _client.get(Uri.parse('$baseUrl/athletes/$athleteId/nutrition/supplements'));
+    return _decodeList(res);
+  }
+
   Map<String, dynamic> _decode(http.Response res) {
     if (res.statusCode < 200 || res.statusCode >= 300) {
       throw ApiException('Richiesta fallita (${res.statusCode}): ${res.body}');
     }
     return jsonDecode(res.body) as Map<String, dynamic>;
+  }
+
+  List<dynamic> _decodeList(http.Response res) {
+    if (res.statusCode < 200 || res.statusCode >= 300) {
+      throw ApiException('Richiesta fallita (${res.statusCode}): ${res.body}');
+    }
+    return jsonDecode(res.body) as List<dynamic>;
   }
 }
 
