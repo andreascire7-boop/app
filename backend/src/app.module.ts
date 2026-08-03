@@ -6,6 +6,8 @@ import { UsersModule } from './modules/users/users.module';
 import { AthleteProfileModule } from './modules/athlete-profile/athlete-profile.module';
 import { ProgrammingModule } from './modules/programming/programming.module';
 import { SessionsModule } from './modules/sessions/sessions.module';
+import { RiskModule } from './modules/risk/risk.module';
+import { CompetitionsModule } from './modules/competitions/competitions.module';
 
 @Module({
   imports: [
@@ -16,6 +18,8 @@ import { SessionsModule } from './modules/sessions/sessions.module';
     AthleteProfileModule,
     ProgrammingModule,
     SessionsModule,
+    RiskModule,
+    CompetitionsModule,
   ],
 })
 export class AppModule {}

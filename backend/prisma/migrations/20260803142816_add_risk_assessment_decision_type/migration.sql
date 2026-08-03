@@ -1,0 +1,2 @@
+-- AlterEnum
+ALTER TYPE "AiDecisionType" ADD VALUE 'RISK_ASSESSMENT';

@@ -1,9 +1,12 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { SessionStatus } from '@prisma/client';
 import { PrismaService } from '../../prisma/prisma.service';
+import { toAiEngineEnum } from '../programming/mappers';
 import { AiEngineClient } from '../programming/ai-engine.client';
 import { CreateExerciseLogDto } from './dto/create-exercise-log.dto';
 import { SubmitSessionFeedbackDto } from './dto/submit-session-feedback.dto';
+import { SubstituteExerciseDto } from './dto/substitute-exercise.dto';
+import { categoryPatternsFor } from './exercise-categories';
 
 // The block's planned/target RPE (FASE 7 §7.2) — v1 uses a single constant across
 // blocks; a future iteration should read it from the athlete's active mesocycle.
@@ -132,5 +135,83 @@ export class SessionsService {
     }
 
     return { feedback, autoregulation, adjustedNextSessionId };
+  }
+
+  // F6 (docs/product-design FASE 3/7 §7.5): a pain signal against one specific
+  // exercise triggers an immediate, logged substitution — never a silent swap.
+  async substituteExercise(
+    athleteId: string,
+    sessionId: string,
+    sessionExerciseId: string,
+    dto: SubstituteExerciseDto,
+  ) {
+    const session = await this.getOne(athleteId, sessionId);
+    const sessionExercise = session.exercises.find((e) => e.id === sessionExerciseId);
+    if (!sessionExercise) {
+      throw new NotFoundException(`Exercise ${sessionExerciseId} not found in session ${sessionId}`);
+    }
+
+    await this.prisma.painReport.create({
+      data: { athleteId, bodyArea: dto.painArea, painLevel: dto.painLevel, context: 'ALLENAMENTO' },
+    });
+
+    const substitution = await this.aiEngineClient.evaluateSubstitution(athleteId, {
+      athlete_id: athleteId,
+      exercise_body_area_tags: (sessionExercise.exercise.bodyAreaRiskTags as string[]).map((tag) =>
+        toAiEngineEnum(tag),
+      ),
+      reported_pain_area: toAiEngineEnum(dto.painArea),
+      pain_level: dto.painLevel,
+    });
+
+    if (!substitution.should_substitute) {
+      return { substituted: false, requiresProfessionalReferral: false, explanation: substitution.explanation };
+    }
+
+    const candidates = await this.prisma.exerciseLibrary.findMany({
+      where: {
+        id: { not: sessionExercise.exerciseId },
+        movementPattern: { in: Array.from(categoryPatternsFor(sessionExercise.exercise.movementPattern)) },
+      },
+    });
+    const painAreaLower = toAiEngineEnum(dto.painArea);
+    const safeCandidate = candidates.find(
+      (candidate) => !(candidate.bodyAreaRiskTags as string[]).map((t) => t.toLowerCase()).includes(painAreaLower),
+    );
+
+    if (!safeCandidate) {
+      return {
+        substituted: false,
+        requiresProfessionalReferral: true,
+        explanation:
+          'Nessuna alternativa sicura trovata nel catalogo per questa zona: consulta un professionista prima di riprendere questo esercizio.',
+      };
+    }
+
+    await this.prisma.sessionExercise.update({
+      where: { id: sessionExerciseId },
+      data: { exerciseId: safeCandidate.id, substitutedFromId: sessionExercise.exerciseId },
+    });
+    await this.prisma.exerciseSubstitutionLog.create({
+      data: { sessionExerciseId, reason: 'PAIN', overriddenByUser: false },
+    });
+    await this.prisma.aiDecisionLog.create({
+      data: {
+        athleteId,
+        decisionType: 'EXERCISE_SUBSTITUTION',
+        engineVersion: substitution.engine_version,
+        inputSnapshot: { sessionExerciseId, painArea: dto.painArea, painLevel: dto.painLevel } as any,
+        outputDecision: { ...substitution, replacementExerciseId: safeCandidate.id } as any,
+        explanationText: substitution.explanation,
+      },
+    });
+
+    return {
+      substituted: true,
+      replacementExerciseId: safeCandidate.id,
+      replacementExerciseName: safeCandidate.name,
+      requiresProfessionalReferral: substitution.requires_professional_referral,
+      explanation: substitution.explanation,
+    };
   }
 }

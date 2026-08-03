@@ -518,6 +518,7 @@ enum AiDecisionType {
   TAPER_START
   EXERCISE_SUBSTITUTION
   NUTRITION_FLAG
+  RISK_ASSESSMENT
 }
 
 model AiDecisionLog {

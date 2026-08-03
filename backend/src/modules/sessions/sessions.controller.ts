@@ -2,6 +2,7 @@ import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { SessionsService } from './sessions.service';
 import { CreateExerciseLogDto } from './dto/create-exercise-log.dto';
 import { SubmitSessionFeedbackDto } from './dto/submit-session-feedback.dto';
+import { SubstituteExerciseDto } from './dto/substitute-exercise.dto';
 
 @Controller('athletes/:athleteId/sessions')
 export class SessionsController {
@@ -33,5 +34,15 @@ export class SessionsController {
     @Body() dto: SubmitSessionFeedbackDto,
   ) {
     return this.sessionsService.submitFeedback(athleteId, sessionId, dto);
+  }
+
+  @Post(':sessionId/exercises/:sessionExerciseId/substitute')
+  substituteExercise(
+    @Param('athleteId') athleteId: string,
+    @Param('sessionId') sessionId: string,
+    @Param('sessionExerciseId') sessionExerciseId: string,
+    @Body() dto: SubstituteExerciseDto,
+  ) {
+    return this.sessionsService.substituteExercise(athleteId, sessionId, sessionExerciseId, dto);
   }
 }

@@ -1,20 +1,9 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { BlockType, PeriodizationModel, MicrocycleType } from '@prisma/client';
 import { PrismaService } from '../../prisma/prisma.service';
+import { addDays, addWeeks } from '../../common/date-utils';
 import { AiEngineClient, MacrocycleResult, SessionPlanResult } from './ai-engine.client';
 import { toAiEngineEnum, toPrismaEnum } from './mappers';
-
-function addWeeks(date: Date, weeks: number): Date {
-  const result = new Date(date);
-  result.setDate(result.getDate() + weeks * 7);
-  return result;
-}
-
-function addDays(date: Date, days: number): Date {
-  const result = new Date(date);
-  result.setDate(result.getDate() + days);
-  return result;
-}
 
 @Injectable()
 export class ProgrammingService {

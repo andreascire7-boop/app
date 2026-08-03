@@ -113,6 +113,7 @@ class SubstitutionOutput(BaseModel):
     severity: str  # "lieve" | "moderato" | "severo"
     requires_professional_referral: bool
     explanation: str
+    engine_version: str
 
 
 class ExerciseCatalogItem(BaseModel):
@@ -162,5 +163,31 @@ class AutoregulationOutput(BaseModel):
     athlete_id: str
     volume_adjustment_factor: float  # multiply next session's target_sets/reps by this
     should_trigger_deload: bool
+    explanation: str
+    engine_version: str
+
+
+class CompetitionImportance(str, Enum):
+    locale = "locale"
+    regionale = "regionale"
+    nazionale = "nazionale"
+
+
+class TaperPlanInput(BaseModel):
+    athlete_id: str
+    days_until_event: int = Field(ge=0)
+    importance: CompetitionImportance
+
+
+class TaperWeek(BaseModel):
+    weeks_before_event: int  # 0 = event week itself
+    volume_adjustment_factor: float
+
+
+class TaperPlanOutput(BaseModel):
+    athlete_id: str
+    taper_weeks: int
+    is_partial: bool
+    weeks: list[TaperWeek]
     explanation: str
     engine_version: str

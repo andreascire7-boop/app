@@ -28,6 +28,7 @@ def evaluate_substitution(sub_input: SubstitutionInput) -> SubstitutionOutput:
                 f"L'esercizio non sollecita la zona segnalata "
                 f"({sub_input.reported_pain_area.value}): nessuna sostituzione necessaria."
             ),
+            engine_version=ENGINE_VERSION,
         )
 
     requires_referral = severity == "severo"
@@ -46,4 +47,5 @@ def evaluate_substitution(sub_input: SubstitutionInput) -> SubstitutionOutput:
         severity=severity,
         requires_professional_referral=requires_referral,
         explanation=explanation,
+        engine_version=ENGINE_VERSION,
     )

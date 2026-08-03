@@ -6,6 +6,7 @@ from app.engine.explainability import explain
 from app.engine.injury_risk import assess_risk
 from app.engine.periodization import generate_macrocycle
 from app.engine.session_builder import build_sessions
+from app.engine.tapering import compute_taper_plan
 from app.models.schemas import (
     AthleteNeedsInput,
     AutoregulationInput,
@@ -17,6 +18,8 @@ from app.models.schemas import (
     SessionPlanResponse,
     SubstitutionInput,
     SubstitutionOutput,
+    TaperPlanInput,
+    TaperPlanOutput,
 )
 
 router = APIRouter(prefix="/v1/athletes", tags=["athletes"])
@@ -57,5 +60,13 @@ def post_session_plan(athlete_id: str, payload: SessionPlanRequest) -> SessionPl
 def post_autoregulation(athlete_id: str, payload: AutoregulationInput) -> AutoregulationOutput:
     payload.athlete_id = athlete_id
     result = evaluate_autoregulation(payload)
+    result.explanation = explain(result.explanation)
+    return result
+
+
+@router.post("/{athlete_id}/taper-plan", response_model=TaperPlanOutput)
+def post_taper_plan(athlete_id: str, payload: TaperPlanInput) -> TaperPlanOutput:
+    payload.athlete_id = athlete_id
+    result = compute_taper_plan(payload)
     result.explanation = explain(result.explanation)
     return result

@@ -78,6 +78,63 @@ export interface AutoregulationResult {
   engine_version: string;
 }
 
+export interface LoadPoint {
+  date: string;
+  session_load: number;
+}
+
+export interface RiskAssessmentPayload {
+  athlete_id: string;
+  load_history: LoadPoint[];
+  recent_pain_reports: number;
+  has_injury_history_same_area: boolean;
+}
+
+export interface RiskAssessmentResult {
+  athlete_id: string;
+  acwr: number | null;
+  risk_level: string;
+  contributing_factors: string[];
+  recommendation: string;
+  data_sufficient: boolean;
+  engine_version: string;
+}
+
+export interface SubstitutionPayload {
+  athlete_id: string;
+  exercise_body_area_tags: string[];
+  reported_pain_area: string;
+  pain_level: number;
+}
+
+export interface SubstitutionResult {
+  should_substitute: boolean;
+  severity: string;
+  requires_professional_referral: boolean;
+  explanation: string;
+  engine_version: string;
+}
+
+export interface TaperPlanPayload {
+  athlete_id: string;
+  days_until_event: number;
+  importance: string;
+}
+
+export interface TaperWeekResult {
+  weeks_before_event: number;
+  volume_adjustment_factor: number;
+}
+
+export interface TaperPlanResult {
+  athlete_id: string;
+  taper_weeks: number;
+  is_partial: boolean;
+  weeks: TaperWeekResult[];
+  explanation: string;
+  engine_version: string;
+}
+
 // Thin HTTP client towards the AI/Decision Engine microservice (Python/FastAPI).
 // The Core API never re-implements periodization/risk logic itself — see
 // docs/product-design FASE 4 (§4.9) and FASE 7 for why the split exists.
@@ -105,6 +162,18 @@ export class AiEngineClient {
     payload: AutoregulationPayload,
   ): Promise<AutoregulationResult> {
     return this.post(`/v1/athletes/${athleteId}/autoregulation`, payload);
+  }
+
+  async assessRisk(athleteId: string, payload: RiskAssessmentPayload): Promise<RiskAssessmentResult> {
+    return this.post(`/v1/athletes/${athleteId}/risk-assessment`, payload);
+  }
+
+  async evaluateSubstitution(athleteId: string, payload: SubstitutionPayload): Promise<SubstitutionResult> {
+    return this.post(`/v1/athletes/${athleteId}/exercise-substitution`, payload);
+  }
+
+  async computeTaperPlan(athleteId: string, payload: TaperPlanPayload): Promise<TaperPlanResult> {
+    return this.post(`/v1/athletes/${athleteId}/taper-plan`, payload);
   }
 
   private async post<T>(path: string, payload: unknown): Promise<T> {
