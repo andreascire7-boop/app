@@ -513,6 +513,7 @@ model RiskAssessment {
 }
 
 enum AiDecisionType {
+  PLAN_GENERATION
   VOLUME_ADJUSTMENT
   TAPER_START
   EXERCISE_SUBSTITUTION

@@ -37,12 +37,13 @@ class _LoginScreenState extends State<LoginScreen> {
       _isSubmitting = true;
     });
 
-    // TODO(M1.1): call the real auth provider (Firebase Auth) here.
+    // TODO(M1.1): call the real auth provider (Firebase Auth) here, and skip
+    // onboarding entirely when the returning user already has a completed profile.
     await Future.delayed(const Duration(milliseconds: 700));
     if (!mounted) return;
 
     setState(() => _isSubmitting = false);
-    Navigator.of(context).pushReplacementNamed(AppRoutes.home);
+    Navigator.of(context).pushReplacementNamed(AppRoutes.onboarding);
   }
 
   @override

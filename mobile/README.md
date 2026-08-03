@@ -15,11 +15,18 @@ flutter run
 ```
 
 Implemented so far: design tokens (`core/theme`), shared loading/empty/error state
-widgets (`core/widgets` — the FASE 6 "pattern trasversali"), routing skeleton, and
-three screens: Splash (S1), Login (S2), Home with bottom nav and a rest-day empty
-state (S6). Everything else in FASE 6 (onboarding assessment, session execution,
-calendar, risk center, nutrition hub, etc.) is scheduled per the FASE 9 roadmap and
-not yet built.
+widgets (`core/widgets` — the FASE 6 "pattern trasversali"), routing skeleton, an
+`ApiClient` (`core/network`) wired to the Core API, and four screens: Splash (S1),
+Login (S2), the onboarding assessment flow (S3-S5 — sport/level, injury history,
+availability/goal) which creates the athlete, submits the profile, and triggers the
+first macrocycle generation, and Home with bottom nav and a rest-day empty state
+(S6). Everything else in FASE 6 (session execution, calendar, risk center, nutrition
+hub, etc.) is scheduled per the FASE 9 roadmap and not yet built.
+
+`ApiClient.baseUrl` points at `http://localhost:3000` (`10.0.2.2` on the Android
+emulator). There is no real auth yet (M1.1 is unfinished): the onboarding flow
+creates a throwaway user on every run rather than signing in — replace this once
+Firebase Auth is wired in.
 
 ## Tests
 

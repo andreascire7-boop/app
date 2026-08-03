@@ -1,13 +1,13 @@
 import { Controller, Param, Post } from '@nestjs/common';
-import { AiEngineClient } from './ai-engine.client';
+import { ProgrammingService } from './programming.service';
 
 @Controller('athletes/:athleteId/programming')
 export class ProgrammingController {
-  constructor(private readonly aiEngineClient: AiEngineClient) {}
+  constructor(private readonly programmingService: ProgrammingService) {}
 
   // Triggers F2 (docs/product-design FASE 3): first macrocycle generation after onboarding.
   @Post('macrocycle')
   generateMacrocycle(@Param('athleteId') athleteId: string) {
-    return this.aiEngineClient.generateMacrocycle(athleteId);
+    return this.programmingService.generateMacrocycle(athleteId);
   }
 }
