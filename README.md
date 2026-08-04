@@ -7,6 +7,8 @@ recupero e feedback — non una semplice raccolta di schede.
 Il progetto completo di design (analisi di mercato, prodotto, PRD, architettura,
 database, UX, sistema AI, business model, roadmap) è in
 [`docs/product-design`](docs/product-design/PRD-strength-conditioning-tennis-padel.pdf).
+Il piano operativo per portare il prodotto a utenti reali e paganti è in
+[`docs/product-design/sales-plan.md`](docs/product-design/sales-plan.md).
 
 ## Struttura del monorepo
 
@@ -14,8 +16,8 @@ database, UX, sistema AI, business model, roadmap) è in
 mobile/         Flutter — app athlete-facing iOS/Android (FASE 4 §4.1, FASE 6)
 backend/        NestJS — Core API, business logic, Prisma/PostgreSQL (FASE 4 §4.2, FASE 5)
 ai-engine/      FastAPI — motore a regole/ML per periodizzazione, rischio infortuni,
-                tapering, nutrizione, recupero, sostituzione esercizi, spiegabilità
-                (FASE 4 §4.9, FASE 7)
+                tapering, nutrizione, recupero, sostituzione esercizi, velocità/
+                agilità/condizionamento energetico, spiegabilità (FASE 4 §4.9, FASE 7)
 web-dashboard/  Next.js — dashboard coach B2B (FASE 4 §4.1, F11)
 infra/          docker-compose per lo sviluppo locale (Postgres+TimescaleDB, Redis)
 docs/           Documento di progettazione di prodotto (markdown + PDF sorgente)
@@ -58,15 +60,26 @@ in esecuzione:
   originali (snapshot pre-taper).
 - **Recupero/readiness** (F7) e **nutrizione con guardrail di sicurezza** (F8,
   inclusi i casi minorenne e segnale di rapporto disfunzionale col cibo).
+- **Velocità/agilità e condizionamento energetico**: sprint, RSA (repeated-sprint
+  ability) e target di sistema energetico (fosfageni/glicolitico/ossidativo)
+  specifici per sport intermittenti, con progressione agilità chiusa→reattiva per
+  livello atleta.
 - **B2B coach** (F11): richiesta/accettazione/revoca del collegamento coach-atleta,
-  dashboard web (Next.js) con lista atleti ordinata per rischio.
+  dashboard web (Next.js) con lista atleti ordinata per rischio e drill-down per
+  singolo atleta.
 - **Mobile**: onboarding, home con readiness e sessione del giorno, esecuzione
-  sessione, calendario gare, centro rischio, hub nutrizionale.
+  sessione, calendario gare, centro rischio, hub nutrizionale, tab "Programma"
+  (timeline macro/meso/microciclo); build web pubblicabile (`sc-mobile-web`) oltre
+  a iOS/Android.
+- **Self-service e deploy**: un atleta può provare l'app dal browser senza
+  installare nulla; deploy one-click gratuito documentato in `infra/DEPLOY.md`.
+- **Vendita**: lista di outreach B2B2B verificata (partnership/licensing con
+  aziende tech) e piano operativo di vendita diretta a atleti/coach/club — vedi
+  `docs/product-design/sales-plan.md`.
 
 Non ancora implementato: pagamenti/abbonamenti reali (Stripe/RevenueCat — solo
-scaffolding dati), dashboard coach oltre la lista atleti (drill-down, override
-piano), motore ML v2, e la tab "Programma" (timeline macro/meso/microciclo) lato
-mobile.
+scaffolding dati, esplicitamente non funzionante per addebiti veri), validazione
+clinica esterna delle regole del motore AI, e motore ML v2.
 
 ## Principio guida per chi contribuisce
 
