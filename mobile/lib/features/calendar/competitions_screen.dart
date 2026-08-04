@@ -1,3 +1,4 @@
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 
 import '../../core/network/api_client.dart';
@@ -155,10 +156,51 @@ class _CompetitionsScreenState extends State<CompetitionsScreen> {
     );
   }
 
+  // Import calendario (PDF/Excel/CSV): il backend estrae nome torneo, data,
+  // importanza e partite previste per ogni riga trovata (F3, Calendario competitivo).
+  Future<void> _importFromFile() async {
+    final result = await FilePicker.platform.pickFiles(
+      type: FileType.custom,
+      allowedExtensions: ['pdf', 'xlsx', 'xls', 'csv'],
+      withData: true,
+    );
+    final picked = result?.files.single;
+    final bytes = picked?.bytes;
+    if (picked == null || bytes == null) return;
+
+    setState(() => _isLoading = true);
+    try {
+      final response = await _apiClient.importCompetitionsFromFile(
+        athleteId: widget.athleteId,
+        fileBytes: bytes,
+        fileName: picked.name,
+      );
+      final extractedCount = response['extractedCount'] as int? ?? 0;
+      await _load();
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('$extractedCount tornei importati da ${picked.name}.')),
+      );
+    } on ApiException catch (e) {
+      if (!mounted) return;
+      setState(() => _isLoading = false);
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(e.message)));
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Calendario gare')),
+      appBar: AppBar(
+        title: const Text('Calendario gare'),
+        actions: [
+          IconButton(
+            onPressed: _importFromFile,
+            icon: const Icon(Icons.upload_file_outlined),
+            tooltip: 'Importa da PDF/Excel/CSV',
+          ),
+        ],
+      ),
       body: _buildBody(),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: _openAddDialog,

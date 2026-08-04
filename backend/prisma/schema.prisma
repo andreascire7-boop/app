@@ -46,6 +46,8 @@ model User {
   macrocycles            Macrocycle[]
   sessions               Session[]
   sessionFeedback        SessionFeedback[]
+  mesocycleFeedback      MesocycleFeedback[]
+  performanceTests       PerformanceTest[]
   painReports            PainReport[]
   wellnessCheckins       WellnessCheckin[]
   riskAssessments        RiskAssessment[]
@@ -175,14 +177,18 @@ model AthleteProfile {
 enum BodyArea {
   SPALLA
   GOMITO
-  LOMBARE
+  POLSO
+  SCHIENA
+  ANCA
   GINOCCHIO
   CAVIGLIA
   ALTRO
 }
 
+// presente (attivo) → recupero (in via di guarigione, volume ridotto) → risolto
 enum InjuryStatus {
   ACTIVE
+  RECOVERING
   RESOLVED
 }
 
@@ -241,11 +247,14 @@ model Competition {
   id              String                @id @default(uuid())
   athleteId       String                @map("athlete_id")
   athlete         User                  @relation(fields: [athleteId], references: [id])
+  name            String?
   sport           Sport
   eventDate       DateTime              @map("event_date")
   importance      CompetitionImportance
   expectedMatches Int?                  @map("expected_matches")
   status          CompetitionStatus     @default(SCHEDULED)
+  sourceFileName  String?               @map("source_file_name")
+  autoExtracted   Boolean               @default(false) @map("auto_extracted")
   createdAt       DateTime              @default(now()) @map("created_at")
 
   matches                  Match[]
@@ -297,17 +306,39 @@ enum BlockType {
 }
 
 model Mesocycle {
-  id              String      @id @default(uuid())
-  macrocycleId    String      @map("macrocycle_id")
-  macrocycle      Macrocycle  @relation(fields: [macrocycleId], references: [id])
-  blockType       BlockType?  @map("block_type")
-  startDate       DateTime    @map("start_date")
-  endDate         DateTime    @map("end_date")
-  targetQualities Json        @default("{}") @map("target_qualities")
+  id                   String      @id @default(uuid())
+  macrocycleId         String      @map("macrocycle_id")
+  macrocycle           Macrocycle  @relation(fields: [macrocycleId], references: [id])
+  blockType            BlockType?  @map("block_type")
+  startDate            DateTime    @map("start_date")
+  endDate              DateTime    @map("end_date")
+  targetQualities      Json        @default("{}") @map("target_qualities")
+  completedAt          DateTime?   @map("completed_at")
+  adherencePercentage  Float?      @map("adherence_percentage")
 
   microcycles Microcycle[]
+  feedback    MesocycleFeedback?
 
   @@map("mesocycles")
+}
+
+// Raccolto alla chiusura di un mesociclo (schermata "Mesociclo completato") e usato
+// per generare/adattare il mesociclo successivo — vedi MesocyclesService.
+model MesocycleFeedback {
+  id                   String    @id @default(uuid())
+  mesocycleId          String    @unique @map("mesocycle_id")
+  mesocycle            Mesocycle @relation(fields: [mesocycleId], references: [id])
+  athleteId            String    @map("athlete_id")
+  athlete              User      @relation(fields: [athleteId], references: [id])
+  difficultyPerceived  Int       @map("difficulty_perceived") // 1-10
+  energyLevel          Int       @map("energy_level") // 1-10
+  recoveryQuality      Int       @map("recovery_quality") // 1-10
+  painLevel            Int       @default(0) @map("pain_level") // 0-10
+  programSatisfaction  Int       @map("program_satisfaction") // 1-10
+  notes                String?
+  submittedAt          DateTime  @default(now()) @map("submitted_at")
+
+  @@map("mesocycle_feedback")
 }
 
 enum MicrocycleType {
@@ -453,6 +484,44 @@ model WellnessCheckin {
 
   @@unique([athleteId, checkDate])
   @@map("wellness_checkins")
+}
+
+// ───────────────────────── Performance Lab ─────────────────────────
+
+enum PerformanceTestType {
+  SPRINT_5M
+  SPRINT_10M
+  TEST_505
+  T_TEST
+  SPIDER_TEST
+  CMJ
+  BROAD_JUMP
+  CUSTOM_STRENGTH
+}
+
+enum TestPhase {
+  INIZIALE
+  INTERMEDIO
+  FINALE
+}
+
+// Più basso è meglio per i test a tempo (sprint, agilità); più alto è meglio per
+// potenza/forza — la UI usa questo per calcolare la direzione del miglioramento %.
+model PerformanceTest {
+  id          String              @id @default(uuid())
+  athleteId   String              @map("athlete_id")
+  athlete     User                @relation(fields: [athleteId], references: [id])
+  testType    PerformanceTestType @map("test_type")
+  customName  String?             @map("custom_name") // solo per CUSTOM_STRENGTH
+  value       Float
+  unit        String // "s", "cm", "kg", "reps"
+  phase       TestPhase?
+  testDate    DateTime            @default(now()) @map("test_date")
+  notes       String?
+  createdAt   DateTime            @default(now()) @map("created_at")
+
+  @@index([athleteId, testType, testDate])
+  @@map("performance_tests")
 }
 
 // wearable_data and load_metrics are converted to TimescaleDB hypertables post-migration

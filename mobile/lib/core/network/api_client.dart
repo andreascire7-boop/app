@@ -85,6 +85,36 @@ class ApiClient {
     _decode(res);
   }
 
+  Future<Map<String, dynamic>?> getAthleteProfile(String athleteId) async {
+    final res = await _client.get(Uri.parse('$baseUrl/athletes/$athleteId/profile'));
+    if (res.statusCode == 404) return null;
+    return _decode(res);
+  }
+
+  Future<List<dynamic>> listInjuries(String athleteId) async {
+    final res = await _client.get(Uri.parse('$baseUrl/athletes/$athleteId/profile/injuries'));
+    return _decodeList(res);
+  }
+
+  Future<Map<String, dynamic>> updateInjury({
+    required String athleteId,
+    required String injuryId,
+    String? status,
+    int? severityAtReport,
+    String? description,
+  }) async {
+    final res = await _client.patch(
+      Uri.parse('$baseUrl/athletes/$athleteId/profile/injuries/$injuryId'),
+      headers: {'Content-Type': 'application/json'},
+      body: jsonEncode({
+        if (status != null) 'status': status,
+        if (severityAtReport != null) 'severityAtReport': severityAtReport,
+        if (description != null) 'description': description,
+      }),
+    );
+    return _decode(res);
+  }
+
   Future<Map<String, dynamic>> generateMacrocycle(String athleteId) async {
     final res = await _client.post(Uri.parse('$baseUrl/athletes/$athleteId/programming/macrocycle'));
     return _decode(res);
@@ -191,6 +221,22 @@ class ApiClient {
     return _decode(res);
   }
 
+  /// Carica un calendario gare (PDF/Excel/CSV): il backend estrae automaticamente
+  /// nome torneo, data, importanza e partite previste per ogni riga trovata.
+  Future<Map<String, dynamic>> importCompetitionsFromFile({
+    required String athleteId,
+    required List<int> fileBytes,
+    required String fileName,
+  }) async {
+    final request = http.MultipartRequest(
+      'POST',
+      Uri.parse('$baseUrl/athletes/$athleteId/competitions/import'),
+    )..files.add(http.MultipartFile.fromBytes('file', fileBytes, filename: fileName));
+    final streamedRes = await _client.send(request);
+    final res = await http.Response.fromStream(streamedRes);
+    return _decode(res);
+  }
+
   // --- Centro rischio (F5, S13) ---
 
   Future<Map<String, dynamic>?> getLatestRisk(String athleteId) async {
@@ -279,6 +325,84 @@ class ApiClient {
   Future<List<dynamic>> listSupplements(String athleteId) async {
     final res = await _client.get(Uri.parse('$baseUrl/athletes/$athleteId/nutrition/supplements'));
     return _decodeList(res);
+  }
+
+  // --- Mesocicli (schermata "Mesociclo completato" + feedback) ---
+
+  Future<Map<String, dynamic>> getMesocycleSummary(String athleteId, String mesocycleId) async {
+    final res =
+        await _client.get(Uri.parse('$baseUrl/athletes/$athleteId/mesocycles/$mesocycleId/summary'));
+    return _decode(res);
+  }
+
+  Future<Map<String, dynamic>> completeMesocycle(String athleteId, String mesocycleId) async {
+    final res =
+        await _client.post(Uri.parse('$baseUrl/athletes/$athleteId/mesocycles/$mesocycleId/complete'));
+    return _decode(res);
+  }
+
+  Future<Map<String, dynamic>> submitMesocycleFeedback({
+    required String athleteId,
+    required String mesocycleId,
+    required int difficultyPerceived,
+    required int energyLevel,
+    required int recoveryQuality,
+    required int painLevel,
+    required int programSatisfaction,
+    String? notes,
+  }) async {
+    final res = await _client.post(
+      Uri.parse('$baseUrl/athletes/$athleteId/mesocycles/$mesocycleId/feedback'),
+      headers: {'Content-Type': 'application/json'},
+      body: jsonEncode({
+        'difficultyPerceived': difficultyPerceived,
+        'energyLevel': energyLevel,
+        'recoveryQuality': recoveryQuality,
+        'painLevel': painLevel,
+        'programSatisfaction': programSatisfaction,
+        if (notes != null && notes.isNotEmpty) 'notes': notes,
+      }),
+    );
+    return _decode(res);
+  }
+
+  // --- Performance Lab (test fisici + andamento) ---
+
+  Future<List<dynamic>> listPerformanceTests(String athleteId, {String? testType}) async {
+    final uri = Uri.parse('$baseUrl/athletes/$athleteId/performance-tests').replace(
+      queryParameters: testType != null ? {'testType': testType} : null,
+    );
+    final res = await _client.get(uri);
+    return _decodeList(res);
+  }
+
+  Future<List<dynamic>> getPerformanceProgress(String athleteId) async {
+    final res = await _client.get(Uri.parse('$baseUrl/athletes/$athleteId/performance-tests/progress'));
+    return _decodeList(res);
+  }
+
+  Future<Map<String, dynamic>> createPerformanceTest({
+    required String athleteId,
+    required String testType,
+    required double value,
+    required String unit,
+    String? customName,
+    String? phase,
+    String? notes,
+  }) async {
+    final res = await _client.post(
+      Uri.parse('$baseUrl/athletes/$athleteId/performance-tests'),
+      headers: {'Content-Type': 'application/json'},
+      body: jsonEncode({
+        'testType': testType,
+        'value': value,
+        'unit': unit,
+        if (customName != null && customName.isNotEmpty) 'customName': customName,
+        if (phase != null) 'phase': phase,
+        if (notes != null && notes.isNotEmpty) 'notes': notes,
+      }),
+    );
+    return _decode(res);
   }
 
   // --- Abbonamenti (scaffolding — nessun addebito reale, vedi mobile/README.md) ---

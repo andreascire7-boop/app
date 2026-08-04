@@ -32,7 +32,9 @@ class BlockType(str, Enum):
 class BodyArea(str, Enum):
     spalla = "spalla"
     gomito = "gomito"
-    lombare = "lombare"
+    polso = "polso"
+    schiena = "schiena"
+    anca = "anca"
     ginocchio = "ginocchio"
     caviglia = "caviglia"
     altro = "altro"
@@ -46,7 +48,7 @@ class RiskLevel(str, Enum):
 
 class InjuryHistoryItem(BaseModel):
     body_area: BodyArea
-    status: str  # "active" | "resolved"
+    status: str  # "active" | "recovering" | "resolved"
     severity_at_report: int = Field(ge=0, le=10)
 
 
@@ -75,6 +77,8 @@ class MacrocycleOutput(BaseModel):
     model_type: PeriodizationModel
     mesocycles: list[MesocycleOutput]
     excluded_body_areas: list[BodyArea]
+    reduced_load_body_areas: list[BodyArea] = []
+    preventive_focus_areas: list[BodyArea] = []
     explanation: str
     engine_version: str
 
@@ -142,6 +146,10 @@ class SessionPlanRequest(BaseModel):
     athlete_id: str
     available_exercises: list[ExerciseCatalogItem]
     excluded_body_areas: list[BodyArea] = []
+    # zone in recupero: non escluse ma con volume ridotto (vedi session_builder.RECOVERING_VOLUME_FACTOR)
+    reduced_load_body_areas: list[BodyArea] = []
+    # storico infortuni (attivo/recupero/risolto): priorità agli esercizi di prehab per quella zona
+    preventive_focus_areas: list[BodyArea] = []
     block_type: Optional[BlockType] = None
     sessions_per_week: int = Field(ge=1, le=7, default=2)
 
@@ -238,5 +246,24 @@ class NutritionRecommendationOutput(BaseModel):
     numeric_guidance_suspended: bool
     macro_guidance: dict[str, str]
     peri_match_guidance: Optional[str]
+    explanation: str
+    engine_version: str
+
+
+class MesocycleFeedbackInput(BaseModel):
+    """Feedback raccolto alla schermata "Mesociclo completato" — guida il volume
+    del mesociclo successivo (docs/product-design: Sistema Mesocicli)."""
+
+    athlete_id: str
+    difficulty_perceived: int = Field(ge=1, le=10)
+    energy_level: int = Field(ge=1, le=10)
+    recovery_quality: int = Field(ge=1, le=10)
+    pain_level: int = Field(ge=0, le=10, default=0)
+    program_satisfaction: int = Field(ge=1, le=10)
+
+
+class MesocycleAdjustmentOutput(BaseModel):
+    athlete_id: str
+    volume_adjustment_factor: float
     explanation: str
     engine_version: str

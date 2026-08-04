@@ -2,11 +2,12 @@ from app.engine.session_builder import build_sessions
 from app.models.schemas import BlockType, BodyArea, ExerciseCatalogItem, SessionPlanRequest
 
 CATALOG = [
-    ExerciseCatalogItem(id="squat", movement_pattern="squat", body_area_risk_tags=[BodyArea.lombare, BodyArea.ginocchio]),
-    ExerciseCatalogItem(id="rdl", movement_pattern="hip_hinge", body_area_risk_tags=[BodyArea.lombare]),
+    ExerciseCatalogItem(id="squat", movement_pattern="squat", body_area_risk_tags=[BodyArea.schiena, BodyArea.ginocchio]),
+    ExerciseCatalogItem(id="rdl", movement_pattern="hip_hinge", body_area_risk_tags=[BodyArea.schiena]),
     ExerciseCatalogItem(id="bench", movement_pattern="spinta_orizzontale", body_area_risk_tags=[BodyArea.spalla, BodyArea.gomito]),
-    ExerciseCatalogItem(id="med_ball_throw", movement_pattern="potenza_rotazionale", body_area_risk_tags=[BodyArea.lombare, BodyArea.spalla]),
+    ExerciseCatalogItem(id="med_ball_throw", movement_pattern="potenza_rotazionale", body_area_risk_tags=[BodyArea.schiena, BodyArea.spalla]),
     ExerciseCatalogItem(id="cuffia", movement_pattern="prehab_cuffia_rotatori", body_area_risk_tags=[]),
+    ExerciseCatalogItem(id="core_antirot", movement_pattern="core_anti_rotazione", body_area_risk_tags=[BodyArea.spalla]),
     ExerciseCatalogItem(id="shuttle", movement_pattern="condizionamento_intervallato", body_area_risk_tags=[BodyArea.caviglia, BodyArea.ginocchio]),
 ]
 
@@ -55,3 +56,47 @@ def test_multiple_sessions_per_week_generated():
     request = SessionPlanRequest(athlete_id="a1", available_exercises=CATALOG, sessions_per_week=3)
     result = build_sessions(request)
     assert len(result.sessions) == 3
+
+
+def test_recovering_body_area_reduces_volume_without_excluding():
+    request = SessionPlanRequest(
+        athlete_id="a1",
+        available_exercises=CATALOG,
+        reduced_load_body_areas=[BodyArea.schiena],
+        sessions_per_week=1,
+    )
+    result = build_sessions(request)
+    used_ids = {pe.exercise_id for s in result.sessions for pe in s.exercises}
+    assert "rdl" in used_ids  # not excluded, just reduced
+
+    baseline = build_sessions(SessionPlanRequest(athlete_id="a1", available_exercises=CATALOG, sessions_per_week=1))
+    baseline_sets = next(pe.target_sets for pe in baseline.sessions[0].exercises if pe.exercise_id == "rdl")
+    reduced_sets = next(pe.target_sets for pe in result.sessions[0].exercises if pe.exercise_id == "rdl")
+    assert reduced_sets < baseline_sets
+
+
+PREHAB_PATTERNS = {"prehab_cuffia_rotatori", "core_anti_rotazione"}
+
+
+def test_preventive_focus_area_prioritized_in_prehab_slot():
+    baseline = build_sessions(SessionPlanRequest(athlete_id="a1", available_exercises=CATALOG, sessions_per_week=1))
+    baseline_prehab = next(
+        pe.exercise_id
+        for pe in baseline.sessions[0].exercises
+        if next(e.movement_pattern for e in CATALOG if e.id == pe.exercise_id) in PREHAB_PATTERNS
+    )
+    assert baseline_prehab == "cuffia"  # catalog order without any preventive focus
+
+    request = SessionPlanRequest(
+        athlete_id="a1",
+        available_exercises=CATALOG,
+        preventive_focus_areas=[BodyArea.spalla],
+        sessions_per_week=1,
+    )
+    result = build_sessions(request)
+    prioritized_prehab = next(
+        pe.exercise_id
+        for pe in result.sessions[0].exercises
+        if next(e.movement_pattern for e in CATALOG if e.id == pe.exercise_id) in PREHAB_PATTERNS
+    )
+    assert prioritized_prehab == "core_antirot"  # spalla-tagged prehab now prioritized

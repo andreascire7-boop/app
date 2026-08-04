@@ -6,6 +6,7 @@ import '../../core/widgets/empty_state.dart';
 import '../../core/widgets/error_state.dart';
 import '../../core/widgets/skeleton_box.dart';
 import '../session/session_detail_screen.dart';
+import '../mesocycles/mesocycle_completion_screen.dart';
 
 const _blockTypeLabels = {
   'ACCUMULO': 'Accumulo',
@@ -73,6 +74,9 @@ class _ProgrammaTabState extends State<ProgrammaTab> {
 
   void _showMesocycleDetail(Map<String, dynamic> mesocycle) {
     final qualities = (mesocycle['targetQualities'] as List<dynamic>).cast<String>();
+    final endDate = DateTime.tryParse(mesocycle['endDate'] as String? ?? '');
+    final canComplete = mesocycle['completedAt'] == null && endDate != null && !endDate.isAfter(DateTime.now());
+
     showModalBottomSheet<void>(
       context: context,
       builder: (context) => Padding(
@@ -91,6 +95,25 @@ class _ProgrammaTabState extends State<ProgrammaTab> {
             const Text('Qualità allenate in questo blocco:', style: TextStyle(color: AppColors.grey)),
             const SizedBox(height: AppSpacing.sm),
             ...qualities.map((q) => Text('• ${_qualityLabels[q] ?? q}')),
+            if (canComplete) ...[
+              const SizedBox(height: AppSpacing.lg),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                  Navigator.of(context)
+                      .push(
+                        MaterialPageRoute(
+                          builder: (_) => MesocycleCompletionScreen(
+                            athleteId: widget.athleteId,
+                            mesocycleId: mesocycle['id'] as String,
+                          ),
+                        ),
+                      )
+                      .then((_) => _load());
+                },
+                child: const Text('Completa mesociclo'),
+              ),
+            ],
           ],
         ),
       ),

@@ -6,5 +6,6 @@ import { ProgrammingService } from './programming.service';
 @Module({
   controllers: [ProgrammingController],
   providers: [AiEngineClient, ProgrammingService],
+  exports: [ProgrammingService],
 })
 export class ProgrammingModule {}

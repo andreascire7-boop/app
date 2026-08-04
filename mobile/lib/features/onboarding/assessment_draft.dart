@@ -20,7 +20,16 @@ class AssessmentDraft {
 
 const sportOptions = ['TENNIS', 'PADEL', 'BOTH'];
 const levelOptions = ['BEGINNER', 'INTERMEDIATE', 'ADVANCED', 'SEMI_PRO', 'PRO'];
-const bodyAreaOptions = ['SPALLA', 'GOMITO', 'LOMBARE', 'GINOCCHIO', 'CAVIGLIA', 'ALTRO'];
+const bodyAreaOptions = ['SPALLA', 'GOMITO', 'POLSO', 'SCHIENA', 'ANCA', 'GINOCCHIO', 'CAVIGLIA', 'ALTRO'];
+
+const injuryStatusOptions = ['ACTIVE', 'RECOVERING', 'RESOLVED'];
+
+String injuryStatusLabel(String value) => switch (value) {
+      'ACTIVE' => 'Presente',
+      'RECOVERING' => 'In recupero',
+      'RESOLVED' => 'Risolto',
+      _ => value,
+    };
 
 String sportLabel(String value) => switch (value) {
       'TENNIS' => 'Tennis',
@@ -41,7 +50,9 @@ String levelLabel(String value) => switch (value) {
 String bodyAreaLabel(String value) => switch (value) {
       'SPALLA' => 'Spalla',
       'GOMITO' => 'Gomito',
-      'LOMBARE' => 'Lombare',
+      'POLSO' => 'Polso',
+      'SCHIENA' => 'Schiena',
+      'ANCA' => 'Anca',
       'GINOCCHIO' => 'Ginocchio',
       'CAVIGLIA' => 'Caviglia',
       'ALTRO' => 'Altro',

@@ -8,6 +8,7 @@ import '../../core/widgets/error_state.dart';
 import '../../core/widgets/skeleton_box.dart';
 import '../calendar/competitions_screen.dart';
 import '../nutrition/nutrition_hub_screen.dart';
+import '../performance_lab/performance_lab_screen.dart';
 import '../profile/profile_tab.dart';
 import '../programming/programma_tab.dart';
 import '../risk/risk_center_screen.dart';
@@ -72,6 +73,13 @@ class _HomeScreenState extends State<HomeScreen> {
                   tooltip: 'Centro rischio',
                   onPressed: () => Navigator.of(context).push(
                     MaterialPageRoute(builder: (_) => RiskCenterScreen(athleteId: athleteId)),
+                  ),
+                ),
+                IconButton(
+                  icon: const Icon(Icons.query_stats_outlined),
+                  tooltip: 'Performance Lab',
+                  onPressed: () => Navigator.of(context).push(
+                    MaterialPageRoute(builder: (_) => PerformanceLabScreen(athleteId: athleteId)),
                   ),
                 ),
               ],

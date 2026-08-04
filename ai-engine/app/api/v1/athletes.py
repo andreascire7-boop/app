@@ -4,6 +4,7 @@ from app.engine.autoregulation import evaluate_autoregulation
 from app.engine.exercise_substitution import evaluate_substitution
 from app.engine.explainability import explain
 from app.engine.injury_risk import assess_risk
+from app.engine.mesocycle_feedback import evaluate_mesocycle_feedback
 from app.engine.nutrition import build_nutrition_recommendation
 from app.engine.periodization import generate_macrocycle
 from app.engine.readiness import compute_readiness
@@ -16,6 +17,8 @@ from app.models.schemas import (
     InjuryRiskInput,
     InjuryRiskOutput,
     MacrocycleOutput,
+    MesocycleAdjustmentOutput,
+    MesocycleFeedbackInput,
     NutritionRecommendationOutput,
     NutritionRequest,
     ReadinessInput,
@@ -90,5 +93,13 @@ def post_readiness(athlete_id: str, payload: ReadinessInput) -> ReadinessOutput:
 def post_nutrition_recommendation(athlete_id: str, payload: NutritionRequest) -> NutritionRecommendationOutput:
     payload.athlete_id = athlete_id
     result = build_nutrition_recommendation(payload)
+    result.explanation = explain(result.explanation)
+    return result
+
+
+@router.post("/{athlete_id}/mesocycle-feedback", response_model=MesocycleAdjustmentOutput)
+def post_mesocycle_feedback(athlete_id: str, payload: MesocycleFeedbackInput) -> MesocycleAdjustmentOutput:
+    payload.athlete_id = athlete_id
+    result = evaluate_mesocycle_feedback(payload)
     result.explanation = explain(result.explanation)
     return result

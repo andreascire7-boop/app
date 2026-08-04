@@ -46,3 +46,27 @@ def test_active_injury_excludes_body_area_from_plan():
     result = generate_macrocycle(athlete)
     assert BodyArea.spalla in result.excluded_body_areas
     assert "spalla" in result.explanation
+
+
+def test_recovering_injury_reduces_load_without_excluding():
+    athlete = make_athlete(
+        injury_history=[
+            InjuryHistoryItem(body_area=BodyArea.ginocchio, status="recovering", severity_at_report=4)
+        ]
+    )
+    result = generate_macrocycle(athlete)
+    assert BodyArea.ginocchio not in result.excluded_body_areas
+    assert BodyArea.ginocchio in result.reduced_load_body_areas
+    assert BodyArea.ginocchio in result.preventive_focus_areas
+
+
+def test_resolved_injury_only_flags_preventive_focus():
+    athlete = make_athlete(
+        injury_history=[
+            InjuryHistoryItem(body_area=BodyArea.caviglia, status="resolved", severity_at_report=3)
+        ]
+    )
+    result = generate_macrocycle(athlete)
+    assert BodyArea.caviglia not in result.excluded_body_areas
+    assert BodyArea.caviglia not in result.reduced_load_body_areas
+    assert BodyArea.caviglia in result.preventive_focus_areas

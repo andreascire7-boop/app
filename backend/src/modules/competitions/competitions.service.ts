@@ -5,10 +5,20 @@ import { addDays } from '../../common/date-utils';
 import { AiEngineClient } from '../programming/ai-engine.client';
 import { toAiEngineEnum } from '../programming/mappers';
 import { CreateCompetitionDto } from './dto/create-competition.dto';
+import { CompetitionImportService } from './competition-import.service';
 
 interface TaperSnapshotEntry {
   sessionExerciseId: string;
   originalTargetSets: number;
+}
+
+interface PersistCompetitionInput {
+  name?: string;
+  eventDate: Date;
+  importance: CreateCompetitionDto['importance'];
+  expectedMatches?: number;
+  sourceFileName?: string;
+  autoExtracted?: boolean;
 }
 
 @Injectable()
@@ -16,6 +26,7 @@ export class CompetitionsService {
   constructor(
     private readonly prisma: PrismaService,
     private readonly aiEngineClient: AiEngineClient,
+    private readonly competitionImportService: CompetitionImportService,
   ) {}
 
   listForAthlete(athleteId: string) {
@@ -27,15 +38,48 @@ export class CompetitionsService {
 
   // F3 (docs/product-design FASE 3/7 §7.4): creating a competition immediately
   // computes and applies the taper to whatever sessions already fall in its window.
-  async create(athleteId: string, dto: CreateCompetitionDto) {
-    const eventDate = new Date(dto.eventDate);
+  create(athleteId: string, dto: CreateCompetitionDto) {
+    return this.persistCompetitionAndTaper(athleteId, {
+      eventDate: new Date(dto.eventDate),
+      importance: dto.importance,
+      expectedMatches: dto.expectedMatches,
+    });
+  }
+
+  // Import calendario competitivo (PDF/Excel/CSV): ogni torneo estratto passa dallo
+  // stesso calcolo di tapering di un inserimento manuale, con una spiegazione
+  // dedicata per ciascuno (docs: "Il programma è stato modificato perché...").
+  async importFromFile(athleteId: string, file: Express.Multer.File) {
+    const candidates = await this.competitionImportService.parse(file);
+    const imported: Array<Awaited<ReturnType<typeof this.persistCompetitionAndTaper>>> = [];
+
+    for (const candidate of candidates) {
+      const result = await this.persistCompetitionAndTaper(athleteId, {
+        name: candidate.name,
+        eventDate: new Date(candidate.eventDate),
+        importance: candidate.importance,
+        expectedMatches: candidate.expectedMatches,
+        sourceFileName: file.originalname,
+        autoExtracted: true,
+      });
+      imported.push(result);
+    }
+
+    return { fileName: file.originalname, extractedCount: candidates.length, imported };
+  }
+
+  private async persistCompetitionAndTaper(athleteId: string, input: PersistCompetitionInput) {
+    const eventDate = input.eventDate;
     const competition = await this.prisma.competition.create({
       data: {
         athleteId,
+        name: input.name,
         sport: (await this.athletePrimarySport(athleteId)) ?? Sport.BOTH,
         eventDate,
-        importance: dto.importance,
-        expectedMatches: dto.expectedMatches,
+        importance: input.importance,
+        expectedMatches: input.expectedMatches,
+        sourceFileName: input.sourceFileName,
+        autoExtracted: input.autoExtracted ?? false,
       },
     });
 
@@ -44,7 +88,7 @@ export class CompetitionsService {
     const taperPlan = await this.aiEngineClient.computeTaperPlan(athleteId, {
       athlete_id: athleteId,
       days_until_event: daysUntilEvent,
-      importance: toAiEngineEnum(dto.importance),
+      importance: toAiEngineEnum(input.importance),
     });
 
     const snapshot: TaperSnapshotEntry[] = [];
@@ -78,6 +122,14 @@ export class CompetitionsService {
       }
     }
 
+    // Spiegazione sempre visibile all'atleta: l'AI engine conosce solo
+    // "giorni all'evento", non la data di calendario reale — la componiamo qui.
+    const dateLabel = eventDate.toLocaleDateString('it-IT', { day: 'numeric', month: 'long', year: 'numeric' });
+    const competitionLabel = input.name ? `"${input.name}"` : 'una competizione';
+    const explanation =
+      `Il programma è stato modificato perché hai ${competitionLabel} il giorno ${dateLabel}. ` +
+      taperPlan.explanation;
+
     await this.prisma.aiDecisionLog.create({
       data: {
         athleteId,
@@ -85,11 +137,11 @@ export class CompetitionsService {
         engineVersion: taperPlan.engine_version,
         inputSnapshot: { competitionId: competition.id, snapshot } as any,
         outputDecision: taperPlan as any,
-        explanationText: taperPlan.explanation,
+        explanationText: explanation,
       },
     });
 
-    return { competition, taperPlan, sessionsAdjusted };
+    return { competition, taperPlan, sessionsAdjusted, explanation };
   }
 
   // Edge case from FASE 3 F3: cancelling a competition during its taper window

@@ -66,11 +66,29 @@ def excluded_body_areas(athlete: AthleteNeedsInput) -> list:
     return [item.body_area for item in athlete.injury_history if item.status == "active"]
 
 
+def reduced_load_body_areas(athlete: AthleteNeedsInput) -> list:
+    # In recupero: non più esclusa a priori, ma il volume resta ridotto finché lo
+    # stato non passa a "resolved" (vedi session_builder.RECOVERING_VOLUME_FACTOR).
+    return [item.body_area for item in athlete.injury_history if item.status == "recovering"]
+
+
+def preventive_focus_areas(athlete: AthleteNeedsInput) -> list:
+    # Qualunque zona con storico infortuni (attivo, in recupero o risolto) merita
+    # priorità di prehab preventivo, non solo le zone attualmente escluse/ridotte.
+    seen = []
+    for item in athlete.injury_history:
+        if item.body_area not in seen:
+            seen.append(item.body_area)
+    return seen
+
+
 def generate_macrocycle(athlete: AthleteNeedsInput) -> MacrocycleOutput:
     model = choose_model(athlete)
     qualities = target_qualities_for(athlete)
     mesocycles = build_mesocycles(model, qualities)
     excluded = excluded_body_areas(athlete)
+    reduced = reduced_load_body_areas(athlete)
+    preventive = preventive_focus_areas(athlete)
 
     explanation = (
         f"Modello {model.value} scelto per livello '{athlete.level.value}' "
@@ -79,12 +97,20 @@ def generate_macrocycle(athlete: AthleteNeedsInput) -> MacrocycleOutput:
     if excluded:
         areas = ", ".join(a.value for a in excluded)
         explanation += f" Esercizi a rischio esclusi per: {areas} (infortunio attivo dichiarato)."
+    if reduced:
+        areas = ", ".join(a.value for a in reduced)
+        explanation += f" Volume ridotto per: {areas} (infortunio in fase di recupero)."
+    if preventive:
+        areas = ", ".join(a.value for a in preventive)
+        explanation += f" Prehab preventivo prioritario per: {areas} (storico infortuni)."
 
     return MacrocycleOutput(
         athlete_id=athlete.athlete_id,
         model_type=model,
         mesocycles=mesocycles,
         excluded_body_areas=excluded,
+        reduced_load_body_areas=reduced,
+        preventive_focus_areas=preventive,
         explanation=explanation,
         engine_version=ENGINE_VERSION,
     )

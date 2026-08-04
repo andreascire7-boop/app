@@ -6,7 +6,7 @@ def test_no_substitution_when_area_not_at_risk():
     result = evaluate_substitution(
         SubstitutionInput(
             athlete_id="a1",
-            exercise_body_area_tags=[BodyArea.lombare],
+            exercise_body_area_tags=[BodyArea.schiena],
             reported_pain_area=BodyArea.spalla,
             pain_level=6,
         )

@@ -30,6 +30,11 @@ PREHAB_PATTERNS = {
 }
 CONDITIONING_PATTERNS = {"condizionamento_intervallato"}
 
+# Infortunio in fase di recupero (non più attivo, non ancora risolto): l'esercizio
+# resta in catalogo ma con volume ridotto — periodizzazione.md non fissa un valore
+# esatto, 0.7 è coerente con l'entità di riduzione già usata per il taper leggero.
+RECOVERING_VOLUME_FACTOR = 0.7
+
 # (sets, reps, rpe) per category per block type — None reps means "not rep-based"
 # (e.g. a timed conditioning interval).
 PRESCRIPTIONS: dict[BlockType | None, dict[str, tuple[int, int | None, float]]] = {
@@ -45,8 +50,20 @@ def _allowed(exercises: list[ExerciseCatalogItem], excluded_areas) -> list[Exerc
     return [e for e in exercises if not (set(e.body_area_risk_tags) & excluded)]
 
 
-def _pick(exercises: list[ExerciseCatalogItem], patterns: set[str], count: int, offset: int) -> list[ExerciseCatalogItem]:
+def _pick(
+    exercises: list[ExerciseCatalogItem],
+    patterns: set[str],
+    count: int,
+    offset: int,
+    priority_areas: set | None = None,
+) -> list[ExerciseCatalogItem]:
     matches = [e for e in exercises if e.movement_pattern in patterns]
+    if priority_areas:
+        # Prehab preventivo: le zone con storico infortuni passano in testa alla lista.
+        matches = sorted(
+            matches,
+            key=lambda e: 0 if set(e.body_area_risk_tags) & priority_areas else 1,
+        )
     if not matches:
         return []
     picked = []
@@ -65,12 +82,14 @@ def _pick(exercises: list[ExerciseCatalogItem], patterns: set[str], count: int, 
 def build_sessions(request: SessionPlanRequest) -> SessionPlanResponse:
     safe_exercises = _allowed(request.available_exercises, request.excluded_body_areas)
     prescriptions = PRESCRIPTIONS[request.block_type]
+    reduced_areas = set(request.reduced_load_body_areas)
+    priority_areas = set(request.preventive_focus_areas)
 
     sessions: list[PlannedSession] = []
     for week_session_index in range(request.sessions_per_week):
         power = _pick(safe_exercises, POWER_PATTERNS, 1, week_session_index)
         strength = _pick(safe_exercises, STRENGTH_PATTERNS, 2, week_session_index)
-        prehab = _pick(safe_exercises, PREHAB_PATTERNS, 1, week_session_index)
+        prehab = _pick(safe_exercises, PREHAB_PATTERNS, 1, week_session_index, priority_areas=priority_areas)
         conditioning = _pick(safe_exercises, CONDITIONING_PATTERNS, 1, week_session_index)
 
         planned_exercises: list[PlannedSessionExercise] = []
@@ -78,11 +97,14 @@ def build_sessions(request: SessionPlanRequest) -> SessionPlanResponse:
         for category, items in (("power", power), ("strength", strength), ("prehab", prehab), ("conditioning", conditioning)):
             sets, reps, rpe = prescriptions[category]
             for item in items:
+                item_sets = sets
+                if item_sets is not None and reduced_areas and (set(item.body_area_risk_tags) & reduced_areas):
+                    item_sets = max(1, round(item_sets * RECOVERING_VOLUME_FACTOR))
                 planned_exercises.append(
                     PlannedSessionExercise(
                         exercise_id=item.id,
                         order_index=order_index,
-                        target_sets=sets,
+                        target_sets=item_sets,
                         target_reps=reps,
                         target_rpe=rpe,
                     )
@@ -96,13 +118,17 @@ def build_sessions(request: SessionPlanRequest) -> SessionPlanResponse:
             )
         )
 
-    explanation = (
+    explanation_parts = [
         f"{len(sessions)} sedute generate (ordine: potenza/esplosivo → forza multiarticolare → "
-        f"prehab → condizionamento, program-design.md). "
-        f"{len(request.excluded_body_areas)} zone escluse dal catalogo per infortunio attivo."
-        if request.excluded_body_areas
-        else f"{len(sessions)} sedute generate (ordine: potenza/esplosivo → forza multiarticolare → prehab → condizionamento)."
-    )
+        f"prehab → condizionamento, program-design.md)."
+    ]
+    if request.excluded_body_areas:
+        explanation_parts.append(f"{len(request.excluded_body_areas)} zone escluse dal catalogo per infortunio attivo.")
+    if reduced_areas:
+        explanation_parts.append(f"Volume ridotto ({int((1 - RECOVERING_VOLUME_FACTOR) * 100)}%) per zone in recupero.")
+    if priority_areas:
+        explanation_parts.append("Prehab preventivo prioritizzato per lo storico infortuni dell'atleta.")
+    explanation = " ".join(explanation_parts)
 
     return SessionPlanResponse(
         athlete_id=request.athlete_id,

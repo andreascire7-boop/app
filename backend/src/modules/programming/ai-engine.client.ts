@@ -26,6 +26,8 @@ export interface MacrocycleResult {
   model_type: string;
   mesocycles: MesocycleResult[];
   excluded_body_areas: string[];
+  reduced_load_body_areas: string[];
+  preventive_focus_areas: string[];
   explanation: string;
   engine_version: string;
 }
@@ -40,6 +42,8 @@ export interface SessionPlanPayload {
   athlete_id: string;
   available_exercises: ExerciseCatalogItem[];
   excluded_body_areas: string[];
+  reduced_load_body_areas?: string[];
+  preventive_focus_areas?: string[];
   block_type: string | null;
   sessions_per_week: number;
 }
@@ -171,6 +175,22 @@ export interface NutritionResult {
   engine_version: string;
 }
 
+export interface MesocycleFeedbackPayload {
+  athlete_id: string;
+  difficulty_perceived: number;
+  energy_level: number;
+  recovery_quality: number;
+  pain_level: number;
+  program_satisfaction: number;
+}
+
+export interface MesocycleAdjustmentResult {
+  athlete_id: string;
+  volume_adjustment_factor: number;
+  explanation: string;
+  engine_version: string;
+}
+
 // Thin HTTP client towards the AI/Decision Engine microservice (Python/FastAPI).
 // The Core API never re-implements periodization/risk logic itself — see
 // docs/product-design FASE 4 (§4.9) and FASE 7 for why the split exists.
@@ -218,6 +238,13 @@ export class AiEngineClient {
 
   async computeNutritionRecommendation(athleteId: string, payload: NutritionPayload): Promise<NutritionResult> {
     return this.post(`/v1/athletes/${athleteId}/nutrition-recommendation`, payload);
+  }
+
+  async evaluateMesocycleFeedback(
+    athleteId: string,
+    payload: MesocycleFeedbackPayload,
+  ): Promise<MesocycleAdjustmentResult> {
+    return this.post(`/v1/athletes/${athleteId}/mesocycle-feedback`, payload);
   }
 
   private async post<T>(path: string, payload: unknown): Promise<T> {

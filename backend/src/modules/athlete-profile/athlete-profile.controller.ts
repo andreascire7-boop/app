@@ -1,7 +1,8 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common';
 import { AthleteProfileService } from './athlete-profile.service';
 import { CreateAthleteProfileDto } from './dto/create-athlete-profile.dto';
 import { ReportInjuryDto } from './dto/report-injury.dto';
+import { UpdateInjuryDto } from './dto/update-injury.dto';
 
 @Controller('athletes/:athleteId/profile')
 export class AthleteProfileController {
@@ -25,5 +26,19 @@ export class AthleteProfileController {
   @Get('injuries')
   listInjuries(@Param('athleteId') athleteId: string) {
     return this.athleteProfileService.listInjuries(athleteId);
+  }
+
+  @Patch('injuries/:injuryId')
+  updateInjury(
+    @Param('athleteId') athleteId: string,
+    @Param('injuryId') injuryId: string,
+    @Body() dto: UpdateInjuryDto,
+  ) {
+    return this.athleteProfileService.updateInjury(athleteId, injuryId, dto);
+  }
+
+  @Get('injuries/summary')
+  injurySummary(@Param('athleteId') athleteId: string) {
+    return this.athleteProfileService.injurySummary(athleteId);
   }
 }
