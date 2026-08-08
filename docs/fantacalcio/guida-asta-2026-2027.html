@@ -1,0 +1,704 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<title>Fantacalcio Serie A 2026/2027 — Guida Asta 13 Agosto</title>
+<style>
+:root{
+  --green:#1e8e3e; --green-bg:#e6f4ea;
+  --blue:#1a56c4; --blue-bg:#e8f0fe;
+  --yellow:#b8860b; --yellow-bg:#fff8e1;
+  --orange:#c1560c; --orange-bg:#fdeee3;
+  --red:#c5221f; --red-bg:#fce8e6;
+  --gray:#5f6368; --gray-bg:#f1f3f4;
+  --ink:#1a1a1a; --sub:#444; --line:#dcdcdc; --page-bg:#ffffff;
+}
+*{box-sizing:border-box}
+body{font-family:"Segoe UI",Arial,Helvetica,sans-serif;color:var(--ink);font-size:13.5px;line-height:1.45;margin:0;background:#fff;}
+.page{max-width:900px;margin:0 auto;padding:18px 22px 6px;}
+h1,h2,h3,h4{font-family:Arial,Helvetica,sans-serif;line-height:1.2;margin:0 0 6px;}
+h1{font-size:26px}
+h2{font-size:19px;border-bottom:3px solid var(--ink);padding-bottom:4px;margin-top:0}
+h3{font-size:15px;color:#111;margin-top:14px}
+h4{font-size:13px;margin-top:10px}
+p{margin:4px 0 8px}
+.section{page-break-before:always; padding-top:6px;}
+.section:first-of-type{page-break-before:auto;}
+.cover{page-break-after:always; text-align:center; padding-top:70px;}
+.cover .kicker{letter-spacing:3px;color:var(--sub);font-size:13px;font-weight:700}
+.cover h1{font-size:34px;margin-top:14px}
+.cover .sub{font-size:17px;color:var(--sub);margin-top:6px}
+.cover .date{margin-top:30px;font-size:15px;font-weight:700;background:var(--ink);color:#fff;display:inline-block;padding:8px 18px;border-radius:4px}
+.cover .meta{margin-top:40px;font-size:12.5px;color:var(--sub);border-top:1px solid var(--line);padding-top:14px;display:inline-block;text-align:left}
+table{width:100%;border-collapse:collapse;margin:8px 0 14px;font-size:12.5px}
+th{background:var(--ink);color:#fff;text-align:left;padding:6px 7px;font-size:11.5px}
+td{padding:5px 7px;border-bottom:1px solid var(--line);vertical-align:top}
+tr:nth-child(even) td{background:#fafafa}
+.small{font-size:11.5px;color:var(--sub)}
+.note{background:var(--gray-bg);border-left:4px solid var(--gray);padding:8px 12px;font-size:12px;margin:10px 0;border-radius:2px}
+.confirm{background:var(--red-bg);border-left:4px solid var(--red);padding:6px 10px;font-size:11.5px;margin:6px 0;border-radius:2px;color:var(--red);font-weight:700}
+.legend{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:14px 0}
+.legend .item{display:flex;gap:8px;padding:8px 10px;border-radius:6px;border:1px solid var(--line)}
+.legend .dot{font-size:18px}
+.legend b{display:block;font-size:12.5px}
+.legend span{font-size:11px;color:var(--sub)}
+.badge{display:inline-block;padding:1px 7px;border-radius:10px;font-size:10.5px;font-weight:700;white-space:nowrap}
+.b-green{background:var(--green-bg);color:var(--green)}
+.b-blue{background:var(--blue-bg);color:var(--blue)}
+.b-yellow{background:var(--yellow-bg);color:var(--yellow)}
+.b-orange{background:var(--orange-bg);color:var(--orange)}
+.b-red{background:var(--red-bg);color:var(--red)}
+.b-gray{background:var(--gray-bg);color:var(--gray)}
+tr.row-green td:first-child{border-left:4px solid var(--green)}
+tr.row-blue td:first-child{border-left:4px solid var(--blue)}
+tr.row-yellow td:first-child{border-left:4px solid var(--yellow)}
+tr.row-orange td:first-child{border-left:4px solid var(--orange)}
+tr.row-red td:first-child{border-left:4px solid var(--red)}
+tr.row-gray td:first-child{border-left:4px solid var(--gray)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+.card{border:1px solid var(--line);border-radius:6px;padding:8px 10px;margin-bottom:8px}
+.card h4{margin:0 0 4px;font-size:13px}
+.teamcard{border:1px solid var(--line);border-radius:6px;padding:9px 11px;margin-bottom:9px;break-inside:avoid}
+.teamcard .tname{font-size:14.5px;font-weight:800}
+.teamcard .trow{font-size:11.8px;margin-top:3px}
+.teamcard .trow b{color:#111}
+.tocwrap{columns:2;column-gap:26px}
+.toc a{color:var(--ink);text-decoration:none}
+.toc li{margin-bottom:5px;font-size:13px}
+.pricebox{font-weight:800}
+.tierhead{background:var(--ink);color:#fff;padding:5px 10px;border-radius:4px;font-size:13px;display:inline-block;margin:10px 0 4px}
+.foot{text-align:center;color:var(--sub);font-size:10.5px;margin:24px 0 6px}
+.summary-role{border:2px solid var(--ink);border-radius:8px;padding:10px 12px;margin-bottom:12px}
+.summary-role h3{margin-top:0}
+.summary-row{display:flex;gap:8px;align-items:baseline;padding:3px 0;border-bottom:1px dashed var(--line);font-size:12.5px}
+.summary-row:last-child{border-bottom:none}
+@media print{
+  .section{page-break-before:always}
+  body{font-size:12.5px}
+}
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="page cover">
+  <div class="kicker">DOCUMENTO OPERATIVO · LEGA PRIVATA 8 SQUADRE · 500 CREDITI</div>
+  <h1>FANTACALCIO SERIE A<br>2026/2027</h1>
+  <div class="sub">GUIDA ASTA 13 AGOSTO</div>
+  <div class="date">Da consultare live durante i rilanci</div>
+  <div class="meta">
+    <b>Regolamento:</b> Bonus/malus standard + Modificatore Difesa (portiere + migliori 3 difensori)<br>
+    <b>Rosa:</b> 3 portieri · 8 difensori · 8 centrocampisti · 6 attaccanti (25 totali)<br>
+    <b>Fonti:</b> trasferimenti ufficializzati, allenatori ufficiali, rose aggiornate ad agosto 2026<br>
+    <b>Metodo:</b> ogni dato non confermato con certezza è segnalato come <span style="color:var(--red);font-weight:700">DATI DA CONFERMARE</span><br>
+    <b>Priorità:</b> non i nomi più famosi, ma il massimo rendimento per credito speso
+  </div>
+</div>
+
+<!-- TOC -->
+<div class="page section">
+<h2>Indice</h2>
+<div class="tocwrap toc">
+<ul>
+<li><a href="#legenda">0. Legenda colori</a></li>
+<li><a href="#strategia">1. Strategia generale e budget</a></li>
+<li><a href="#squadre">2. Analisi squadre 2026/27</a></li>
+<li><a href="#defscore">3. Defensive Score</a></li>
+<li><a href="#portieri">4. Griglia portieri</a></li>
+<li><a href="#difensori">5. Difensori</a></li>
+<li><a href="#centro">6. Centrocampisti</a></li>
+<li><a href="#attacco">7. Attaccanti</a></li>
+<li><a href="#affari">8. Affari, trappole, scommesse</a></li>
+<li><a href="#alternative">9. Alternative asta</a></li>
+<li><a href="#rosa">10. Rosa ideale simulata</a></li>
+<li><a href="#live">11. Strategia asta live</a></li>
+<li><a href="#riassunto">12. Cosa fare all'asta — scheda rapida</a></li>
+</ul>
+</div>
+<div class="confirm">⚠️ Il calciomercato resta aperto fino al 1° settembre 2026. Gerarchie e ultimi colpi possono cambiare fino al giorno dell'asta: ricontrolla le notizie del 12-13 agosto prima di sederti al tavolo.</div>
+</div>
+
+<!-- LEGENDA -->
+<div class="page section" id="legenda">
+<h2>0. Legenda colori</h2>
+<p class="small">Ogni giocatore citato in questa guida porta un colore. Usalo per decidere in tempo reale durante i rilanci.</p>
+<div class="legend">
+  <div class="item"><span class="dot">🟢</span><div><b>PRIMA SCELTA / OBIETTIVO</b><span>Miglior rapporto rendimento/prezzo. Profilo ideale, punta forte su questi.</span></div></div>
+  <div class="item"><span class="dot">🔵</span><div><b>SECONDA SCELTA / ALTERNATIVA</b><span>Poco sotto il top. Ottimo sostituto se il prezzo del primo sale troppo.</span></div></div>
+  <div class="item"><span class="dot">🟡</span><div><b>SCOMMESSA / UPSIDE</b><span>Giovani, nuovi acquisti, potenziale esplosione. Rischio calcolato.</span></div></div>
+  <div class="item"><span class="dot">🟠</span><div><b>RISCHIO</b><span>Turnover, panchina, calendario o infortuni. Rendimento incerto.</span></div></div>
+  <div class="item"><span class="dot">🔴</span><div><b>DA EVITARE</b><span>Prezzo troppo alto rispetto al rendimento atteso. Sopravvalutato.</span></div></div>
+  <div class="item"><span class="dot">⚪</span><div><b>LOW COST / COPERTURA</b><span>Riserve utili, ultimi slot, 1-5 crediti.</span></div></div>
+</div>
+</div>
+
+<!-- FASE 1 STRATEGIA -->
+<div class="page section" id="strategia">
+<h2>1. Strategia generale e budget</h2>
+
+<h3>Il contesto della tua lega</h3>
+<p>8 squadre, 500 crediti, livello alto. Con soli 7 avversari a contendersi lo stesso bacino di giocatori italiani di qualità, i prezzi dei big si <b>gonfiano molto di più</b> che in una lega da 10-12 squadre: più crediti concentrati su meno rose significa aste sui top player molto più aggressive. Non aspettarti sconti sui nomi pesanti: preparati a pagarli, oppure pianifica di lasciarli andare con convinzione.</p>
+
+<h3>Il Modificatore Difesa cambia tutto</h3>
+<p>Con bonus +1 (media 6), +3 (media 6,5), +6 (media 7) calcolati su <b>portiere + migliori 3 difensori schierati</b>, la difesa smette di essere un reparto "di riempimento" e diventa un moltiplicatore di punteggio settimanale paragonabile a un centrocampista da bonus. In una lega di alto livello, chi trascura questo modificatore perde 3-6 punti a giornata rispetto a chi lo cura. Conseguenza diretta: <b>non basta un difensore-bonus isolato</b>, serve un reparto arretrato coerente (stessa fascia di rendimento) più un portiere affidabile.</p>
+
+<h3>Ripartizione consigliata dei 500 crediti</h3>
+<table>
+<tr><th>Reparto</th><th>% budget</th><th>Crediti</th><th>Logica</th></tr>
+<tr><td><b>Portieri (3)</b></td><td>~8%</td><td class="pricebox">40</td><td>1 titolare di fascia alta + 2 di scorta economici, meglio se in coppia complementare per calendario</td></tr>
+<tr><td><b>Difensori (8)</b></td><td>~17%</td><td class="pricebox">85</td><td>1 top da modificatore + 2-3 affidabili + resto low cost coerente con la squadra dei portieri scelti</td></tr>
+<tr><td><b>Centrocampisti (8)</b></td><td>~29%</td><td class="pricebox">145</td><td>Reparto con più occasioni di bonus/prezzo: qui si vince la lega senza spendere come in attacco</td></tr>
+<tr><td><b>Attaccanti (6)</b></td><td>~46%</td><td class="pricebox">230</td><td>In una lega da 8 concorrenti concentrare risorse su 2 big + 1 rigorista di fascia media è più efficiente che 4 giocatori medi</td></tr>
+</table>
+<p class="small">Totale: 500 crediti. Questa è una guida, non una gabbia: se all'asta un centrocampista top scende sotto valore, sposta 10-15 crediti dagli attaccanti verso il centrocampo.</p>
+
+<h3>Principio guida</h3>
+<div class="note"><b>VALORE ASTA = rendimento previsto ÷ prezzo previsto.</b> In una lega di 8 squadre di alto livello, chi vince non è chi si porta a casa più nomi famosi, ma chi costruisce il reparto più incidentalmente sottovalutato (spesso la difesa) mentre lascia agli altri la guerra di rilanci sui 3-4 nomi da copertina.</div>
+</div>
+
+<!-- FASE 2 SQUADRE -->
+<div class="page section" id="squadre">
+<h2>2. Analisi squadre 2026/2027</h2>
+<p class="small">Allenatore, modulo e nucleo rosa per tutte le 20 squadre, verificati su fonti di calciomercato aggiornate ad agosto 2026. Le gerarchie ancora in evoluzione (mercato aperto fino al 1° settembre) sono segnalate.</p>
+
+<div class="grid2">
+
+<div class="teamcard"><div class="tname">Napoli</div>
+<div class="trow"><b>Allenatore:</b> Massimiliano Allegri (nuovo, contratto fino al 2029)</div>
+<div class="trow"><b>Modulo:</b> 4-3-3 base, 4-2-3-1 alternativo contro pressing alto</div>
+<div class="trow"><b>Nucleo:</b> Meret; Di Lorenzo, Rrahmani, Beukema, Spinazzola; De Bruyne, Lobotka, McTominay; Politano, Hojlund/Lukaku</div>
+<div class="trow"><b>Nota:</b> Allegri = maggiore solidità difensiva attesa rispetto alla gestione precedente. Rigorista <span class="badge b-red">DATI DA CONFERMARE</span></div>
+</div>
+
+<div class="teamcard"><div class="tname">Inter</div>
+<div class="trow"><b>Allenatore:</b> Cristian Chivu (confermato, rinnovo fino al 2028)</div>
+<div class="trow"><b>Modulo:</b> 3-5-2 collaudato</div>
+<div class="trow"><b>Nucleo:</b> J. Martinez; Bastoni, Akanji, Bisseck; Dimarco, Barella, Calhanoglu, Zielinski/Mkhitaryan, Luis Henrique; Lautaro, Thuram</div>
+<div class="trow"><b>Nota:</b> Sommer, Acerbi, Darmian, De Vrij partiti; Dumfries al Real Madrid. Portiere titolare cambia (Martinez). Terzo centrale <span class="badge b-red">DATI DA CONFERMARE</span></div>
+</div>
+
+<div class="teamcard"><div class="tname">Milan</div>
+<div class="trow"><b>Allenatore:</b> Rúben Amorim (nuovo)</div>
+<div class="trow"><b>Modulo:</b> 3-4-2-1, esterni a tutta fascia</div>
+<div class="trow"><b>Nucleo:</b> Maignan; Gila, Gabbia, Pavlovic; Saelemaekers/Chukwueze, Musah; Leão, Pulisic; Gonçalo Ramos</div>
+<div class="trow"><b>Nota:</b> Ramos (ex PSG, ~74M) riferimento offensivo. Gerarchia rigori Ramos/Nkunku <span class="badge b-red">DATI DA CONFERMARE</span></div>
+</div>
+
+<div class="teamcard"><div class="tname">Juventus</div>
+<div class="trow"><b>Allenatore:</b> Luciano Spalletti (confermato)</div>
+<div class="trow"><b>Modulo:</b> 4-3-3 / 4-2-3-1</div>
+<div class="trow"><b>Nucleo:</b> Kalulu, Bremer, Cambiaso; Locatelli, K. Thuram; Conceição, McKennie, Yildiz; Kolo Muani</div>
+<div class="trow"><b>Nota:</b> Di Gregorio in uscita, <span class="badge b-red">portiere titolare NON individuato — DATI DA CONFERMARE</span>. Non quotare il ruolo portiere Juve prima di conferme</div>
+</div>
+
+<div class="teamcard"><div class="tname">Roma</div>
+<div class="trow"><b>Allenatore:</b> Gian Piero Gasperini (confermato)</div>
+<div class="trow"><b>Modulo:</b> 3-4-2-1</div>
+<div class="trow"><b>Nucleo:</b> Svilar; Mancini, Ndicka, Koulierakis; Wesley, Cristante, Koné, Molina; Soulé, Dybala; Malen</div>
+<div class="trow"><b>Nota:</b> Difesa solida confermata (3° miglior reparto 25/26), reparto offensivo rinforzato con qualità</div>
+</div>
+
+<div class="teamcard"><div class="tname">Atalanta</div>
+<div class="trow"><b>Allenatore:</b> Maurizio Sarri (nuovo, triennale)</div>
+<div class="trow"><b>Modulo:</b> 4-3-3, alternativa 4-3-1-2</div>
+<div class="trow"><b>Nucleo:</b> Carnesecchi; Zappacosta, Scalvini, Hien; Samardžić, Gaetano, Ederson; De Ketelaere, Scamacca, Zalewski</div>
+<div class="trow"><b>Nota:</b> Gaetano arrivato dal Cagliari. Nuovo ciclo tattico da verificare nelle prime giornate</div>
+</div>
+
+<div class="teamcard"><div class="tname">Bologna</div>
+<div class="trow"><b>Allenatore:</b> Domenico Tedesco (nuovo, fino al 2028)</div>
+<div class="trow"><b>Modulo:</b> 4-3-3</div>
+<div class="trow"><b>Nucleo:</b> Skorupski; Zortea, Heggem, Lucumì, Miranda; Ferguson, Moro, Pobega; Orsolini, Dovbyk, Rowe</div>
+<div class="trow"><b>Nota:</b> Dovbyk arrivato ufficialmente dalla Roma. Orsolini confermato rigorista</div>
+</div>
+
+<div class="teamcard"><div class="tname">Fiorentina</div>
+<div class="trow"><b>Allenatore:</b> Fabio Grosso (nuovo)</div>
+<div class="trow"><b>Modulo:</b> 4-3-3</div>
+<div class="trow"><b>Nucleo:</b> De Gea; Dodô, Dragusin, Ranieri, Fortini/Jiménez; Atta, Mandragora, Oulai</div>
+<div class="trow"><b>Nota:</b> Rosa rinnovata su più reparti (Dragusin, Atta, Jiménez). Attacco tipo <span class="badge b-red">DATI DA CONFERMARE</span></div>
+</div>
+
+<div class="teamcard"><div class="tname">Lazio</div>
+<div class="trow"><b>Allenatore:</b> Gennaro Gattuso (nuovo, biennale)</div>
+<div class="trow"><b>Modulo:</b> Difesa a 4</div>
+<div class="trow"><b>Nucleo:</b> Mandas/Motta; Marusic, Doekhi, Provstgaard, Pedraza; Rovella, Dele-Bashiru; Isaksen, K. Taylor, Zaccagni</div>
+<div class="trow"><b>Nota:</b> Provedel ceduto all'Inter. Ballottaggio portiere Mandas/Motta <span class="badge b-red">apertissimo — DATI DA CONFERMARE</span></div>
+</div>
+
+<div class="teamcard"><div class="tname">Torino</div>
+<div class="trow"><b>Allenatore:</b> Ignazio Abate (nuovo)</div>
+<div class="trow"><b>Modulo:</b> 3-5-2</div>
+<div class="trow"><b>Nucleo:</b> Paleari; Ismajli, Coco, Comuzzo; Pedersen, Casadei, Ilkhan, Vlasic, Cacciamani; Simeone, Zapata</div>
+<div class="trow"><b>Nota:</b> Vlasic confermato primo rigorista</div>
+</div>
+
+<div class="teamcard"><div class="tname">Como</div>
+<div class="trow"><b>Allenatore:</b> Cesc Fàbregas (confermato)</div>
+<div class="trow"><b>Modulo:</b> possesso palla, propositivo</div>
+<div class="trow"><b>Nucleo:</b> Nico Paz confermato (accordo Real Madrid-Como-giocatore)</div>
+<div class="trow"><b>Nota:</b> Reduce dalla storica qualificazione Champions League. Rosa in crescita, dettagli formazione <span class="badge b-red">DATI DA CONFERMARE</span></div>
+</div>
+
+<div class="teamcard"><div class="tname">Udinese</div>
+<div class="trow"><b>Allenatore:</b> Kosta Runjaić (confermato)</div>
+<div class="trow"><b>Modulo:</b> 3-5-2</div>
+<div class="trow"><b>Nucleo:</b> Okoye; Kristensen, Kabasele, Solet; Vojvoda/Zanoli, Ekkelenkamp, Kärlström, Kamara; Zaniolo, Davis</div>
+</div>
+
+<div class="teamcard"><div class="tname">Genoa</div>
+<div class="trow"><b>Allenatore:</b> Daniele De Rossi (confermato)</div>
+<div class="trow"><b>Modulo / formazione tipo:</b> <span class="badge b-red">DATI DA CONFERMARE</span></div>
+<div class="trow"><b>Nota:</b> storicamente reparto difensivo solido nelle ultime stagioni; da monitorare pre-asta</div>
+</div>
+
+<div class="teamcard"><div class="tname">Cagliari</div>
+<div class="trow"><b>Allenatore:</b> Fabio Pisacane (confermato)</div>
+<div class="trow"><b>Modulo / formazione tipo:</b> <span class="badge b-red">DATI DA CONFERMARE</span></div>
+<div class="trow"><b>Nota:</b> ceduto Gaetano all'Atalanta</div>
+</div>
+
+<div class="teamcard"><div class="tname">Sassuolo</div>
+<div class="trow"><b>Allenatore:</b> Alberto Aquilani (nuovo, esordio in Serie A)</div>
+<div class="trow"><b>Modulo:</b> 4-3-3</div>
+<div class="trow"><b>Nucleo:</b> Muric/Turati; Walukiewicz, Candè, Idzes, Doig; Thorstvedt, Matić, Adzic/Lipani; Berardi, Laurienté, Pinamonti</div>
+<div class="trow"><b>Nota:</b> Berardi capitano e rigorista confermato</div>
+</div>
+
+<div class="teamcard"><div class="tname">Lecce</div>
+<div class="trow"><b>Allenatore:</b> Eusebio Di Francesco (confermato)</div>
+<div class="trow"><b>Modulo:</b> 4-3-3</div>
+<div class="trow"><b>Nucleo:</b> Falcone; Veiga, Tiago Gabriel, Siebert, Gallo; Coulibaly, Ngom, Berisha; N'Dri, Stulic, Pierotti</div>
+<div class="trow"><b>Nota:</b> Falcone tra i migliori portieri fuori dalle big. Stulic rigorista</div>
+</div>
+
+<div class="teamcard"><div class="tname">Parma</div>
+<div class="trow"><b>Allenatore:</b> Carlos Cuesta (nuovo)</div>
+<div class="trow"><b>Modulo:</b> 3-5-2</div>
+<div class="trow"><b>Nucleo:</b> Suzuki; Troilo, Circati, Valenti; Britschgi, Sorensen, Keïta, Bernabé, Valeri; Elphège, Pellegrino</div>
+<div class="trow"><b>Nota:</b> Carboni arrivato dall'Inter. Pellegrino rigorista confermato</div>
+</div>
+
+<div class="teamcard"><div class="tname">Monza <span class="badge b-yellow">neopromossa</span></div>
+<div class="trow"><b>Allenatore:</b> Ivan Jurić (nuovo)</div>
+<div class="trow"><b>Modulo:</b> 3-4-2-1</div>
+<div class="trow"><b>Nucleo:</b> Thiam; Birindelli, Delli Carri, Carboni; Bakoune, Pessina, Akinsanmiro, Mangas; Colpani, Mota; Cutrone</div>
+<div class="trow"><b>Nota:</b> promossa dai playoff. Pessina primo rigorista, Cutrone alternativa</div>
+</div>
+
+<div class="teamcard"><div class="tname">Frosinone <span class="badge b-yellow">neopromossa</span></div>
+<div class="trow"><b>Allenatore:</b> Massimiliano Alvini (nuovo)</div>
+<div class="trow"><b>Modulo:</b> 4-3-3</div>
+<div class="trow"><b>Nucleo:</b> Palmisani/Deplanches; A. Oyono, Monterisi, Cittadini, Bracaglia; Calò, Hasa, Koutsoupias/Zerbin; Ghedjemis, Raimondo/Fini, Kvernadze</div>
+<div class="trow"><b>Nota:</b> promossa 2ª in B. Bracaglia (terzino, 5 gol in Serie B) occasione fantacalcio</div>
+</div>
+
+<div class="teamcard"><div class="tname">Venezia <span class="badge b-yellow">neopromossa</span></div>
+<div class="trow"><b>Allenatore:</b> Giovanni Stroppa (confermato)</div>
+<div class="trow"><b>Modulo:</b> 3-5-2</div>
+<div class="trow"><b>Nucleo:</b> Stankovic; Schingtienne, Bella-Kotchap, Moreno; Correia, Perez, Busio, Basic, Hainaut; Yeboah/Adams</div>
+<div class="trow"><b>Nota:</b> vincitrice diretta della Serie B. Yeboah titolare fisso e rigorista, protagonista in B</div>
+</div>
+
+</div>
+<p class="small">Squadre retrocesse in Serie B 2026/27: Pisa, Verona, Cremonese — sostituite da Venezia, Frosinone, Monza.</p>
+</div>
+
+<!-- FASE 2B DEFENSIVE SCORE -->
+<div class="page section" id="defscore">
+<h2>3. Defensive Score</h2>
+<p class="small">Formula qualitativa: 30% gol subiti storici, 25% qualità rosa difensiva, 20% impatto allenatore, 15% calendario, 10% portiere. Con mercato ancora aperto, i valori sono espressi in fasce (A/B/C/D) e non in percentuali finte: qualunque cifra decimale a questo stadio sarebbe pseudo-precisione, non un dato verificato.</p>
+
+<table>
+<tr><th>Fascia</th><th>Squadre</th><th>Motivazione sintetica</th></tr>
+<tr class="row-green"><td><span class="badge b-green">A</span></td><td><b>Inter, Roma, Napoli</b></td><td>Migliori difese reali 2025/26 (35, 31, 36 gol subiti); allenatori con impostazione difensiva forte (Chivu confermato, Gasperini 3-4-2-1, Allegri)</td></tr>
+<tr class="row-blue"><td><span class="badge b-blue">B</span></td><td><b>Como, Atalanta, Bologna, Milan</b></td><td>Como miglior difesa "non big" 2025/26 (29 gol subiti); Atalanta con nuovo ciclo Sarri; Bologna base Champions confermata da Tedesco; Milan da verificare con l'assetto a 3 di Amorim <span class="badge b-red">parzialmente DATI DA CONFERMARE</span></td></tr>
+<tr class="row-yellow"><td><span class="badge b-yellow">C</span></td><td><b>Juventus, Lazio, Udinese, Fiorentina, Torino, Sassuolo</b></td><td>Rose di media solidità, ma portiere titolare non ancora certo in almeno due casi (Juve, Lazio) — fattore che pesa per 10% della formula</td></tr>
+<tr class="row-orange"><td><span class="badge b-orange">D</span></td><td><b>Genoa, Cagliari, Lecce, Parma, Monza, Frosinone, Venezia</b></td><td>Rose più corte, tre neopromosse con rischio impatto categoria alto; Genoa/Cagliari da confermare su formazione tipo</td></tr>
+</table>
+
+<div class="grid2">
+<div class="card"><h4>🟢 Difese sopravvalutate da evitare come modificatore</h4>
+<p class="small">Juventus e Lazio: qualità di rosa in astratto alta, ma con <b>portiere titolare non ancora individuato</b> il modificatore diventa una scommessa. Non pagare premio per un modificatore incerto.</p></div>
+<div class="card"><h4>🟢 Difese sottovalutate da modificatore</h4>
+<p class="small">Como (Fàbregas, miglior difesa fuori dalle big nel 25/26) e Roma (Gasperini, 3° miglior difesa) restano meno "richieste" a livello di percezione rispetto a Inter/Napoli: qui si trova valore.</p></div>
+</div>
+</div>
+
+<!-- FASE 3 PORTIERI -->
+<div class="page section" id="portieri">
+<h2>4. Griglia portieri avanzata</h2>
+
+<div class="tierhead">TIER S — Portieri top assoluti</div>
+<table>
+<tr><th>Portiere</th><th>Squadra</th><th>Prezzo max</th><th>Motivazione</th></tr>
+<tr class="row-green"><td><span class="badge b-green">🟢</span> Svilar</td><td>Roma</td><td class="pricebox">22</td><td>Miglior fanta-media portieri 2025/26, davanti alla difesa più solida (Gasperini) dopo Inter</td></tr>
+<tr class="row-green"><td><span class="badge b-green">🟢</span> Maignan</td><td>Milan</td><td class="pricebox">20</td><td>Capitano, certezza assoluta; incognita è la tenuta del nuovo assetto a 3 di Amorim</td></tr>
+</table>
+
+<div class="tierhead">TIER A — Portieri da modificatore</div>
+<table>
+<tr><th>Portiere</th><th>Squadra</th><th>Prezzo max</th><th>Motivazione</th></tr>
+<tr class="row-blue"><td><span class="badge b-blue">🔵</span> J. Martinez</td><td>Inter</td><td class="pricebox">16</td><td>Promosso titolare dopo l'addio di Sommer, davanti alla difesa scudettata. Rischio: mai stato titolare fisso in A</td></tr>
+<tr class="row-blue"><td><span class="badge b-blue">🔵</span> Carnesecchi</td><td>Atalanta</td><td class="pricebox">14</td><td>Individualmente tra i migliori, ma nuovo ciclo Sarri da verificare nelle prime giornate</td></tr>
+<tr class="row-blue"><td><span class="badge b-blue">🔵</span> Meret</td><td>Napoli</td><td class="pricebox">13</td><td>Allegri storicamente migliora la fase difensiva: possibile riduzione gol subiti rispetto al 25/26</td></tr>
+</table>
+
+<div class="tierhead">TIER B — Rapporto qualità/prezzo</div>
+<table>
+<tr><th>Portiere</th><th>Squadra</th><th>Prezzo max</th><th>Motivazione</th></tr>
+<tr class="row-blue"><td><span class="badge b-blue">🔵</span> Skorupski</td><td>Bologna</td><td class="pricebox">8</td><td>Base difensiva da Champions League confermata, costo contenuto</td></tr>
+<tr class="row-blue"><td><span class="badge b-blue">🔵</span> Falcone</td><td>Lecce</td><td class="pricebox">7</td><td>Tra i migliori portieri fuori dalle big per continuità di rendimento</td></tr>
+</table>
+
+<div class="tierhead">TIER C — Scommesse low cost</div>
+<table>
+<tr><th>Portiere</th><th>Squadra</th><th>Prezzo max</th><th>Motivazione</th></tr>
+<tr class="row-yellow"><td><span class="badge b-yellow">🟡</span> Okoye</td><td>Udinese</td><td class="pricebox">5</td><td>Qualità individuale alta; <span class="badge b-orange">rischio infortuni</span> ricorrente</td></tr>
+<tr class="row-gray"><td><span class="badge b-gray">⚪</span> Suzuki</td><td>Parma</td><td class="pricebox">3</td><td>Terzo portiere low cost, squadra di media classifica</td></tr>
+<tr class="row-gray"><td><span class="badge b-gray">⚪</span> Muric/Turati</td><td>Sassuolo</td><td class="pricebox">2</td><td>Copertura pura, ballottaggio interno da monitorare</td></tr>
+</table>
+
+<div class="tierhead">TIER D — Da evitare (per ora)</div>
+<table>
+<tr><th>Situazione</th><th>Squadra</th><th>Motivazione</th></tr>
+<tr class="row-red"><td><span class="badge b-red">🔴</span> Titolare non individuato</td><td>Juventus</td><td>Di Gregorio ceduto, nessun nome ufficiale al suo posto — <span class="badge b-red">DATI DA CONFERMARE</span>, non spendere crediti fino a notizia certa</td></tr>
+<tr class="row-orange"><td><span class="badge b-orange">🟠</span> Ballottaggio aperto</td><td>Lazio</td><td>Mandas vs Motta ancora indefinito dopo la cessione di Provedel all'Inter — <span class="badge b-red">DATI DA CONFERMARE</span></td></tr>
+</table>
+
+<h3>Coppie portieri ideali (lega da 8, alto livello)</h3>
+<div class="grid2">
+<div class="card"><h4>Coppia Top</h4><p><b>Principale:</b> Svilar (22) &nbsp; <b>Secondo:</b> Skorupski (8)<br><span class="small">Calendari raramente coincidenti su trasferte difficili, costo totale contenuto per due difese solide (Roma A, Bologna B)</span></p></div>
+<div class="card"><h4>Coppia Value</h4><p><b>Principale:</b> Meret (13) &nbsp; <b>Secondo:</b> Falcone (7)<br><span class="small">Napoli in crescita difensiva con Allegri + Lecce solido fuori dalle big: 20 crediti totali per un tandem affidabile</span></p></div>
+<div class="card"><h4>Coppia Low Cost</h4><p><b>Principale:</b> Carnesecchi (14) &nbsp; <b>Terzo:</b> Muric (2)<br><span class="small">Atalanta come titolare vero, riserva pura da 1-2 crediti per completare il terzo slot obbligatorio</span></p></div>
+</div>
+
+<div class="grid2">
+<div class="card"><h4>🟢 Portieri da prendere per il Modificatore</h4><p class="small">Svilar, Maignan, J. Martinez: le tre difese di squadra più solide sulla carta (Roma, Milan, Inter) davanti a portieri di qualità individuale alta.</p></div>
+<div class="card"><h4>🔴 Portieri sopravvalutati</h4><p class="small">Qualsiasi portiere di squadra "big" con gerarchia ancora incerta (Juventus, Lazio): il nome della maglia non basta se non sai chi gioca titolare.</p></div>
+</div>
+</div>
+
+<!-- FASE 5 DIFENSORI -->
+<div class="page section" id="difensori">
+<h2>5. Difensori</h2>
+
+<div class="tierhead">🟢 TOP DA BONUS</div>
+<table>
+<tr><th>Nome</th><th>Sq.</th><th>Prezzo max</th><th>Media/Bonus attesi</th><th>Rischio</th><th>Motivazione</th></tr>
+<tr class="row-green"><td>Dimarco</td><td>Inter</td><td class="pricebox">48</td><td>Alta, assist multipli</td><td class="small">Basso</td><td>Miglior esterno offensivo del campionato per continuità bonus, imprescindibile per il modificatore Inter</td></tr>
+<tr class="row-green"><td>Wesley</td><td>Roma</td><td class="pricebox">20</td><td>Buona, spinta costante</td><td class="small">Medio</td><td>Gasperini lo schiera a tutta fascia: grande volume offensivo previsto</td></tr>
+</table>
+
+<div class="tierhead">🔵 DIFENSORI DA MODIFICATORE</div>
+<table>
+<tr><th>Nome</th><th>Sq.</th><th>Prezzo max</th><th>Rischio</th><th>Motivazione</th></tr>
+<tr class="row-blue"><td>Bastoni</td><td>Inter</td><td class="pricebox">22</td><td class="small">Basso</td><td>Centrale titolare fisso nella miglior difesa reale del campionato</td></tr>
+<tr class="row-blue"><td>Mancini</td><td>Roma</td><td class="pricebox">14</td><td class="small">Basso</td><td>Leader difensivo Gasperini, difesa Roma tra le più solide</td></tr>
+<tr class="row-blue"><td>Ndicka</td><td>Roma</td><td class="pricebox">12</td><td class="small">Basso</td><td>Coppia centrale complementare a Mancini</td></tr>
+<tr class="row-blue"><td>Scalvini</td><td>Atalanta</td><td class="pricebox">13</td><td class="small">Medio</td><td>Talento affermato, da confermare l'adattamento al nuovo Sarri</td></tr>
+<tr class="row-blue"><td>Akanji</td><td>Inter</td><td class="pricebox">14</td><td class="small">Basso</td><td>Nuovo arrivo di livello internazionale nella difesa scudettata</td></tr>
+</table>
+
+<div class="tierhead">🔵 CENTRALI AFFIDABILI</div>
+<table>
+<tr><th>Nome</th><th>Sq.</th><th>Prezzo max</th><th>Rischio</th><th>Motivazione</th></tr>
+<tr class="row-blue"><td>Gila</td><td>Milan</td><td class="pricebox">8</td><td class="small">Medio <span class="badge b-orange">nuovo sistema</span></td><td>Arrivo ufficiale dalla Lazio (25M), titolare nella difesa a 3 di Amorim</td></tr>
+<tr class="row-blue"><td>Bisseck</td><td>Inter</td><td class="pricebox">7</td><td class="small">Basso</td><td>Rotazione di alto livello nella miglior retroguardia del campionato</td></tr>
+<tr class="row-blue"><td>Solet</td><td>Udinese</td><td class="pricebox">8</td><td class="small">Medio</td><td>Possibile tiratore su piazzati, fisicità importante</td></tr>
+</table>
+
+<div class="tierhead">🟡 TERZINI OFFENSIVI (scommessa/upside)</div>
+<table>
+<tr><th>Nome</th><th>Sq.</th><th>Prezzo max</th><th>Rischio</th><th>Motivazione</th></tr>
+<tr class="row-yellow"><td>Cambiaso</td><td>Juventus</td><td class="pricebox">20</td><td class="small">Medio</td><td>Qualità offensiva alta, ma reparto arretrato Juve da verificare senza portiere titolare certo</td></tr>
+<tr class="row-yellow"><td>Dodô</td><td>Fiorentina</td><td class="pricebox">16</td><td class="small"><span class="badge b-orange">Infortuni</span></td><td>Tra i terzini più prolifici quando in campo, ricorrenti problemi fisici</td></tr>
+<tr class="row-yellow"><td>Spinazzola</td><td>Napoli</td><td class="pricebox">10</td><td class="small">Medio</td><td>Spinta costante, alternanza con Olivera possibile</td></tr>
+<tr class="row-yellow"><td>Correia</td><td>Venezia</td><td class="pricebox">5</td><td class="small"><span class="badge b-orange">Neopromossa</span></td><td>Nuovo arrivo dal Valencia, atteso protagonista sulla fascia destra</td></tr>
+<tr class="row-yellow"><td>Bracaglia</td><td>Frosinone</td><td class="pricebox">5</td><td class="small"><span class="badge b-orange">Neopromossa</span></td><td>5 gol in Serie B da terzino: possibile sorpresa a basso costo</td></tr>
+</table>
+
+<div class="tierhead">⚪ LOW COST</div>
+<table>
+<tr><th>Nome</th><th>Sq.</th><th>Prezzo max</th><th>Motivazione</th></tr>
+<tr class="row-gray"><td>Zortea</td><td>Bologna</td><td class="pricebox">4</td><td>Titolare in una difesa solida a costo minimo</td></tr>
+<tr class="row-gray"><td>Vojvoda</td><td>Udinese</td><td class="pricebox">3</td><td>Playmaker aggiunto sulla fascia, assist possibili</td></tr>
+<tr class="row-gray"><td>Doekhi</td><td>Lazio</td><td class="pricebox">3</td><td>Centrale titolare, riempitivo coerente col modificatore Lazio</td></tr>
+<tr class="row-gray"><td>Ranieri</td><td>Fiorentina</td><td class="pricebox">5</td><td>Centrale con esperienza, costo contenuto</td></tr>
+</table>
+
+<h3>I migliori 8 difensori da avere in rosa</h3>
+<table>
+<tr><th>#</th><th>Nome</th><th>Sq.</th><th>Ruolo in rosa</th></tr>
+<tr><td>1</td><td>🟢 Dimarco</td><td>Inter</td><td>Titolare da bonus + modificatore</td></tr>
+<tr><td>2</td><td>🔵 Bastoni</td><td>Inter</td><td>Modificatore top</td></tr>
+<tr><td>3</td><td>🔵 Mancini</td><td>Roma</td><td>Modificatore + affidabilità</td></tr>
+<tr><td>4</td><td>🟢 Wesley</td><td>Roma</td><td>Bonus offensivi</td></tr>
+<tr><td>5</td><td>🔵 Scalvini</td><td>Atalanta</td><td>Coerenza modificatore Atalanta</td></tr>
+<tr><td>6</td><td>🟡 Cambiaso</td><td>Juventus</td><td>Upside offensivo</td></tr>
+<tr><td>7</td><td>⚪ Vojvoda</td><td>Udinese</td><td>Low cost coerente</td></tr>
+<tr><td>8</td><td>🟡 Bracaglia</td><td>Frosinone</td><td>Scommessa low cost</td></tr>
+</table>
+</div>
+
+<!-- FASE 6 CENTROCAMPISTI -->
+<div class="page section" id="centro">
+<h2>6. Centrocampisti</h2>
+
+<div class="tierhead">🟢 TOP PLAYER</div>
+<table>
+<tr><th>Nome</th><th>Sq.</th><th>Prezzo max</th><th>Gol/Assist attesi</th><th>Rischio</th></tr>
+<tr class="row-green"><td>De Bruyne</td><td>Napoli</td><td class="pricebox">70</td><td>Alto volume assist, gol da fuori area</td><td class="small">Basso</td></tr>
+<tr class="row-green"><td>McTominay</td><td>Napoli</td><td class="pricebox">50</td><td>Inserimenti e gol da centrocampo confermati</td><td class="small">Basso</td></tr>
+</table>
+
+<div class="tierhead">🟢 PORTATORI DI BONUS</div>
+<table>
+<tr><th>Nome</th><th>Sq.</th><th>Prezzo max</th><th>Motivazione</th></tr>
+<tr class="row-green"><td>Orsolini</td><td>Bologna</td><td class="pricebox">30</td><td>Rigorista confermato, faro offensivo del nuovo Bologna Tedesco</td></tr>
+<tr class="row-blue"><td>Berardi</td><td>Sassuolo</td><td class="pricebox">24</td><td>Capitano e rigorista confermato, prima punta di riferimento per i bonus</td></tr>
+<tr class="row-blue"><td>Pulisic</td><td>Milan</td><td class="pricebox">30</td><td>Qualità offensiva costante nel nuovo assetto Amorim</td></tr>
+<tr class="row-blue"><td>Barella</td><td>Inter</td><td class="pricebox">32</td><td>Inserimenti e gol da centrocampo nella squadra campione</td></tr>
+</table>
+
+<div class="tierhead">🟡 SCOMMESSE / REGOLARISTI CON UPSIDE</div>
+<table>
+<tr><th>Nome</th><th>Sq.</th><th>Prezzo max</th><th>Motivazione</th></tr>
+<tr class="row-yellow"><td>Nico Paz</td><td>Como</td><td class="pricebox">38</td><td>Rimasto al Como dopo l'interesse del Real Madrid, reduce dalla qualificazione Champions: possibile salto di qualità definitivo</td></tr>
+<tr class="row-yellow"><td>Ederson</td><td>Atalanta</td><td class="pricebox">22</td><td>Trasferimento al Manchester United saltato alle visite mediche: resta a Bergamo con motivazione alta</td></tr>
+<tr class="row-yellow"><td>Bernabé</td><td>Parma</td><td class="pricebox">16</td><td>Playmaker centrale di qualità, costo contenuto</td></tr>
+<tr class="row-yellow"><td>Samardžić</td><td>Atalanta</td><td class="pricebox">14</td><td>Talento offensivo, da confermare la titolarità con Sarri</td></tr>
+<tr class="row-yellow"><td>Frattesi</td><td>Inter</td><td class="pricebox">14</td><td>Inserimenti pericolosi, ma rischio rotazione nel centrocampo Inter</td></tr>
+</table>
+
+<div class="tierhead">⚪ REGOLARISTI LOW COST</div>
+<table>
+<tr><th>Nome</th><th>Sq.</th><th>Prezzo max</th><th>Motivazione</th></tr>
+<tr class="row-gray"><td>Rovella</td><td>Lazio</td><td class="pricebox">8</td><td>Titolare fisso, poco bonus ma ossatura sicura</td></tr>
+<tr class="row-gray"><td>Locatelli</td><td>Juventus</td><td class="pricebox">8</td><td>Regista titolare, utile per completare la rosa a basso costo</td></tr>
+<tr class="row-gray"><td>Koné</td><td>Roma</td><td class="pricebox">18</td><td>Titolare Gasperini, buon equilibrio prezzo/minutaggio</td></tr>
+<tr class="row-gray"><td>Zielinski/Mkhitaryan</td><td>Inter</td><td class="pricebox">5</td><td>Rotazione di qualità, minutaggio incerto <span class="badge b-orange">turnover</span></td></tr>
+</table>
+
+<h3>I migliori 8 centrocampisti</h3>
+<table>
+<tr><th>#</th><th>Nome</th><th>Sq.</th><th>Ruolo in rosa</th></tr>
+<tr><td>1</td><td>🟢 De Bruyne</td><td>Napoli</td><td>Top assoluto, priorità 1</td></tr>
+<tr><td>2</td><td>🟢 McTominay</td><td>Napoli</td><td>Top assoluto, priorità 1</td></tr>
+<tr><td>3</td><td>🟢 Orsolini</td><td>Bologna</td><td>Bonus + rigorista</td></tr>
+<tr><td>4</td><td>🔵 Barella</td><td>Inter</td><td>Bonus costanti</td></tr>
+<tr><td>5</td><td>🟡 Nico Paz</td><td>Como</td><td>Scommessa di fascia alta</td></tr>
+<tr><td>6</td><td>🔵 Berardi</td><td>Sassuolo</td><td>Rigorista affidabile</td></tr>
+<tr><td>7</td><td>🟡 Bernabé</td><td>Parma</td><td>Value pick</td></tr>
+<tr><td>8</td><td>⚪ Koné</td><td>Roma</td><td>Titolarità sicura low cost</td></tr>
+</table>
+</div>
+
+<!-- FASE 7 ATTACCANTI -->
+<div class="page section" id="attacco">
+<h2>7. Attaccanti</h2>
+
+<div class="tierhead">🟢 PRIMO SLOT</div>
+<table>
+<tr><th>Nome</th><th>Sq.</th><th>Prezzo max</th><th>Gol/Rigori/Assist</th><th>Rischio turnover</th></tr>
+<tr class="row-green"><td>Lautaro Martínez</td><td>Inter</td><td class="pricebox">115</td><td>Doppia cifra da 7 stagioni consecutive, capocannoniere designato</td><td class="small">Basso</td></tr>
+<tr class="row-green"><td>Malen</td><td>Roma</td><td class="pricebox">95</td><td>Rigorista designato, riferimento offensivo assoluto di Gasperini</td><td class="small">Basso</td></tr>
+</table>
+
+<div class="tierhead">🔵 SECONDO SLOT</div>
+<table>
+<tr><th>Nome</th><th>Sq.</th><th>Prezzo max</th><th>Motivazione</th><th>Rischio</th></tr>
+<tr class="row-blue"><td>Marcus Thuram</td><td>Inter</td><td class="pricebox">80</td><td>13 gol nel 25/26, coppia offensiva più forte del campionato</td><td class="small">Basso</td></tr>
+<tr class="row-blue"><td>Leão</td><td>Milan</td><td class="pricebox">78</td><td>Talento individuale top, da verificare adattamento al 3-4-2-1 di Amorim</td><td class="small">Medio</td></tr>
+<tr class="row-blue"><td>Gonçalo Ramos</td><td>Milan</td><td class="pricebox">65</td><td>Nuovo riferimento offensivo (~74M), ma esordio in Serie A</td><td class="small"><span class="badge b-orange">Medio-alto</span></td></tr>
+<tr class="row-blue"><td>Kolo Muani</td><td>Juventus</td><td class="pricebox">55</td><td>Centravanti titolare designato nel nuovo assetto Spalletti</td><td class="small">Medio</td></tr>
+</table>
+
+<div class="tierhead">🟡 TERZO SLOT</div>
+<table>
+<tr><th>Nome</th><th>Sq.</th><th>Prezzo max</th><th>Motivazione</th><th>Rischio</th></tr>
+<tr class="row-yellow"><td>Scamacca</td><td>Atalanta</td><td class="pricebox">50</td><td>Primo candidato rigorista Atalanta, nuovo ciclo Sarri</td><td class="small"><span class="badge b-orange">Infortuni</span></td></tr>
+<tr class="row-yellow"><td>Dovbyk</td><td>Bologna</td><td class="pricebox">42</td><td>Arrivo ufficiale dalla Roma, cerca il rilancio in un nuovo progetto</td><td class="small">Medio</td></tr>
+<tr class="row-yellow"><td>Soulé</td><td>Roma</td><td class="pricebox">40</td><td>Alternanza nel tridente Gasperini, buon potenziale realizzativo</td><td class="small">Medio</td></tr>
+<tr class="row-yellow"><td>Zaccagni</td><td>Lazio</td><td class="pricebox">38</td><td>Rigorista Lazio confermato</td><td class="small">Medio</td></tr>
+<tr class="row-yellow"><td>Dybala</td><td>Roma</td><td class="pricebox">32</td><td>Qualità assoluta quando in campo</td><td class="small"><span class="badge b-orange">Infortuni ricorrenti</span></td></tr>
+</table>
+
+<div class="tierhead">⚪ SCOMMESSE</div>
+<table>
+<tr><th>Nome</th><th>Sq.</th><th>Prezzo max</th><th>Motivazione</th><th>Rischio</th></tr>
+<tr class="row-yellow"><td>Yeboah</td><td>Venezia</td><td class="pricebox">10</td><td>Titolare fisso e rigorista, protagonista assoluto in Serie B</td><td class="small"><span class="badge b-orange">Neopromossa</span></td></tr>
+<tr class="row-gray"><td>Stulic</td><td>Lecce</td><td class="pricebox">16</td><td>Rigorista Lecce, centravanti fisico</td><td class="small">Medio</td></tr>
+<tr class="row-gray"><td>Pinamonti</td><td>Sassuolo</td><td class="pricebox">14</td><td>Prima alternativa rigori dietro Berardi</td><td class="small">Medio</td></tr>
+<tr class="row-gray"><td>Cutrone</td><td>Monza</td><td class="pricebox">5</td><td>Alternativa rigori Monza, buon fiuto del gol in B</td><td class="small"><span class="badge b-orange">Neopromossa</span></td></tr>
+</table>
+
+<h3>I migliori 6 attaccanti</h3>
+<table>
+<tr><th>#</th><th>Nome</th><th>Sq.</th><th>Ruolo in rosa</th></tr>
+<tr><td>1</td><td>🟢 Lautaro Martínez</td><td>Inter</td><td>Primissima scelta</td></tr>
+<tr><td>2</td><td>🟢 Malen</td><td>Roma</td><td>Primissima scelta</td></tr>
+<tr><td>3</td><td>🔵 Marcus Thuram</td><td>Inter</td><td>Secondo slot top</td></tr>
+<tr><td>4</td><td>🟡 Scamacca</td><td>Atalanta</td><td>Rigorista di fascia media</td></tr>
+<tr><td>5</td><td>🟡 Dovbyk</td><td>Bologna</td><td>Terzo slot value</td></tr>
+<tr><td>6</td><td>⚪ Stulic</td><td>Lecce</td><td>Scommessa rigorista low cost</td></tr>
+</table>
+</div>
+
+<!-- FASE 8 AFFARI -->
+<div class="page section" id="affari">
+<h2>8. Affari, trappole, scommesse</h2>
+<p class="small">Valore asta = rendimento previsto ÷ prezzo previsto. In una lega da 8 squadre di alto livello i prezzi dei big sono già "corretti" dal mercato: il vantaggio competitivo si trova nelle fasce sottostimate.</p>
+
+<div class="grid2">
+<div class="card"><h4>🟢 AFFARI (sottovalutati)</h4>
+<p class="small"><b>Berardi</b> (Sassuolo) — rigorista e capitano quotato come un centrocampista di seconda fascia.<br><b>Bracaglia</b> (Frosinone) — terzino da 5 gol in Serie B, quotazione da riempitivo.<br><b>Nico Paz</b> (Como) — rimasto nonostante l'interesse Real Madrid, prezzo ancora da "sorpresa" e non da certezza.<br><b>Wesley</b> (Roma) — esterno a tutta fascia in un sistema che storicamente produce bonus per i laterali di Gasperini.</p></div>
+<div class="card"><h4>🔴 TRAPPOLE (costeranno più del rendimento)</h4>
+<p class="small"><b>Gonçalo Ramos</b> — prezzo da titolare assoluto ma zero minuti in Serie A: rischio adattamento.<br><b>Portiere Juventus</b> — non pagare un "nome Juve" quando il titolare non è nemmeno stato scelto.<br><b>Dybala</b> — talento indiscutibile ma storicamente il più a rischio infortunio tra i top: non pagarlo come un titolare da 38 partite.</p></div>
+</div>
+
+<div class="grid2">
+<div class="card"><h4>🟡 SCOMMESSE (upside alto)</h4>
+<p class="small"><b>Yeboah</b> (Venezia) — rigorista titolare di una neopromossa costruita per salvarsi con qualità offensiva.<br><b>Correia</b> (Venezia) — nuovo esterno dal Valencia, atteso protagonista.<br><b>Ederson</b> (Atalanta) — trattativa United saltata, motivazione a restare da protagonista.<br><b>Samardžić</b> (Atalanta) — talento puro in cerca di continuità con Sarri.</p></div>
+<div class="card"><h4>Come leggere questa sezione</h4>
+<p class="small">Ogni "affare" diventa una "trappola" se lo paghi sopra il prezzo massimo indicato nelle tabelle di ruolo. Il colore del giocatore non cambia: cambia solo se il prezzo pagato rispetta o supera il tetto consigliato.</p></div>
+</div>
+</div>
+
+<!-- FASE 9 ALTERNATIVE -->
+<div class="page section" id="alternative">
+<h2>9. Alternative asta</h2>
+<table>
+<tr><th>Se non prendi...</th><th>Alternativa 1</th><th>Alternativa 2</th><th>Motivazione</th></tr>
+<tr><td><b>Lautaro Martínez</b></td><td>🔵 Malen (95)</td><td>🔵 Marcus Thuram (80)</td><td>Stesso tier di affidabilità, differenza minima di rendimento atteso</td></tr>
+<tr><td><b>Malen</b></td><td>🔵 Lautaro Martínez (115)</td><td>🟡 Scamacca (50)</td><td>Scamacca copre il ruolo rigorista a un terzo del prezzo</td></tr>
+<tr><td><b>De Bruyne</b></td><td>🔵 McTominay (50)</td><td>🟡 Nico Paz (38)</td><td>McTominay stessa squadra, rendimento assist/gol comparabile su altro profilo</td></tr>
+<tr><td><b>Dimarco</b></td><td>🔵 Wesley (20)</td><td>🟡 Cambiaso (20)</td><td>Entrambi esterni offensivi a tutta fascia in sistemi che producono bonus</td></tr>
+<tr><td><b>Svilar</b></td><td>🔵 Maignan (20)</td><td>🔵 J. Martinez (16)</td><td>Stesso tier S/A, risparmio 2-6 crediti</td></tr>
+<tr><td><b>Orsolini</b></td><td>🔵 Berardi (24)</td><td>🟡 Pulisic (30)</td><td>Entrambi rigoristi/portatori di bonus di fascia alta</td></tr>
+</table>
+</div>
+
+<!-- FASE 10 ROSA IDEALE -->
+<div class="page section" id="rosa">
+<h2>10. Simulazione rosa completa</h2>
+<p class="small">Rosa esempio costruita seguendo la logica valore/prezzo di questa guida. I prezzi indicati sono spese realistiche, non necessariamente il tetto massimo consigliato nelle tabelle di ruolo.</p>
+
+<h3>Portieri (3) — 37 crediti</h3>
+<table><tr><th>Nome</th><th>Sq.</th><th>Prezzo</th></tr>
+<tr class="row-green"><td>🟢 Svilar</td><td>Roma</td><td class="pricebox">20</td></tr>
+<tr class="row-blue"><td>🔵 Meret</td><td>Napoli</td><td class="pricebox">12</td></tr>
+<tr class="row-gray"><td>⚪ Muric</td><td>Sassuolo</td><td class="pricebox">2</td></tr></table>
+
+<h3>Difensori (8) — 84 crediti</h3>
+<table><tr><th>Nome</th><th>Sq.</th><th>Prezzo</th></tr>
+<tr class="row-green"><td>🟢 Dimarco</td><td>Inter</td><td class="pricebox">42</td></tr>
+<tr class="row-blue"><td>🔵 Bastoni</td><td>Inter</td><td class="pricebox">16</td></tr>
+<tr class="row-blue"><td>🔵 Mancini</td><td>Roma</td><td class="pricebox">10</td></tr>
+<tr class="row-blue"><td>🔵 Scalvini</td><td>Atalanta</td><td class="pricebox">6</td></tr>
+<tr class="row-yellow"><td>🟡 Cambiaso</td><td>Juventus</td><td class="pricebox">4</td></tr>
+<tr class="row-yellow"><td>🟡 Bracaglia</td><td>Frosinone</td><td class="pricebox">3</td></tr>
+<tr class="row-gray"><td>⚪ Vojvoda</td><td>Udinese</td><td class="pricebox">2</td></tr>
+<tr class="row-gray"><td>⚪ Doekhi</td><td>Lazio</td><td class="pricebox">1</td></tr></table>
+
+<h3>Centrocampisti (8) — 145 crediti</h3>
+<table><tr><th>Nome</th><th>Sq.</th><th>Prezzo</th></tr>
+<tr class="row-green"><td>🟢 De Bruyne</td><td>Napoli</td><td class="pricebox">62</td></tr>
+<tr class="row-green"><td>🟢 McTominay</td><td>Napoli</td><td class="pricebox">40</td></tr>
+<tr class="row-yellow"><td>🟡 Nico Paz</td><td>Como</td><td class="pricebox">20</td></tr>
+<tr class="row-blue"><td>🔵 Barella</td><td>Inter</td><td class="pricebox">12</td></tr>
+<tr class="row-gray"><td>⚪ Koné</td><td>Roma</td><td class="pricebox">4</td></tr>
+<tr class="row-gray"><td>⚪ Rovella</td><td>Lazio</td><td class="pricebox">3</td></tr>
+<tr class="row-gray"><td>⚪ Zielinski</td><td>Inter</td><td class="pricebox">2</td></tr>
+<tr class="row-gray"><td>⚪ Locatelli</td><td>Juventus</td><td class="pricebox">2</td></tr></table>
+
+<h3>Attaccanti (6) — 230 crediti</h3>
+<table><tr><th>Nome</th><th>Sq.</th><th>Prezzo</th></tr>
+<tr class="row-green"><td>🟢 Lautaro Martínez</td><td>Inter</td><td class="pricebox">100</td></tr>
+<tr class="row-green"><td>🟢 Malen</td><td>Roma</td><td class="pricebox">75</td></tr>
+<tr class="row-yellow"><td>🟡 Scamacca</td><td>Atalanta</td><td class="pricebox">30</td></tr>
+<tr class="row-yellow"><td>🟡 Dovbyk</td><td>Bologna</td><td class="pricebox">15</td></tr>
+<tr class="row-gray"><td>⚪ Stulic</td><td>Lecce</td><td class="pricebox">6</td></tr>
+<tr class="row-gray"><td>⚪ Cutrone</td><td>Monza</td><td class="pricebox">4</td></tr></table>
+
+<div class="note">
+<b>Totale speso: 496 crediti — Crediti rimanenti: 4</b><br>
+<b>Equilibrio rosa:</b> 2 top assoluti in attacco (Lautaro, Malen) + 2 top a centrocampo (De Bruyne, McTominay) reggono da soli il punteggio offensivo settimanale.<br>
+<b>Modificatore difesa:</b> Svilar + Dimarco/Bastoni/Mancini come terzetto migliore schierabile è una combinazione da fascia alta (Roma A + Inter A).<br>
+<b>Rischio:</b> concentrato su Bracaglia/neopromosse (basso impatto, costo minimo) e Cambiaso/Scamacca/Dovbyk (rischio medio ma prezzo coerente col rischio).
+</div>
+</div>
+
+<!-- FASE 11 ASTA LIVE -->
+<div class="page section" id="live">
+<h2>11. Strategia asta live</h2>
+
+<div class="grid2">
+<div class="card"><h4>🟢 QUANDO SPENDERE FORTE</h4>
+<p class="small">Sui 2-3 nomi 🟢 del tuo piano attacco/centrocampo (Lautaro/Malen, De Bruyne/McTominay). In una lega da 8 di alto livello, questi giocatori determinano la classifica: non lasciarli scappare per 5-10 crediti.</p></div>
+<div class="card"><h4>🔴 QUANDO LASCIARE ANDARE</h4>
+<p class="small">Ogni volta che un rilancio supera il "prezzo massimo" della tabella di ruolo. Non inseguire per orgoglio: c'è sempre un'alternativa 🔵 nella sezione 9.</p></div>
+</div>
+
+<div class="grid2">
+<div class="card"><h4>Giocatori da non pagare sopra soglia</h4>
+<p class="small">Gonçalo Ramos oltre 65 · Dybala oltre 32 · qualunque portiere Juventus/Lazio oltre 10 fino a chiarimento gerarchia · Cambiaso oltre 20.</p></div>
+<div class="card"><h4>Errori da evitare</h4>
+<p class="small">1) Spendere &gt;50% budget nei primi 6 giocatori.<br>2) Trascurare il terzetto difensivo coerente per il modificatore.<br>3) Pagare un "nome" con gerarchia da <span style="color:var(--red)">DATI DA CONFERMARE</span>.<br>4) Arrivare agli ultimi slot senza crediti per completare la rosa a 25.</p></div>
+</div>
+
+<h3>Tabella soglie rapide</h3>
+<table>
+<tr><th>Giocatore</th><th>Prezzo massimo</th><th>Se supera questa cifra</th><th>Alternativa</th></tr>
+<tr><td>Lautaro Martínez</td><td class="pricebox">115</td><td>Lascia andare</td><td>Malen</td></tr>
+<tr><td>Malen</td><td class="pricebox">95</td><td>Lascia andare</td><td>Marcus Thuram</td></tr>
+<tr><td>De Bruyne</td><td class="pricebox">70</td><td>Lascia andare</td><td>McTominay</td></tr>
+<tr><td>Dimarco</td><td class="pricebox">48</td><td>Lascia andare</td><td>Wesley</td></tr>
+<tr><td>Gonçalo Ramos</td><td class="pricebox">65</td><td>Lascia andare</td><td>Kolo Muani</td></tr>
+<tr><td>Svilar</td><td class="pricebox">22</td><td>Lascia andare</td><td>Maignan</td></tr>
+<tr><td>Orsolini</td><td class="pricebox">30</td><td>Lascia andare</td><td>Berardi</td></tr>
+<tr><td>Nico Paz</td><td class="pricebox">38</td><td>Lascia andare</td><td>Ederson</td></tr>
+</table>
+</div>
+
+<!-- FASE 12 RIASSUNTO -->
+<div class="page section" id="riassunto">
+<h2>12. Cosa fare all'asta — scheda rapida</h2>
+<p class="small">Ultima pagina, la più consultata durante i rilanci.</p>
+
+<div class="summary-role">
+<h3>PORTIERI</h3>
+<div class="summary-row"><span class="badge b-green">🟢 Obiettivo</span> Svilar (22) · Maignan (20)</div>
+<div class="summary-row"><span class="badge b-blue">🔵 Alternative</span> J. Martinez (16) · Carnesecchi (14) · Meret (13)</div>
+<div class="summary-row"><span class="badge b-red">🔴 Evitare</span> Portiere Juventus (non individuato) · ballottaggio Lazio Mandas/Motta a prezzo pieno</div>
+</div>
+
+<div class="summary-role">
+<h3>DIFENSORI</h3>
+<div class="summary-row"><span class="badge b-green">🟢 Obiettivo</span> Dimarco (48) · Wesley (20)</div>
+<div class="summary-row"><span class="badge b-blue">🔵 Alternative</span> Bastoni (22) · Mancini (14) · Scalvini (13)</div>
+<div class="summary-row"><span class="badge b-yellow">🟡 Scommesse</span> Bracaglia (5) · Correia (5) · Dodô (16)</div>
+</div>
+
+<div class="summary-role">
+<h3>CENTROCAMPISTI</h3>
+<div class="summary-row"><span class="badge b-green">🟢 Obiettivo</span> De Bruyne (70) · McTominay (50) · Orsolini (30)</div>
+<div class="summary-row"><span class="badge b-blue">🔵 Alternative</span> Barella (32) · Berardi (24) · Pulisic (30)</div>
+<div class="summary-row"><span class="badge b-yellow">🟡 Scommesse</span> Nico Paz (38) · Ederson (22) · Bernabé (16)</div>
+</div>
+
+<div class="summary-role">
+<h3>ATTACCANTI</h3>
+<div class="summary-row"><span class="badge b-green">🟢 Obiettivo</span> Lautaro Martínez (115) · Malen (95)</div>
+<div class="summary-row"><span class="badge b-blue">🔵 Alternative</span> Marcus Thuram (80) · Leão (78) · Kolo Muani (55)</div>
+<div class="summary-row"><span class="badge b-yellow">🟡 Scommesse</span> Scamacca (50) · Dovbyk (42) · Yeboah (10)</div>
+</div>
+
+<div class="confirm" style="margin-top:16px">Ricontrolla su fonti ufficiali (Lega Serie A, canali club) la sera del 12 agosto: portiere Juventus, ballottaggio Lazio, gerarchia rigori Napoli/Milan sono ancora <b>DATI DA CONFERMARE</b> al momento della stesura di questa guida.</div>
+
+<div class="foot">Guida Asta Fantacalcio Serie A 2026/2027 — documento operativo per lega privata 8 squadre, 500 crediti, alto livello.</div>
+</div>
+
+</body>
+</html>
