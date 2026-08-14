@@ -1,7 +1,7 @@
 {
   "version": 1,
   "skills": {
-    "postbridge-social-growth": {
+    "crescita-social": {
       "source": "giulioco/skills",
       "sourceType": "github",
       "skillPath": "skills/postbridge-social-growth/SKILL.md",
