@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "skills": {
+    "postbridge-social-growth": {
+      "source": "giulioco/skills",
+      "sourceType": "github",
+      "skillPath": "skills/postbridge-social-growth/SKILL.md",
+      "computedHash": "be8c7160bb0cb68a8fcb51ad2e767c0a5470630930401303685064d585107baf"
+    }
+  }
+}
