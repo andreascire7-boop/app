@@ -85,7 +85,7 @@ export const dictionary = {
         },
         {
           role: "Istruttore Sala Pesi",
-          place: "Sporting Club Ciminata — Santa Flavia (PA)",
+          place: "Palestra locale, provincia di Palermo",
           body: "Assistenza e programmazione dell'allenamento in sala pesi.",
         },
       ],
@@ -214,7 +214,7 @@ export const dictionary = {
         },
         {
           role: "Weight Room Instructor",
-          place: "Sporting Club Ciminata — Santa Flavia (PA), Italy",
+          place: "Local gym, Palermo area",
           body: "Supervision and programming of weight-room training.",
         },
       ],

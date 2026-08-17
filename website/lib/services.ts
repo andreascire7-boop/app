@@ -23,19 +23,23 @@ const categoriesBase: CategoryBase[] = [
   {
     slug: "sc-coaching",
     services: [
-      { slug: "valutazione-iniziale", price: "€ 40" },
-      { slug: "scheda-personalizzata", price: "€ 60", highlight: true },
-      { slug: "online-coaching", price: "€ 90" },
-      { slug: "personal-training", price: "€ 35" },
-      { slug: "racket-performance", price: "€ 100" },
+      { slug: "scheda-powerlifting", price: "€ 20" },
+      { slug: "scheda-weightlifting", price: "€ 30" },
+      { slug: "scheda-hybrid", price: "€ 40", highlight: true },
+      { slug: "scheda-ipertrofia", price: "€ 15" },
+      { slug: "off-season-velocita", price: "€ 25" },
+      { slug: "mesociclo-agilita", price: "€ 10" },
+      { slug: "salto-verticale", price: "€ 15" },
+      { slug: "programma-resistenza", price: "€ 20" },
+      { slug: "coaching-personalizzato", price: "€ 70" },
     ],
   },
   {
     slug: "massaggio-sportivo",
     services: [
-      { slug: "massaggio-pre-gara", price: "€ 35" },
-      { slug: "massaggio-post-gara", price: "€ 45", highlight: true },
-      { slug: "massaggio-decontratturante", price: "€ 50" },
+      { slug: "massaggio-pre-gara", price: "€ 25" },
+      { slug: "massaggio-post-gara", price: "€ 25", highlight: true },
+      { slug: "massaggio-decontratturante", price: "€ 30" },
       { slug: "pacchetto-5-sedute", price: "€ 200" },
     ],
   },
@@ -72,35 +76,59 @@ const categoryText: Record<Locale, Record<string, { title: string; intro: string
 
 const serviceText: Record<Locale, Record<string, ServiceText>> = {
   it: {
-    "valutazione-iniziale": {
-      name: "Valutazione iniziale",
+    "scheda-powerlifting": {
+      name: "Scheda Powerlifting",
       description:
-        "Analisi del movimento, storico infortuni, obiettivi e disponibilità di attrezzatura. Base di partenza per ogni percorso, in presenza o online.",
-      duration: "60 min",
+        "Programma centrato sulle tre alzate di gara (squat, panca, stacco): intensità e volume gestiti in cicli su un massimale di riferimento, con l'obiettivo di far crescere la forza massima specifica.",
+      duration: "ciclo di allenamento",
     },
-    "scheda-personalizzata": {
-      name: "Scheda di allenamento personalizzata",
+    "scheda-weightlifting": {
+      name: "Scheda Weightlifting",
       description:
-        "Programma mensile di forza/ipertrofia costruito su misura, con progressione dei carichi e aggiornamento a fine ciclo.",
-      duration: "aggiornamento mensile",
+        "Programma incentrato su strappo, slancio e i loro derivati (tirate, hang, varianti power): tecnica, posizioni di ricezione e gestione di volume/intensità per sviluppare potenza ed espressione esplosiva di forza.",
+      duration: "ciclo di allenamento",
     },
-    "online-coaching": {
-      name: "Online coaching",
+    "scheda-hybrid": {
+      name: "Scheda Hybrid",
       description:
-        "Programmazione e coaching a distanza con monitoraggio continuo: video-check tecnica, aggiustamenti settimanali, supporto diretto.",
-      duration: "abbonamento mensile",
+        "Programma che allena in parallelo più zone della curva forza-velocità — forza massima, potenza e ipertrofia — alternando metodi (effort massimale, dinamico, ripetuto) per sviluppare qualità diverse senza sacrificarne una per l'altra.",
+      duration: "ciclo di allenamento",
     },
-    "personal-training": {
-      name: "Personal training in presenza",
+    "scheda-ipertrofia": {
+      name: "Scheda Ipertrofia",
       description:
-        "Sedute individuali in sala pesi a Ficarazzi e zone limitrofe (Santa Flavia, Palermo), con esecuzione seguita in tempo reale.",
-      duration: "60 min",
+        "Programma orientato alla crescita muscolare: intensità nel range 67-85% del massimale, 6-12 ripetizioni per serie, volume come leva principale e progressione del carico ciclo dopo ciclo.",
+      duration: "ciclo di allenamento",
     },
-    "racket-performance": {
-      name: "Preparazione fisica sport di racchetta",
+    "off-season-velocita": {
+      name: "Programma Off Season — 12 settimane velocità",
       description:
-        "Percorso S&C specifico per tennis e padel: prevenzione infortuni, gestione delle asimmetrie, potenza e velocità, periodizzato sul calendario gare.",
-      duration: "programma mensile",
+        "Blocco di 12 settimane nel periodo di preparazione per costruire la velocità dalle fondamenta: base di forza e potenza, meccanica di accelerazione e, in chiusura, lavoro più specifico su sprint e capacità di ripeterli.",
+      duration: "12 settimane",
+    },
+    "mesociclo-agilita": {
+      name: "Mesociclo 4 settimane — Agilità",
+      description:
+        "Mesociclo dedicato all'agilità: meccanica di decelerazione e cambio di direzione nelle prime settimane, poi drill reattivi a stimolo per allenare anche la componente percettivo-decisionale, non solo quella fisica.",
+      duration: "4 settimane",
+    },
+    "salto-verticale": {
+      name: "Programma Salto Verticale",
+      description:
+        "Sviluppo della potenza degli arti inferiori attraverso pliometria progressiva (dal basso all'alto impatto) e lavoro di forza esplosiva, con attenzione al tempo di contatto a terra e al dosaggio dei carichi articolari.",
+      duration: "ciclo di allenamento",
+    },
+    "programma-resistenza": {
+      name: "Programma Resistenza",
+      description:
+        "Condizionamento costruito sul sistema energetico che serve davvero: base aerobica, lavoro a soglia o intervalli ad alta intensità, con rapporti lavoro:recupero calibrati sull'obiettivo e sullo sport.",
+      duration: "ciclo di allenamento",
+    },
+    "coaching-personalizzato": {
+      name: "Coaching Personalizzato",
+      description:
+        "Percorso su misura dalla needs analysis in poi: programmazione individuale, autoregolazione (RPE/RIR) seduta per seduta e aggiustamenti continui in base a risposta, recupero e fase della stagione.",
+      duration: "percorso continuativo",
     },
     "massaggio-pre-gara": {
       name: "Massaggio pre-gara — attivante",
@@ -126,35 +154,59 @@ const serviceText: Record<Locale, Record<string, ServiceText>> = {
     },
   },
   en: {
-    "valutazione-iniziale": {
-      name: "Initial assessment",
+    "scheda-powerlifting": {
+      name: "Powerlifting Plan",
       description:
-        "Movement analysis, injury history, goals and available equipment. The starting point for every program, in person or online.",
-      duration: "60 min",
+        "Program built around the three competition lifts (squat, bench, deadlift): intensity and volume managed in cycles off a reference max, aimed at growing sport-specific maximal strength.",
+      duration: "training cycle",
     },
-    "scheda-personalizzata": {
-      name: "Personalized training plan",
+    "scheda-weightlifting": {
+      name: "Weightlifting Plan",
       description:
-        "Custom-built monthly strength/hypertrophy program, with load progression and an update at the end of each cycle.",
-      duration: "monthly update",
+        "Program centered on the snatch, the clean & jerk and their derivatives (pulls, hangs, power variants): technique, receiving positions and volume/intensity management to develop power and explosive strength expression.",
+      duration: "training cycle",
     },
-    "online-coaching": {
-      name: "Online coaching",
+    "scheda-hybrid": {
+      name: "Hybrid Plan",
       description:
-        "Remote programming and coaching with ongoing monitoring: technique video-checks, weekly adjustments, direct support.",
-      duration: "monthly subscription",
+        "A program that trains several zones of the force-velocity curve in parallel — max strength, power and hypertrophy — alternating methods (max-effort, dynamic-effort, repeated-effort) to build multiple qualities without trading one off against another.",
+      duration: "training cycle",
     },
-    "personal-training": {
-      name: "In-person personal training",
+    "scheda-ipertrofia": {
+      name: "Hypertrophy Plan",
       description:
-        "One-on-one weight-room sessions in Ficarazzi and nearby areas (Santa Flavia, Palermo), with real-time coaching on execution.",
-      duration: "60 min",
+        "Program aimed at muscle growth: intensity in the 67-85% of max range, 6-12 reps per set, volume as the main driver, with load progression cycle after cycle.",
+      duration: "training cycle",
     },
-    "racket-performance": {
-      name: "Racket-sport physical preparation",
+    "off-season-velocita": {
+      name: "Off-Season Program — 12 Weeks Speed",
       description:
-        "S&C program specific to tennis and padel: injury prevention, asymmetry management, power and speed, periodized on your competition calendar.",
-      duration: "monthly program",
+        "A 12-week off-season block that builds speed from the ground up: a base of strength and power, acceleration mechanics, and, toward the end, more specific sprint and repeated-sprint work.",
+      duration: "12 weeks",
+    },
+    "mesociclo-agilita": {
+      name: "4-Week Mesocycle — Agility",
+      description:
+        "A mesocycle dedicated to agility: deceleration and change-of-direction mechanics in the early weeks, then stimulus-driven reactive drills to train the perceptual-decision side, not just the physical one.",
+      duration: "4 weeks",
+    },
+    "salto-verticale": {
+      name: "Vertical Jump Program",
+      description:
+        "Lower-body power development through progressive plyometrics (low to high impact) and explosive-strength work, with attention to ground-contact time and dosing joint loading.",
+      duration: "training cycle",
+    },
+    "programma-resistenza": {
+      name: "Endurance Program",
+      description:
+        "Conditioning built on the energy system that actually matters for you: aerobic base, threshold work or high-intensity intervals, with work:rest ratios calibrated to the goal and the sport.",
+      duration: "training cycle",
+    },
+    "coaching-personalizzato": {
+      name: "Personalized Coaching",
+      description:
+        "A tailor-made path starting from a proper needs analysis: individual programming, session-by-session autoregulation (RPE/RIR) and ongoing adjustments based on response, recovery and the phase of the season.",
+      duration: "ongoing coaching",
     },
     "massaggio-pre-gara": {
       name: "Pre-competition massage — activating",
