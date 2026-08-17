@@ -9,7 +9,7 @@ import { useLocale } from "@/lib/i18n";
 import { t } from "@/lib/dictionary";
 import Reveal from "@/components/Reveal";
 
-type Status = "idle" | "sending" | "sent" | "error";
+type Status = "idle" | "sent";
 
 export default function ContattiPage() {
   const { locale } = useLocale();
@@ -18,30 +18,52 @@ export default function ContattiPage() {
   const categories = getServiceCategories(locale);
   const [status, setStatus] = useState<Status>("idle");
 
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setStatus("sending");
-    const form = new FormData(e.currentTarget);
+    const form = e.currentTarget;
+    const data = new FormData(form);
     const payload = {
-      name: form.get("name"),
-      email: form.get("email"),
-      phone: form.get("phone"),
-      service: form.get("service"),
-      message: form.get("message"),
+      name: String(data.get("name") ?? ""),
+      email: String(data.get("email") ?? ""),
+      phone: String(data.get("phone") ?? ""),
+      service: String(data.get("service") ?? ""),
+      message: String(data.get("message") ?? ""),
     };
 
-    try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
-      if (!res.ok) throw new Error("request failed");
-      setStatus("sent");
-      e.currentTarget.reset();
-    } catch {
-      setStatus("error");
-    }
+    const waMessage =
+      locale === "it"
+        ? [
+            `Ciao Andrea, sono ${payload.name}.`,
+            payload.service && `Servizio di interesse: ${payload.service}.`,
+            `Email: ${payload.email}`,
+            payload.phone && `Telefono: ${payload.phone}`,
+            "",
+            payload.message,
+          ]
+            .filter(Boolean)
+            .join("\n")
+        : [
+            `Hi Andrea, I'm ${payload.name}.`,
+            payload.service && `Service of interest: ${payload.service}.`,
+            `Email: ${payload.email}`,
+            payload.phone && `Phone: ${payload.phone}`,
+            "",
+            payload.message,
+          ]
+            .filter(Boolean)
+            .join("\n");
+
+    // Open WhatsApp synchronously (same click) so the message is guaranteed
+    // to reach Andrea even if SMTP isn't configured for the API route below.
+    window.open(waLink(waMessage), "_blank");
+    setStatus("sent");
+    form.reset();
+
+    fetch("/api/contact", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    }).catch(() => {});
   }
 
   return (
@@ -96,12 +118,11 @@ export default function ContattiPage() {
             <textarea id="message" name="message" required />
           </div>
 
-          <button type="submit" className="btn btn-primary" disabled={status === "sending"}>
-            {status === "sending" ? c.formSubmitting : c.formSubmit}
+          <button type="submit" className="btn btn-primary">
+            {c.formSubmit}
           </button>
 
           {status === "sent" && <span className={`${styles.status} ${styles.statusOk}`}>{c.formSuccess}</span>}
-          {status === "error" && <span className={`${styles.status} ${styles.statusError}`}>{c.formError}</span>}
         </Reveal>
 
         <Reveal className={styles.card} delay={150}>

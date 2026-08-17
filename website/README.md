@@ -21,12 +21,13 @@ npm run dev -- -p 3002
 
 ## Form contatti
 
-`app/api/contact/route.ts` invia email via SMTP se sono impostate le variabili
-`SMTP_HOST`, `SMTP_USER`, `SMTP_PASS`, `CONTACT_TO_EMAIL` (vedi
-`.env.local.example` — per Gmail serve una "app password", non la password
-normale). Senza queste variabili la richiesta viene comunque accettata e
-loggata, ma non recapitata via email: i bottoni WhatsApp in tutto il sito
-funzionano sempre, a prescindere.
+Il form in `/contatti` apre WhatsApp con il messaggio già compilato appena si
+clicca "Invia richiesta" — funziona sempre, senza configurazione. In parallelo
+prova anche a inviare la richiesta via email tramite `app/api/contact/route.ts`,
+ma solo se sono impostate le variabili `SMTP_HOST`, `SMTP_USER`, `SMTP_PASS`,
+`CONTACT_TO_EMAIL` (vedi `.env.local.example` — per Gmail serve una "app
+password", non la password normale). Senza queste variabili la richiesta via
+email viene solo loggata sul server; WhatsApp resta comunque garantito.
 
 ## Deploy
 

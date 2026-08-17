@@ -118,10 +118,7 @@ export const dictionary = {
       formServiceDefault: "Seleziona un servizio",
       formMessage: "Messaggio",
       formSubmit: "Invia richiesta",
-      formSubmitting: "Invio in corso…",
-      formSuccess: "Messaggio inviato! Ti risponderò il prima possibile.",
-      formError:
-        "Non sono riuscito a inviare il messaggio. Scrivimi direttamente su WhatsApp o via email.",
+      formSuccess: "Ti ho aperto WhatsApp con il messaggio pronto: invialo per completare la richiesta.",
       directHeading: "Contatto diretto",
       whatsappLabel: "WhatsApp",
       emailLabel: "Email",
@@ -247,10 +244,7 @@ export const dictionary = {
       formServiceDefault: "Select a service",
       formMessage: "Message",
       formSubmit: "Send request",
-      formSubmitting: "Sending…",
-      formSuccess: "Message sent! I'll get back to you as soon as possible.",
-      formError:
-        "I couldn't send the message. Please reach out directly on WhatsApp or by email.",
+      formSuccess: "I've opened WhatsApp with your message ready: send it to complete the request.",
       directHeading: "Direct contact",
       whatsappLabel: "WhatsApp",
       emailLabel: "Email",
