@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import styles from "./page.module.css";
 import { site, waLink } from "@/lib/site";
 import { getServiceCategories } from "@/lib/services";
@@ -51,6 +52,14 @@ export default function Home() {
                 <circle cx="320" cy="90" r="160" fill="url(#wave)" />
                 <circle cx="60" cy="420" r="120" fill="url(#wave)" />
               </svg>
+              <Image
+                src="/images/andrea-hero.png"
+                alt={site.name}
+                fill
+                priority
+                sizes="(max-width: 900px) 100vw, 480px"
+                className={styles.photoImg}
+              />
               <div className={styles.photoBadge}>
                 <strong>{site.name}</strong>
                 <span>{site.tagline}</span>
