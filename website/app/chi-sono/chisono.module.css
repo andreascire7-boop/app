@@ -1,0 +1,173 @@
+.hero {
+  padding: 72px 0 56px;
+  background: linear-gradient(120deg, var(--navy) 0%, var(--blue-deep) 100%);
+  color: var(--white);
+}
+
+.heroGrid {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 28px;
+  align-items: center;
+}
+
+@media (max-width: 640px) {
+  .heroGrid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+}
+
+.avatar {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  background: linear-gradient(150deg, var(--blue) 0%, var(--red) 130%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 1.8rem;
+  color: var(--white);
+  flex-shrink: 0;
+  margin: 0 auto;
+}
+
+@media (min-width: 640px) {
+  .avatar {
+    margin: 0;
+  }
+}
+
+.hero h1 {
+  color: var(--white);
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  margin: 6px 0 6px;
+}
+
+.role {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.7);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-family: var(--font-head);
+  font-weight: 500;
+}
+
+.profile {
+  padding: 72px 0;
+}
+
+.profile p {
+  max-width: 68ch;
+  font-size: 1.06rem;
+}
+
+.grid2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+}
+
+@media (max-width: 780px) {
+  .grid2 {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
+
+.block h2 {
+  font-size: 1.5rem;
+  margin-bottom: 24px;
+}
+
+.timelineItem {
+  padding-left: 20px;
+  border-left: 2px solid var(--gray-light);
+  margin-bottom: 24px;
+  position: relative;
+}
+
+.timelineItem::before {
+  content: "";
+  position: absolute;
+  left: -7px;
+  top: 4px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--red);
+}
+
+.timelineItem strong {
+  display: block;
+  font-family: var(--font-head);
+  text-transform: uppercase;
+  font-size: 0.95rem;
+  letter-spacing: 0.01em;
+}
+
+.timelineItem span {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--blue);
+  font-weight: 600;
+  margin: 2px 0 8px;
+}
+
+.certs {
+  background: var(--ice);
+}
+
+.certGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
+}
+
+.certCard {
+  background: var(--white);
+  border-radius: 14px;
+  padding: 20px 22px;
+  border: 1px solid var(--gray-light);
+}
+
+.certOrg {
+  display: block;
+  font-family: var(--font-head);
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--blue);
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  margin-bottom: 4px;
+}
+
+.certTitle {
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.tagRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.tag {
+  border: 1px solid var(--gray-light);
+  border-radius: 999px;
+  padding: 8px 16px;
+  font-family: var(--font-head);
+  font-weight: 500;
+  text-transform: uppercase;
+  font-size: 0.78rem;
+  letter-spacing: 0.03em;
+  color: var(--blue-deep);
+}
+
+.ctaWrap {
+  padding: 56px 0 88px;
+  text-align: center;
+}

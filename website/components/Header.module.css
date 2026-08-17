@@ -1,0 +1,141 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--gray-light);
+}
+
+.bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 0;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.mark {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: linear-gradient(145deg, var(--blue), var(--blue-deep));
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 1.1rem;
+  letter-spacing: 0.02em;
+  flex-shrink: 0;
+}
+
+.brandText {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+}
+
+.brandName {
+  font-family: var(--font-head);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 1.02rem;
+  color: var(--ink);
+}
+
+.brandTagline {
+  font-size: 0.7rem;
+  color: var(--gray);
+  letter-spacing: 0.02em;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.navLinks {
+  display: flex;
+  gap: 28px;
+}
+
+.navLinks a {
+  font-family: var(--font-head);
+  font-weight: 500;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 0.03em;
+  color: var(--ink);
+  padding: 6px 0;
+  border-bottom: 2px solid transparent;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.navLinks a:hover {
+  color: var(--blue);
+  border-color: var(--blue);
+}
+
+.cta {
+  display: none;
+}
+
+@media (min-width: 860px) {
+  .cta {
+    display: inline-flex;
+  }
+}
+
+.toggle {
+  display: inline-flex;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+}
+
+@media (min-width: 860px) {
+  .toggle {
+    display: none;
+  }
+}
+
+.navLinks {
+  display: none;
+}
+
+@media (min-width: 860px) {
+  .navLinks {
+    display: flex;
+  }
+}
+
+.mobileMenu {
+  border-top: 1px solid var(--gray-light);
+  padding: 16px 0 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.mobileMenu a {
+  font-family: var(--font-head);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  font-size: 0.95rem;
+}
+
+@media (min-width: 860px) {
+  .mobileMenu {
+    display: none;
+  }
+}

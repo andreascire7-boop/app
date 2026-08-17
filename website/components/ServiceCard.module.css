@@ -1,0 +1,75 @@
+.card {
+  background: var(--white);
+  border: 1px solid var(--gray-light);
+  border-radius: var(--radius);
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow);
+  border-color: transparent;
+}
+
+.highlight {
+  border-color: var(--blue);
+  box-shadow: var(--shadow);
+}
+
+.top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.name {
+  font-family: var(--font-head);
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 1.05rem;
+  letter-spacing: 0.01em;
+}
+
+.price {
+  font-family: var(--font-head);
+  font-weight: 700;
+  color: var(--blue);
+  white-space: nowrap;
+  font-size: 1.05rem;
+}
+
+.duration {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--red);
+  font-weight: 600;
+}
+
+.desc {
+  font-size: 0.92rem;
+  flex: 1;
+}
+
+.cta {
+  align-self: flex-start;
+  font-family: var(--font-head);
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  color: var(--blue-deep);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.card:hover .cta {
+  color: var(--red);
+}

@@ -1,0 +1,31 @@
+.wrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.select {
+  appearance: none;
+  background: var(--ice);
+  border: 1px solid var(--gray-light);
+  border-radius: 999px;
+  padding: 6px 26px 6px 12px;
+  font-family: var(--font-head);
+  font-weight: 600;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--blue-deep);
+  cursor: pointer;
+}
+
+.select:hover {
+  border-color: var(--blue);
+}
+
+.arrow {
+  position: absolute;
+  right: 10px;
+  pointer-events: none;
+  color: var(--blue-deep);
+}

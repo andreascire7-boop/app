@@ -1,0 +1,143 @@
+.hero {
+  background: var(--ice);
+  padding: 72px 0 56px;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  margin: 14px 0 16px;
+}
+
+.hero p {
+  max-width: 56ch;
+  margin: 0 auto;
+  font-size: 1rem;
+}
+
+.layout {
+  padding: 72px 0 96px;
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 48px;
+  align-items: flex-start;
+}
+
+@media (max-width: 860px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  background: var(--white);
+  border: 1px solid var(--gray-light);
+  border-radius: var(--radius);
+  padding: 32px;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+@media (max-width: 520px) {
+  .row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.field label {
+  font-family: var(--font-head);
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+  color: var(--gray);
+}
+
+.field input,
+.field select,
+.field textarea {
+  border: 1px solid var(--gray-light);
+  border-radius: 10px;
+  padding: 12px 14px;
+  font-size: 0.95rem;
+  font-family: var(--font-body);
+  color: var(--ink);
+  background: var(--white);
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  outline: none;
+  border-color: var(--blue);
+}
+
+.field textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.status {
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+.statusOk {
+  color: #0a8f4a;
+}
+
+.statusError {
+  color: var(--red);
+}
+
+.card {
+  background: var(--navy);
+  color: var(--white);
+  border-radius: var(--radius);
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.card h2 {
+  color: var(--white);
+  font-size: 1.3rem;
+}
+
+.contactRow {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.contactRow span:first-child {
+  font-family: var(--font-head);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.contactRow a,
+.contactRow span:last-child {
+  font-size: 0.98rem;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.contactRow a:hover {
+  color: #8fb0ff;
+}
