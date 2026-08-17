@@ -17,7 +17,7 @@ export const dictionary = {
       titleAccent: "alza il livello",
       titleRest: "del gioco.",
       body:
-        "Sono Andrea Scirè: costruisco programmi di forza e condizionamento su misura e affianco atleti — soprattutto di tennis e padel — con massaggio sportivo certificato, a Ficarazzi (PA) e online in tutta Italia.",
+        "Sono Andrea Scirè: costruisco programmi di forza e condizionamento su misura e affianco atleti con massaggio sportivo certificato, a Ficarazzi (PA) e online in tutta Italia.",
       ctaPrimary: "Scrivimi su WhatsApp",
       ctaSecondary: "Guarda i servizi",
       badge: "Certificato Istituto ATS",
@@ -143,7 +143,7 @@ export const dictionary = {
       titleAccent: "raise your level",
       titleRest: "of play.",
       body:
-        "I'm Andrea Scirè: I build tailor-made strength and conditioning programs and support athletes — mainly tennis and padel players — with certified sports massage, based in Ficarazzi (PA), Italy, and online worldwide.",
+        "I'm Andrea Scirè: I build tailor-made strength and conditioning programs and support athletes with certified sports massage, based in Ficarazzi (PA), Italy, and online worldwide.",
       ctaPrimary: "Message on WhatsApp",
       ctaSecondary: "See the services",
       badge: "Certified by Istituto ATS",
