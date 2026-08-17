@@ -1,7 +1,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <meta name="color-scheme" content="light" />
-<title>Varsavia, 27 Novembre</title>
+<title>Varsavia — Simulazione</title>
 <style>
   :root{
     --ground:#ffffff;
@@ -49,6 +49,21 @@
 
   button{ font:inherit; }
 
+  .simbanner{
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    z-index:10;
+    background:var(--red);
+    color:#fff;
+    text-align:center;
+    font-size:11px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    padding:6px 10px;
+  }
+
   #snow{
     position:fixed;
     inset:0;
@@ -70,7 +85,7 @@
 
   .progress{
     position:fixed;
-    top:max(18px, env(safe-area-inset-top));
+    top:max(38px, calc(env(safe-area-inset-top) + 20px));
     left:50%;
     transform:translateX(-50%);
     display:flex;
@@ -105,21 +120,6 @@
     position:relative;
     z-index:2;
     min-height:100vh;
-  }
-
-  .gate{
-    position:relative;
-    z-index:2;
-    min-height:100vh;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    padding:96px 24px 64px;
-    animation:rise 0.9s ease both;
-  }
-  .gate .lede.small{
-    font-size:13px;
-    color:var(--ink-faint);
   }
 
   .scene{
@@ -535,21 +535,10 @@
   }
 </style>
 
+<div class="simbanner">Simulazione — questo link non va inviato, serve solo per vedere l'esperienza sbloccata</div>
+
 <canvas id="snow"></canvas>
 <canvas id="confetti"></canvas>
-
-<section class="gate" id="lockScreen" hidden>
-  <div class="card">
-    <p class="eyebrow">Il conto alla rovescia è iniziato</p>
-    <h1 class="display">Manca ancora un po', <em>mon amour</em></h1>
-    <div class="countdown">
-      <span class="num mono" id="daysLeftLock">--</span>
-      <span class="label">giorni al grande giorno</span>
-    </div>
-    <p class="lede">Il resto della sorpresa è ancora sigillato.</p>
-    <p class="lede small">Si sblocca il 3 settembre.</p>
-  </div>
-</section>
 
 <div class="progress" id="progress"></div>
 
@@ -708,36 +697,6 @@
   "use strict";
   var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  /* ---------- Lock gate: show only the countdown until the unlock date ---------- */
-  var LOCK_ENABLED = true;
-  var UNLOCK_DATE = new Date(2026, 8, 3, 0, 0, 0); // 3 settembre 2026
-  var isLocked = LOCK_ENABLED && new Date() < UNLOCK_DATE;
-
-  function paintCountdown(numEl, labelEl){
-    var departure = new Date(2026, 10, 27, 0, 0, 0);
-    var diff = Math.ceil((departure - new Date()) / 86400000);
-    if (diff > 0){
-      numEl.textContent = diff;
-    } else if (diff === 0){
-      numEl.textContent = "0";
-      labelEl.textContent = "si parte oggi";
-    } else {
-      numEl.textContent = "♥";
-      labelEl.textContent = "il nostro viaggio";
-    }
-  }
-
-  if (isLocked){
-    document.getElementById("app").hidden = true;
-    document.getElementById("progress").hidden = true;
-    var lockScreen = document.getElementById("lockScreen");
-    lockScreen.hidden = false;
-    var lockNum = document.getElementById("daysLeftLock");
-    paintCountdown(lockNum, lockNum.nextElementSibling);
-  } else {
-    document.getElementById("lockScreen").hidden = true;
-  }
-
   /* ---------- Snowfall ---------- */
   var snowCanvas = document.getElementById("snow");
   var sctx = snowCanvas.getContext("2d");
@@ -840,6 +799,19 @@
   updateProgress();
 
   /* ---------- Countdown ---------- */
+  function paintCountdown(numEl, labelEl){
+    var departure = new Date(2026, 10, 27, 0, 0, 0);
+    var diff = Math.ceil((departure - new Date()) / 86400000);
+    if (diff > 0){
+      numEl.textContent = diff;
+    } else if (diff === 0){
+      numEl.textContent = "0";
+      labelEl.textContent = "si parte oggi";
+    } else {
+      numEl.textContent = "♥";
+      labelEl.textContent = "il nostro viaggio";
+    }
+  }
   var sceneDaysEl = document.getElementById("daysLeft");
   paintCountdown(sceneDaysEl, sceneDaysEl.nextElementSibling);
 
