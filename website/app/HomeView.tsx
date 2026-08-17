@@ -54,7 +54,7 @@ export default function Home() {
               </svg>
               <div className={styles.photoFrame}>
                 <Image
-                  src="/images/andrea-hero.png"
+                  src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/images/andrea-hero.png`}
                   alt={site.name}
                   fill
                   priority

@@ -5,6 +5,10 @@ import type { NextConfig } from "next";
 const forStaticPages = process.env.GITHUB_PAGES === "true";
 
 const nextConfig: NextConfig = {
+  // Exposed to the client so hand-written asset paths (e.g. the hero photo's
+  // <Image src>) can be prefixed too — next/image doesn't do it automatically
+  // when images are unoptimized.
+  env: { NEXT_PUBLIC_BASE_PATH: forStaticPages ? "/app" : "" },
   ...(forStaticPages
     ? {
         output: "export",
