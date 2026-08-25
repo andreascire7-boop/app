@@ -10,7 +10,7 @@ Mix dei formati:
 2. Carosello — sistemi energetici e work:rest (7 slide)
 3. Statico — COD ≠ agilità
 4. Statico — l'ordine della seduta
-5. Reel — carico e rischio infortuni (~40 s)
+5. Reel — carico e rischio infortuni (15 s, senza parlato, solo testo animato)
 
 ---
 
@@ -25,7 +25,8 @@ COME LAVORARE
   lista sequenziale), mantenendo coerenza di brand su tutti e cinque.
 - Nei post statici tutto il peso tecnico sta nella caption: sull'immagine va solo il testo indicato,
   che è già ridotto all'osso. Non travasarci dentro la caption.
-- Il reel è uno script: rispetta i beat e le battute così come sono, il testo a schermo è già scritto.
+- Il reel non ha parlato: è solo testo a schermo animato, su musica. Rispetta i beat, i tempi e il
+  testo così come sono, e realizza le animazioni descritte beat per beat.
 - Il testo è definitivo: non aggiungere contenuti tecnici, non cambiare numeri, rapporti o
   definizioni, non inventare esempi, non aggiungere set/rep o protocolli. Puoi solo accorciare una
   riga se non entra nel template.
@@ -36,7 +37,8 @@ COSA CONSEGNARE
   e hashtag così come sono qui sotto.
 - Statici: template scelto (con una riga sul perché) + testo dell'immagine impaginato + caption e
   hashtag così come sono qui sotto.
-- Reel: script impaginato beat per beat, con parlato e testo a schermo separati, + caption e hashtag.
+- Reel: storyboard beat per beat con durata, testo a schermo e animazione, più le animazioni
+  effettivamente create; + caption e hashtag.
 
 =====================================================================
 1. CAROSELLO — I RESIDUI D'ALLENAMENTO — 7 slide
@@ -226,38 +228,57 @@ HASHTAG
 #trainingscience #sportscience #programdesign
 
 =====================================================================
-5. REEL — CARICO E RISCHIO INFORTUNI — ~40 s
+5. REEL — CARICO E RISCHIO INFORTUNI — 15 s, senza parlato
 =====================================================================
 
-BEAT 1 — hook (0-4 s)
-Parlato: "Non ti sei fatto male perché ti allenavi troppo. Ti sei fatto male perché sei passato da
-poco a troppo."
-Testo a schermo: NON È IL CARICO. È IL SALTO.
+Nessuna voce e nessun parlato: solo testo a schermo animato su musica.
+Testo secco, un'idea per beat. Crea le animazioni descritte.
 
-BEAT 2 (4-12 s)
-Parlato: "C'è un indicatore che si chiama acute:chronic workload ratio. Confronta il carico
-dell'ultima settimana con la media delle ultime quattro. Non è una legge: è un termometro."
-Testo a schermo: ultima settimana vs media delle ultime 4
+BEAT 1 — hook (0,0 - 2,5 s)
+Testo a schermo:
+NON È IL CARICO.
+È IL SALTO.
+Animazione: "NON È IL CARICO." entra al centro; una linea si traccia da sinistra a destra e lo
+barra (0,3 s); il blocco slitta in alto e "È IL SALTO." compare sotto con uno scatto di scala
+(0,92 → 1) e un pulse dello sfondo.
 
-BEAT 3 (12-21 s)
-Parlato: "E qui arriva la parte controintuitiva. Una base cronica alta, costruita gradualmente,
-protegge. È il picco improvviso ad alzare il rischio, non il livello assoluto."
-Testo a schermo: la base alta protegge. Il picco no.
+BEAT 2 (2,5 - 5,5 s)
+Testo a schermo:
+Ultima settimana
+vs media delle ultime 4
+Animazione: cinque barre verticali salgono da terra in sequenza (0,08 s l'una). Le prime quattro
+basse e identiche, la quinta schizza molto più in alto e vibra una volta a fine corsa. Sopra la
+quinta compare un piccolo indicatore che sale insieme alla barra.
 
-BEAT 4 (21-28 s)
-Parlato: "Vale anche dentro la settimana. Sette giorni identici sono peggio di una settimana con
-giorni alti e giorni bassi."
-Testo a schermo: alterna alto e basso
+BEAT 3 (5,5 - 9,0 s)
+Testo a schermo:
+La base alta protegge.
+Il picco no.
+Animazione: due mini grafici affiancati si disegnano da sinistra a destra (path drawing, 0,6 s).
+A sinistra una linea che sale gradualmente, con un'area piena che si riempie sotto di essa.
+A destra una linea piatta interrotta da uno scalino verticale improvviso: sullo scalino lampeggia
+una volta un segnale di allerta. Le due frasi compaiono sotto il rispettivo grafico.
 
-BEAT 5 (28-37 s)
-Parlato: "E il fattore di rischio più forte resta l'infortunio pregresso. Per questo il prehab
-funziona quando è mirato: forza eccentrica dei muscoli chiave, stabilità di caviglia, ginocchio,
-anca, spalla e tronco, meccanica di atterraggio e decelerazione."
-Testo a schermo: prehab mirato ≠ prehab generico
+BEAT 4 (9,0 - 11,5 s)
+Testo a schermo:
+7 giorni identici
+sono peggio di alti e bassi
+Animazione: sette barre uguali già a schermo; partendo da sinistra (0,05 s l'una) cambiano altezza
+alternandosi alto-basso, fino a formare un profilo a onda. Morph fluido, non taglio netto.
 
-BEAT 6 — chiusura (37-42 s)
-Parlato: "Non guardare solo quanto ti alleni. Guarda quanto sei salito rispetto a un mese fa."
-Testo a schermo: com'è cambiato il tuo carico nelle ultime 4 settimane?
+BEAT 5 (11,5 - 13,5 s)
+Testo a schermo:
+Il fattore di rischio più forte?
+L'infortunio pregresso.
+Animazione: la domanda entra dal basso, poi slitta in alto lasciando spazio; la risposta compare
+con un fade rapido e una sottolineatura che si traccia da sinistra a destra (0,25 s).
+
+BEAT 6 — chiusura (13,5 - 15,0 s)
+Testo a schermo:
+Com'è cambiato il tuo carico
+nelle ultime 4 settimane?
+Animazione: il testo compare al centro; in basso rientrano in miniatura le cinque barre del beat 2
+e restano ferme. L'ultimo frame deve combaciare con il primo per un loop pulito.
 
 CAPTION
 Il carico non fa male in sé: fanno male i salti di carico. È l'idea dietro l'acute:chronic workload
@@ -266,8 +287,9 @@ di monitoraggio da leggere nel contesto, non una regola automatica. Il risvolto 
 una base cronica alta e ben costruita è protettiva: il problema è arrivarci di colpo. Sullo stesso
 piano c'è la monotonia: alternare giorni alti e bassi vale quanto scegliere il volume totale. E il
 fattore di rischio più forte resta l'infortunio pregresso, che è anche il motivo per cui il prehab
-funziona quando è mirato invece che generico. Molti infortuni senza contatto nascono dall'incrocio
-fatica × carico × meccanica.
+funziona quando è mirato invece che generico: forza eccentrica dei muscoli chiave, stabilità di
+caviglia, ginocchio, anca, spalla e tronco, meccanica di atterraggio e decelerazione. Molti
+infortuni senza contatto nascono dall'incrocio fatica × carico × meccanica.
 Contenuto educativo di performance: in caso di dolore o infortunio in corso, il riferimento è il
 medico o il fisioterapista.
 
