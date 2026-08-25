@@ -1,21 +1,35 @@
-# 5 post Instagram — testi pronti da skill `scienze-motorie-sc`
+# 5 post Instagram — prompt unico
 
-Ogni prompt contiene già il testo completo (slide + caption + hashtag), scritto esclusivamente sui
-contenuti della skill. A Claude resta solo l'impaginazione nel template già noto.
-Nessun pubblico specifico: taglio divulgativo generale.
+Un solo prompt da incollare a Claude. Contiene il testo definitivo di tutti e cinque i caroselli,
+scritto esclusivamente sui contenuti della skill `scienze-motorie-sc`
+(periodizzazione, velocita-agilita, program-design, forza-potenza,
+sistemi-energetici-condizionamento, prevenzione-rehab-prehab).
+A Claude resta l'impaginazione: deve usare i template che già conosce e variarli tra un post e l'altro.
 
 ---
 
-## 1. I residui d'allenamento
-
-Fonte: `periodizzazione.md` → Residui d'allenamento (Issurin & Lustig, 2004)
-
 ```
-Usa il template carosello Instagram che già conosci e impagina questo testo così com'è.
-Non aggiungere contenuti tecnici, non cambiare i numeri, non inventare esempi: il testo è già
-definitivo. Puoi solo accorciare una riga se non entra nel template.
+Impagina cinque caroselli Instagram partendo dal testo qui sotto.
 
-CAROSELLO — 7 slide
+COME LAVORARE
+- Usa i template carosello che già conosci.
+- Varia il template tra un post e l'altro: i cinque post non devono uscire tutti uguali.
+  Scegli per ciascuno il template che regge meglio quel tipo di contenuto (scala di numeri,
+  confronto tra due concetti, lista sequenziale, tabella, elenco di fattori), mantenendo però
+  coerenza di brand tra tutti e cinque.
+- Il testo è già definitivo: non aggiungere contenuti tecnici, non cambiare numeri, rapporti o
+  definizioni, non inventare esempi, non aggiungere set/rep o protocolli. Puoi solo accorciare una
+  riga se non entra nel template.
+- Rispetta il numero di slide indicato per ogni post.
+
+COSA CONSEGNARE, per ognuno dei 5 post
+1. Il template scelto e in una riga perché è adatto a quel contenuto
+2. Il testo impaginato, slide per slide
+3. Caption e hashtag così come sono qui sotto
+
+=====================================================================
+POST 1 — I RESIDUI D'ALLENAMENTO — 7 slide
+=====================================================================
 
 Slide 1
 Smetti di allenarti per tre settimane.
@@ -61,20 +75,10 @@ HASHTAG
 #scienzemotorie #preparazioneatletica #strengthandconditioning #periodizzazione #allenamento
 #programmazioneallenamento #performance #recupero #fisiologia #trainingscience #coaching
 #preparatoreatletico #allenamentofunzionale #sportscience
-```
 
----
-
-## 2. COD ≠ agilità
-
-Fonte: `velocita-agilita.md` → Definizioni, COD vs agilità reattiva, Componenti dell'agilità
-
-```
-Usa il template carosello Instagram che già conosci e impagina questo testo così com'è.
-Non aggiungere contenuti tecnici, non cambiare le definizioni, non inventare esempi: il testo è già
-definitivo. Puoi solo accorciare una riga se non entra nel template.
-
-CAROSELLO — 6 slide
+=====================================================================
+POST 2 — COD ≠ AGILITÀ — 6 slide
+=====================================================================
 
 Slide 1
 Se sai già dove devi andare, non stai allenando l'agilità.
@@ -118,20 +122,10 @@ HASHTAG
 #scienzemotorie #agilità #preparazioneatletica #strengthandconditioning #cambiodirezione
 #allenamento #velocità #performance #coaching #preparatoreatletico #trainingscience #sportscience
 #neuromuscolare #allenamentoreattivo
-```
 
----
-
-## 3. L'ordine della seduta
-
-Fonte: `program-design.md` → Struttura della seduta; `forza-potenza.md` → Ordine degli esercizi
-
-```
-Usa il template carosello Instagram che già conosci e impagina questo testo così com'è.
-Non aggiungere contenuti tecnici, non aggiungere set/rep, non inventare esempi: il testo è già
-definitivo. Puoi solo accorciare una riga se non entra nel template.
-
-CAROSELLO — 6 slide
+=====================================================================
+POST 3 — L'ORDINE DELLA SEDUTA — 6 slide
+=====================================================================
 
 Slide 1
 Stessi esercizi. Stesso tempo. Risultato diverso.
@@ -180,21 +174,10 @@ HASHTAG
 #scienzemotorie #preparazioneatletica #strengthandconditioning #programmazioneallenamento
 #allenamento #forza #potenza #pliometria #performance #coaching #preparatoreatletico
 #trainingscience #sportscience #programdesign
-```
 
----
-
-## 4. Sistemi energetici e work:rest
-
-Fonte: `sistemi-energetici-condizionamento.md` → Tre sistemi, Contributo per durata, Work:rest;
-`velocita-agilita.md` → RSA
-
-```
-Usa il template carosello Instagram che già conosci e impagina questo testo così com'è.
-Non aggiungere contenuti tecnici, non cambiare i rapporti o le durate, non inventare esempi:
-il testo è già definitivo. Puoi solo accorciare una riga se non entra nel template.
-
-CAROSELLO — 7 slide
+=====================================================================
+POST 4 — SISTEMI ENERGETICI E WORK:REST — 7 slide
+=====================================================================
 
 Slide 1
 Il tuo sforzo dura 8 secondi.
@@ -251,20 +234,10 @@ HASHTAG
 #scienzemotorie #sistemienergetici #condizionamento #preparazioneatletica #strengthandconditioning
 #hiit #allenamento #fisiologia #performance #rsa #trainingscience #coaching #preparatoreatletico
 #sportscience
-```
 
----
-
-## 5. Carico e rischio infortuni
-
-Fonte: `prevenzione-rehab-prehab.md` → Fattori di rischio, Gestione del carico, Prehab
-
-```
-Usa il template carosello Instagram che già conosci e impagina questo testo così com'è.
-Non aggiungere contenuti tecnici, non aggiungere protocolli o numeri, non inventare esempi:
-il testo è già definitivo. Puoi solo accorciare una riga se non entra nel template.
-
-CAROSELLO — 6 slide
+=====================================================================
+POST 5 — CARICO E RISCHIO INFORTUNI — 6 slide
+=====================================================================
 
 Slide 1
 Non ti sei fatto male perché ti allenavi troppo.
