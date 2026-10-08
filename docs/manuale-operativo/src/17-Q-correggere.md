@@ -29,6 +29,30 @@ Un piano si corregge sui dati (Parte K), non sulle sensazioni del coach.
 **Si tocca una variabile alla volta, e si aspetta almeno una settimana per vedere l'effetto.** Cambiare tre cose insieme fa perdere l'informazione su cosa ha funzionato — che è l'unica cosa che rende il piano successivo migliore di questo.
 :::
 
+
+## Ripartire dopo uno stop di 2-6 settimane
+
+La situazione più comune: vacanze, malattia, esami, un piccolo acciacco senza infortunio vero. Dalla skill: gli adattamenti sono **reversibili**; già dopo **~2 settimane** di stop si misurano riduzioni significative della capacità di lavoro; i residui dicono cosa si perde prima (**velocità ~5 giorni, anaerobico ~18, forza resistente ~15, forza massima e aerobico ~30**); il ritorno al carico di prima va fatto **senza picchi** rispetto al carico cronico, che nel frattempo si è abbassato; per mantenere serve meno di quanto serva per costruire.
+
+| Durata dello stop | Cosa si è perso (residui) | Come si riparte |
+| --- | --- | --- |
+| < 1 settimana | Quasi nulla, un po' di velocità | Si riprende il piano; prima seduta con volume ridotto |
+| 2 settimane | Velocità, un po' di capacità anaerobica e di lavoro | 1 settimana di ripresa, poi il piano |
+| 3-4 settimane | Anaerobico e forza resistente; forza max e aerobico iniziano a calare | 2 settimane di ripresa graduale |
+| 5-6 settimane | Calo anche di forza massima e aerobico; carico cronico basso | 2-3 settimane di ripresa, come un mini-blocco di accumulo |
+| Malattia con febbre | — | Solo dopo la guarigione e senza sintomi; con sintomi cardiaci o respiratori → medico (Parte L) |
+
+:::verifica Quanto ridurre i carichi
+| Stop | Carichi (% di quelli usati prima) | Volume | Intensità del condizionamento |
+| --- | --- | --- | --- |
+| 2 settimane | ~85-90%, RIR +1 | −30% la prima settimana | Intervalli brevi a dosi ridotte |
+| 3-4 settimane | ~75-85%, poi +5% a settimana | −40/50% la prima settimana, −20/30% la seconda | Prima aerobico, poi intervalli |
+| 5-6 settimane | ~65-75%, ripartenza da RIR 3 | −50% la prima settimana | Aerobico e SSG, alta intensità dalla 2ª-3ª settimana |
+| Sprint e salti | Dopo ogni stop: reintrodurre per gradi (allunghi submassimali, poi massimali) | — | Gli ischiocrurali soffrono i rientri bruschi alla velocità massima |
+
+Regola pratica coerente con la skill: **mai tornare in una sola settimana al carico pre-stop**; il rapporto acuto:cronico va ricostruito.
+:::
+
 ## Gli errori di programmazione
 
 | Errore | Come si riconosce | Correzione |

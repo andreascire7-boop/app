@@ -58,7 +58,7 @@ Funzioni: sostegno, continenza, stabilizzazione di colonna e pelvi. Circa metà 
 
 | Condizione | Indicazioni | Precauzioni |
 | --- | --- | --- |
-| **Osteoporosi** | Aerobico con carico ≥ 5 gg (30' moderati o 20' vigorosi); resistenza 8-10 esercizi, 2-3 gg/sett, 8-12 rip. Inizio: **1 serie × 8-12 per 6-8 settimane** al 40-60% 1RM, poi 3-4 serie al 60-<80%. Gilet zavorrato 4-8% del peso | **Evitare flessione spinale ripetuta o caricata** (crunch, sit-up, macchine addominali) e flessione + rotazione insieme. Con frattura vertebrale pregressa max ~1 kg sulla schiena o ~2 kg davanti |
+| **Osteoporosi** | Aerobico con carico ≥ 5 gg (30' moderati o 20' vigorosi); resistenza 8-10 esercizi, 2-3 gg/sett, 8-12 rip. Inizio: **1 serie × 8-12 per 6-8 settimane** al 40-60% 1RM, poi 3-4 serie dal 60 a meno dell'80% 1RM. Gilet zavorrato 4-8% del peso | **Evitare flessione spinale ripetuta o caricata** (crunch, sit-up, macchine addominali) e flessione + rotazione insieme. Con frattura vertebrale pregressa max ~1 kg sulla schiena o ~2 kg davanti |
 | **Artrosi** | Sessioni brevi e frequenti, aerobico a basso impatto, acqua, forza, controllo del peso; mantenere il ROM nei giorni senza dolore | Ridurre il carico se il dolore dura **> 1 ora dopo**; niente resistenza massima nel punto del ROM a massima compressione; cambiare posizione ogni 20-30' |
 | **Artrite reumatoide** | Esercizio aerobico e di forza migliora dolore e funzione senza peggiorare la malattia | Proteggere le articolazioni nelle fasi attive; niente stretching aggressivo; rachide cervicale: possibile instabilità |
 | **Ipertensione** | Intensità moderata, aerobico regolare | **Evitare Valsalva e carichi pesanti**. PA a riposo ≥ 180/105-110: non allenare |
@@ -106,3 +106,30 @@ Sport adattato con amputazione: costo energetico del cammino maggiore, cura del 
 ## Esercizio in acqua
 
 Galleggiamento (carico ridotto in base alla profondità), pressione idrostatica (riduce l'edema, aiuta il ritorno venoso), viscosità (più veloce il movimento, più resistenza). Utile per artrosi, rientro post-chirurgico, gravidanza, linfedema. **Controindicazioni**: scompenso o angina instabile, ferite aperte non coperte, infezioni cutanee, incontinenza non controllata, infezioni trasmissibili, epilessia non controllata nell'ultimo anno.
+
+## L'atleta donna: oltre il LCA e la gravidanza
+
+### Carenza energetica (RED-S) in pratica
+
+Dalla skill: se la **disponibilità energetica** (energia introdotta meno quella spesa in allenamento, rapportata alla massa magra) è cronicamente bassa, compromette ormoni, ossa, recupero e salute (**RED-S**). Nei giovani il minimo indicativo è **~45 kcal/kg di massa magra al giorno** e spesso gli atleti sono molto sotto. **Fratture da stress ricorrenti o amenorrea → invio al medico.** Con segnali di rapporto disfunzionale con il cibo non si danno numeri: si indirizza a un professionista.
+
+| Cosa osservare | Cosa fare il preparatore |
+| --- | --- |
+| Calo di peso non cercato, stanchezza persistente, infortuni ossei, calo di prestazione senza motivo | Parlarne in privato, senza giudizio; coinvolgere medico e dietista |
+| Ciclo che si interrompe o diventa molto irregolare (atlete) | **Invio al medico** (non è un "segno di allenamento") |
+| Sport estetici, di peso o di resistenza | Più a rischio: non limitare i grassi, attenzione alle diete "fai da te" |
+| Commenti sul peso o sul corpo in gruppo | Evitarli: il clima conta (Parte I, motivazione) |
+| Pesate | Solo se servono a una decisione, in privato, mai pubbliche |
+
+:::verifica Ciclo mestruale e allenamento
+- Il ciclo regolare è un indicatore di salute: assenza del ciclo (amenorrea) o irregolarità marcate non vanno normalizzate.
+- Le evidenze su come cambiare l'allenamento in base alla fase del ciclo sono **deboli e molto individuali**: non si programma "per fase" in modo standard. Si usa l'autoregolazione (RPE/RIR) e un **diario dei sintomi** (dolore, sonno, energia) che l'atleta compila se lo desidera.
+- Dolore mestruale invalidante, flussi molto abbondanti, stanchezza con possibile carenza di ferro → medico (il ferro è già citato tra i micronutrienti critici delle ragazze nella Parte I).
+- Il dato del ciclo è un dato sanitario: si raccoglie solo con consenso e con le regole sulla privacy (Parte A).
+:::
+
+### Altri punti dalla skill
+- **LCA**: picco di lesioni intorno ai 16 anni; programmi neuromuscolari basati sulla pliometria (−50% circa), meglio prima o all'inizio della pubertà (Parti F e I).
+- **Pavimento pelvico**: negli sport ad alto impatto più incontinenza da sforzo; contrazione e rilassamento si allenano (sopra).
+- **Forza**: dopo la pubertà la forza delle ragazze tende ad appiattirsi se non allenata; la forza resta una priorità.
+- **Ferro, calcio, vitamina D**: vedi nutrizione giovanile (Parte I).

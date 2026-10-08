@@ -96,3 +96,9 @@ figcaption b { color: var(--blue); letter-spacing: .14em; text-transform: upperc
 .plain-wrap td:first-child { color: #15171c; }
 .mono { font-family: "DejaVu Sans Mono"; font-size: 8pt; }
 td:first-child b, td:first-child strong { color: inherit; }
+
+/* CONTENUTI FUORI DALLA SKILL */
+.verifica { background: #fbefef; border-color: #b3261e; border-left-style: dashed; } .verifica .kicker { color: #b3261e; }
+.dv { font: bold 6.2pt "DejaVu Sans"; letter-spacing: .08em; text-transform: uppercase; color: #b3261e; border: .5pt solid #b3261e; padding: 0 1.2mm; white-space: nowrap; }
+a.ref { color: var(--blue); font-weight: bold; }
+a.ref::after { content: ", p. " target-counter(attr(href url), page); font-weight: normal; }

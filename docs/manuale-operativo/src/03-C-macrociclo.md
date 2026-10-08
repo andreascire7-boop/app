@@ -117,7 +117,7 @@ Rispondi in ordine. **La prima risposta affermativa ti dà il modello.**
 
 | Variabile | Azione | Perché |
 | --- | --- | --- |
-| **Volume** | ↓ marcatamente: 40-60%, fino a ~50-70% nelle 1-3 settimane | È il volume a generare la fatica accumulata |
+| **Volume** | Ridotto complessivamente del **40-60%** rispetto al volume normale (fino al 50-70% nei taper più lunghi o dopo carichi molto alti), per gradi: circa −30/40% a due settimane dalla gara, −50/60% nell'ultima settimana | È il volume a generare la fatica accumulata |
 | **Intensità** | Mantenuta alta | Se cala anche l'intensità arrivi fresco ma decondizionato |
 | **Frequenza** | Mantenuta o ridotta poco | Tagliare le sedute produce detraining |
 | **Durata** | 1-3 settimane | Proporzionale al carico che precede |

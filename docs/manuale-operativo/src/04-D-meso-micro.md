@@ -158,3 +158,43 @@ Si affrontano senza taper, dentro il carico normale. Servono a testare prestazio
 
 ### Tornei e gare multiple nello stesso giorno
 Tra un turno e l'altro: reidratazione con sodio, reintegro di carboidrati e proteine, eventuale massaggio inter-evento breve, riattivazione prima di rientrare (Parte K).
+
+## Gestire un gruppo: 15-20 atleti in 60 minuti
+
+Il problema reale di squadre e gruppi giovanili: tanti atleti, poco tempo, pochi attrezzi, livelli diversi. Dalla skill: sedute brevi e varie, **"scaffolding"** (supporto che si riduce con la competenza), posizionarsi per osservare tutti, feedback breve e positivo, **progressione per competenza** e non per età, esercizi dispari/pari divisi su due giorni quando il tempo manca, circuiti con tempi di lavoro e pausa definiti.
+
+### La seduta tipo da 60' per 16-20 atleti
+
+| Blocco | Minuti | Organizzazione | Contenuto |
+| --- | --- | --- | --- |
+| Accoglienza | 3 | Tutti | Due domande su sonno, fatica, dolori (Parte K); chi segnala dolore va valutato a parte |
+| Riscaldamento RAMP | 12 | Tutti in linee o a onde | Andature, mobilità, attivazione, atterraggi |
+| Blocco qualità | 12 | **Onde di 4-5 atleti** | Sprint o salti a recupero pieno: mentre un'onda lavora, le altre recuperano (il recupero è "gratis") |
+| Forza a stazioni | 24 | **4 stazioni × 4-5 atleti**, rotazione ogni 5-6' | Vedi tabella sotto |
+| Condizionamento o gioco | 6 | Gruppi o squadre | Intervalli o giochi a campo ridotto |
+| Chiusura | 3 | Tutti | Defaticamento, sRPE raccolta 30' dopo |
+
+| Stazione | Esercizio principale | Variante più facile | Variante più difficile |
+| --- | --- | --- | --- |
+| 1 · Gambe | Goblet squat 3×8 | Squat a box corpo libero | Front squat con bilanciere leggero |
+| 2 · Spinta/trazione | Push-up 3×8 + rematore con elastico 3×10 in superserie | Push-up su rialzo | Push-up piedi elevati, inverted row |
+| 3 · Monolaterale | Split squat 3×6/gamba | Con appoggio della mano | Bulgaro con manubri |
+| 4 · Core e prehab | Pallof press, side plank, Nordic assistito | Plank, dead bug | Nordic, carry |
+
+### Regole pratiche
+
+| Regola | Perché |
+| --- | --- |
+| **Tre livelli per ogni stazione** (facile / standard / difficile), stessa funzione | Tutti lavorano sullo stesso pattern, ognuno al suo livello: è la logica delle sostituzioni (Parte P) |
+| **Gruppi per livello o per maturazione** (biobanding) nei blocchi impegnativi, gruppi misti nel gioco | Sicurezza e sfida adatta; competenza accanto a chi impara |
+| Esercizi semplici da spiegare in 20": **nomina, spiega, mostra, fai eseguire** | Il tempo di spiegazione è tempo perso di lavoro |
+| Stessi esercizi per 3-4 settimane | Meno spiegazioni, più qualità, progressione misurabile |
+| Rotazione a tempo (fischietto / timer), non a ripetizioni | Il gruppo resta sincronizzato |
+| Il coach si posiziona dove vede **la stazione più rischiosa** (salti, carichi) | Osservazione e correzione dove serve |
+| Un "capo stazione" tra gli atleti più esperti | Responsabilità e autonomia (teoria dell'autodeterminazione) |
+| Pochi attrezzi: corpo libero, elastici, palle mediche, coni | Bastano per tutti i pattern (Parte P, vincolo di attrezzatura) |
+| Monitorare con un foglio unico (Parte R) | Presenze, sRPE, note sui dolori |
+
+:::verifica Rapporto allenatore/atleti
+Indicazione pratica diffusa: con giovani principianti in sala pesi **1 allenatore ogni ~10 atleti** (meno con i più piccoli o con carichi liberi); con atleti esperti il rapporto può salire. Verificare le eventuali regole della federazione o della società.
+:::

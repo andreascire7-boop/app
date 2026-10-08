@@ -94,13 +94,14 @@ def onda():
 
 def taper():
     weeks = ["−3", "−2", "−1", "gara"]
-    vol = [100, 65, 45, 25]
+    vol = [100, 65, 45, 30]
+    lab = ["carico pieno", "−35%", "−55%", "minimo"]
     b = ""
     for i, (w, v) in enumerate(zip(weeks, vol)):
         x = 60 + i * 150
         b += rect(x, 150 - v, 70, v, BLUE2 if i < 3 else SKY)
         b += t(x + 35, 168, f"sett. {w}" if w != "gara" else "sett. di gara", 10, INK, "middle")
-        b += t(x + 35, 144 - v, f"vol {v}%", 9, GREY, "middle")
+        b += t(x + 35, 144 - v, lab[i], 9, GREY, "middle")
     b += f'<polyline points="95,30 245,30 395,32 545,36" fill="none" stroke="{RED}" stroke-width="2.4"/>'
     b += t(560, 34, "intensità", 9, RED)
     b += line(40, 150, 660, 150, GREY)

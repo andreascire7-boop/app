@@ -36,6 +36,7 @@ CALLOUTS = {
     "regola": "La regola",
     "perche": "Il perché",
     "operativo": "In pratica",
+    "verifica": "Da verificare · contenuto fuori dalla skill",
 }
 
 
@@ -134,6 +135,18 @@ def build():
         return {"1": h1, "2": h2, "3": h3}[level](inner)
 
     body = re.sub(r"<h([123])>(.*?)</h\1>", heading, body, flags=re.S)
+
+    # rimandi interni: {{ref:Titolo della sezione}} -> "§ n, p. x"
+    def ref(m):
+        key = m.group(1).strip().lower()
+        for kind, hid, title, num in toc:
+            plain = re.sub("<[^>]+>", "", title).lower()
+            if kind == "sec" and plain.startswith(key):
+                return f'<a class="ref" href="#{hid}">§{num}</a>'
+        raise SystemExit(f"Rimando non trovato: {m.group(1)}")
+
+    body = re.sub(r"\{\{ref:(.*?)\}\}", ref, body)
+    body = body.replace("[DV]", '<span class="dv">da verificare</span>')
 
     # indice
     rows = []

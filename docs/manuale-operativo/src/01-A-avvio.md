@@ -123,3 +123,65 @@ Il test massimale su tecnica incerta **misura la paura**, non la forza. Nei prin
 ### ~Leggere un cambiamento
 
 Prima di dire che un atleta è migliorato, conosci l'**errore di misura** del test (affidabilità). Un cambiamento più piccolo dell'errore non è un cambiamento. Report brevi, visivi, pensati per chi li legge: atleta, allenatore, genitore.
+
+## Ordine dei test, riscaldamento standard e valori di riferimento
+
+La skill indica di scegliere **pochi test (al massimo 4-5 per sessione), specifici, ripetibili, eseguiti da scarichi e sempre nelle stesse condizioni**. L'ordine e il protocollo di riscaldamento che seguono servono a rispettare proprio questa ripetibilità.
+
+:::verifica Ordine standard della batteria
+Principio (NSCA): **dai test che non affaticano a quelli che affaticano di più**, con l'aerobico per ultimo o in un altro giorno.
+
+| Ordine | Test | Perché in questa posizione |
+| --- | --- | --- |
+| 1 | Antropometria, mobilità, questionari | Non affaticano |
+| 2 | Salti (CMJ, squat jump, lungo) | Potenza, richiedono freschezza neuromuscolare |
+| 3 | Sprint (5-10-20-30 m) | Massimali brevi, recupero pieno (2-3') tra prove |
+| 4 | COD / agilità (505, T-test) | Massimali, ma con componente tecnica |
+| 5 | Forza (RM, isometrica) | Dopo i test veloci, prima di quelli che lasciano acidosi |
+| 6 | Resistenza muscolare, anaerobico, RSA | Lasciano fatica e lattato |
+| 7 | **Aerobico (navetta, Yo-Yo, 30-15 IFT) — per ultimo** o in giornata separata | Il più affaticante |
+
+**Riscaldamento standardizzato** (sempre identico, scritto e cronometrato): ~5' di corsa leggera → mobilità dinamica 3-5' → andature (skip, calciata, laterali) → 2-3 allunghi progressivi → 2-3 prove submassimali del primo test. Stesso orario, stessa superficie, stesse scarpe, nessun lavoro intenso nelle 48 h precedenti. Pause fra le prove: 2-3' nei test massimali brevi.
+:::
+
+### ~Valori di riferimento
+
+Nella skill ci sono riferimenti solo per il tennis (spider drill, lanci di palla medica 12-16 anni, VO2max 44-69 ml/kg/min, presa ~600 N; Parte M) e per i giovani (VO2 relativo al 90° percentile: maschi ~52-53 ml/kg/min tra 9 e 17 anni, femmine da ~51 a ~41; Parte I). Il resto va confrontato con i **dati dello stesso atleta nel tempo**, che è il confronto più utile.
+
+:::verifica Ordini di grandezza indicativi (adulti allenati in sport di squadra)
+| Test | Maschi | Femmine | Note |
+| --- | --- | --- | --- |
+| CMJ (senza braccia) | ~35-45 cm (amatori), > 45 cm (élite) | ~25-35 cm | Dipende molto dallo strumento (pedana vs app) |
+| Sprint 10 m | ~1,70-1,90 s | ~1,90-2,10 s | Dipende dalla partenza e dalle fotocellule |
+| Sprint 30 m | ~4,0-4,4 s | ~4,5-5,0 s | — |
+| Yo-Yo IR1 | ~1500-2500 m (calcio élite in alto) | ~1000-1600 m | Distanza totale |
+| 30-15 IFT (VIFT) | ~18-21 km/h | ~16-18 km/h | Velocità dell'ultimo stadio completato |
+
+**Navetta 20 m → VO2max (Léger)**: velocità dell'ultimo stadio (si parte a 8,5 km/h, +0,5 km/h ogni minuto). Adulti: **VO2max ≈ 6,0 × velocità − 24,4**. 6-18 anni: **VO2max ≈ 31,025 + 3,238 × V − 3,248 × età + 0,1536 × età × V**. Esempio adulto, ultimo stadio 12 km/h → ~47,6 ml/kg/min.
+:::
+
+## Sicurezza, documenti e responsabilità
+
+Questa sezione elenca **i temi da controllare** prima di iniziare con un club, una palestra o un gruppo di minori. La skill copre la parte sanitaria (screening, red flag, emergenze cardiache); **le norme italiane non sono nella skill e qui sono riportate solo come temi**, da verificare sulle fonti ufficiali e con la società.
+
+### Il piano d'emergenza (EAP)
+
+| Voce | Contenuto | Dalla skill |
+| --- | --- | --- |
+| Riconoscere | Dolore toracico, dispnea improvvisa, sincope, perdita di coscienza, cefalea improvvisa, segni di ictus, disreflessia, colpo di calore | Sì (Parte L) |
+| Arresto cardiaco | Perdita di responsività, respiro assente o anomalo → **chiamare i soccorsi, iniziare la RCP, usare il DAE** | Sì |
+| Non lasciare solo | Chi ha sintomi sospetti non va via da solo | Sì |
+| Ruoli | Chi chiama, chi va a prendere il DAE, chi apre il cancello ai soccorsi, chi resta con il gruppo | [DV] |
+| Informazioni affisse | Numero di emergenza, indirizzo esatto dell'impianto, posizione del DAE e della cassetta di primo soccorso, accesso per l'ambulanza | [DV] |
+| Prove | Simulazione a inizio stagione con lo staff | [DV] |
+| Documentazione | Annotare cosa è successo, quando, cosa è stato fatto | Sì |
+
+:::verifica Temi normativi da verificare (Italia)
+- **DAE nelle società sportive**: obblighi di presenza del defibrillatore e di personale formato durante allenamenti e gare; manutenzione e registrazione del dispositivo. Verificare la normativa vigente (decreti ministeriali e leggi sulla diffusione dei DAE) e le regole della propria federazione.
+- **Numero di emergenza** da usare nella propria regione (NUE 112 o 118): verificare.
+- **Certificato medico**: per l'attività **agonistica** (visita di medicina dello sport, validità, esami previsti per età e sport) e **non agonistica**; quando serve, chi lo rilascia, scadenze. Tenerne copia e scadenzario. Verificare sulle norme e sulle regole della federazione/ente.
+- **Minori — consenso dei genitori**: autorizzazione alla partecipazione, alle trasferte, ai test, a foto e video.
+- **Privacy**: i dati sanitari e di crescita (statura, peso, infortuni, questionari, GPS, HRV) dei minori sono **dati particolari**: informativa, consenso, chi li vede, dove si conservano, per quanto tempo. Verificare il regolamento europeo e le indicazioni nazionali.
+- **Assicurazione** e tesseramento degli atleti e dello staff; qualifiche richieste per allenare.
+- **Tutela dei minori**: regole della società su comunicazioni, spogliatoi, trasferte (codici di condotta e safeguarding).
+:::

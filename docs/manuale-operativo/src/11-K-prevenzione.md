@@ -124,3 +124,53 @@ Insorge 12-24 h dopo, picco 48-72 h, si risolve in 2-3 giorni; causato soprattut
 | Proteine in polvere | Comodità | Non "magiche" |
 
 Prima la dieta e il sonno, poi gli integratori; per i tesserati verificare purezza e antidoping; nei giovani **food first**. Piani individuali o condizioni cliniche → dietista/medico; con segnali di rapporto disfunzionale con il cibo **niente numeri**: si indirizza a un professionista.
+
+## Il caldo: il rischio ambientale numero uno
+
+Dalla skill: ogni 1% di disidratazione alza la temperatura interna di 0,1-0,4 °C; −2% di peso peggiora la prestazione; i **bambini** hanno termoregolazione diversa, più rischio di colpi di calore e tendono a disidratarsi volontariamente; in **gravidanza**, nella **sclerosi multipla** (peggioramento con il calore) e nella **lesione midollare** (niente sudorazione sotto la lesione) il rischio è maggiore; dopo gare lunghe al caldo si controlla la **lucidità mentale** dell'atleta; il ghiaccio fa parte del kit per l'ipertermia.
+
+| Cosa fare sempre | Come |
+| --- | --- |
+| Piano di idratazione | Pesata prima/dopo nelle giornate calde; borraccia personale; acqua ogni 15-20' nei ragazzi; sodio con sudorazione alta |
+| Orari | Sedute al mattino presto o alla sera nei mesi caldi |
+| Pause programmate | Pause all'ombra con acqua, non "quando ce n'è bisogno" |
+| Ridurre il carico | Meno volume e intensità, più recuperi nelle giornate calde e umide |
+| Abbigliamento | Chiaro, leggero, cappellino nelle pause |
+| Osservare | Lucidità, colorito, coordinazione, sudorazione |
+
+:::verifica Acclimatamento, soglie e colpo di calore
+**Acclimatamento**: servono circa **10-14 giorni** di esposizione progressiva. Nei primi giorni sedute più brevi e meno intense, attrezzatura/protezioni ridotte, una sola seduta al giorno; poi si aumentano gradualmente durata e intensità. L'acclimatamento si perde in alcune settimane senza esposizione.
+
+**Quando spostare o accorciare la seduta**: si decide con un indice di stress termico, idealmente il **WBGT** (tiene conto di temperatura, umidità, sole, vento); in sua assenza con temperatura e umidità insieme (il caldo umido è più pericoloso del caldo secco). Le soglie operative (riduzione, sospensione) variano tra le linee guida e le federazioni: **adottarne una scritta, verificata sulle fonti, e applicarla sempre**.
+
+| Quadro | Segnali | Cosa fare |
+| --- | --- | --- |
+| Crampi da calore | Crampi durante o dopo lo sforzo, sudorazione abbondante | Fermare, ombra, liquidi con sodio, allungamento dolce |
+| Esaurimento da calore | Debolezza, capogiri, nausea, cefalea, pelle fredda e sudata, lucidità conservata | Fermare, ombra, sdraiare con gambe sollevate, raffreddare, bere; se non migliora rapidamente → soccorsi |
+| **Colpo di calore (emergenza)** | **Confusione, comportamento strano, disorientamento, collasso, convulsioni**; temperatura corporea molto alta (> 40 °C); la pelle può essere ancora sudata | **Chiamare i soccorsi e raffreddare subito**: immersione in acqua fredda o ghiacciata se disponibile, altrimenti acqua fredda abbondante + teli bagnati e ghiaccio su tutto il corpo, ventilazione. **Raffreddare prima, trasportare dopo** (salvo diversa indicazione dei soccorsi) |
+
+Il segnale chiave del colpo di calore è il **cambiamento dello stato mentale**: un atleta confuso al caldo è un colpo di calore finché non si dimostra il contrario.
+:::
+
+## HRV e GPS: se li hai
+
+Dalla skill: la **frequenza cardiaca (variabilità e recupero) 2-3 volte a settimana** è un indicatore di fatica; il **GPS** a ogni seduta misura il carico esterno ma è **poco preciso nelle accelerazioni e nei cambi di direzione**; nessuno strumento va usato da solo e si parla sempre con l'atleta; se un dato non cambia mai una decisione, non serve.
+
+:::verifica Uso pratico
+**HRV**
+- Misura al **mattino, appena svegli, sempre nella stessa posizione** (sdraiati o seduti), 1-5 minuti, stesso dispositivo.
+- Si guarda la **media mobile di 7 giorni** rispetto alla normalità individuale, non il singolo valore.
+- Un calo marcato e prolungato rispetto alla propria norma, insieme a sonno e benessere peggiorati, suggerisce di alleggerire; un singolo valore basso con atleta che sta bene no.
+- Alcol, malattia, stress, caldo e sonno corto abbassano l'HRV.
+
+**GPS / accelerometri**
+
+| Variabile | Cosa dice |
+| --- | --- |
+| Distanza totale | Volume |
+| Distanza ad alta velocità (es. > 19-20 km/h) e sprint (es. > 24-25 km/h) | Carico ad alta intensità: il più legato al rischio per gli ischiocrurali |
+| Accelerazioni / decelerazioni | Carico meccanico (misura meno affidabile) |
+| Velocità di picco | Se l'atleta si avvicina regolarmente al suo massimo (protettivo) |
+
+Le soglie di velocità vanno fissate una volta e mantenute; il dato serve soprattutto a evitare **picchi di carico** rispetto alle settimane precedenti (rapporto acuto:cronico).
+:::

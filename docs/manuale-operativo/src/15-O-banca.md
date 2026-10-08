@@ -160,3 +160,34 @@ Le dosi indicate sono il **punto di partenza tipico** per l'obiettivo più comun
 ## Riscaldamento dinamico (andata e ritorno su 10-20 m)
 
 Camminata sulle punte e sui talloni · ginocchio al petto · inchworm · camminata a gamba tesa · RDL monopodalico camminato · quadricipite camminando · calciata · affondi (con rotazione, indietro con rotazione, a 45°) · crawl · laterali · carioca · plié · skip con ginocchia alte · hop con tenuta di 2" · allunghi progressivi al 60-70-80-90%. Junior ~10 esercizi (~10'), avanzati ~16 andata e ritorno (~15').
+
+## Mobilità e stretching
+
+**Regole dalla skill**: nel riscaldamento mobilità **dinamica**; lo statico prolungato prima di forza e velocità riduce la prestazione fino a ~60'. Statico **dopo** o la sera: **≥ 30"** per tenuta (adulti), **10-30" × ~3** nei giovani, almeno 2 volte a settimana; intensità al limite del disagio tollerabile, mai oltre; indolenzimento che dura > 24 h = dose eccessiva. Tensione bassa e prolungata più efficace di quella alta e breve. **Nelle persone ipermobili niente stretching generico**: rinforzo e controllo. PNF: contrazione isometrica del muscolo, rilassamento, nuovo range (si parte in posizione accorciata con contrazioni lievi).
+
+### Mobilità dinamica (riscaldamento)
+
+| Distretto | Esercizio | Dose |
+| --- | --- | --- |
+| Caviglia | Knee-to-wall (ginocchio al muro), mobilizzazione con elastico | 2 × 10/lato |
+| Anca | Affondo con rotazione, passi giganti, hurdle walk sopra ostacoli | 2 × 6-8/lato |
+| Anca posteriore | Camminata a gamba tesa, RDL monopodalico camminato, inchworm | 10-20 m |
+| Torace | Rotazioni toraciche in quadrupedia, "open book" sul fianco | 2 × 8/lato |
+| Spalla | Wall slide, dislocazioni con bastone o elastico, Y-T-W | 2 × 8-10 |
+| Complessivo | World's greatest stretch [DV], crawl, carioca | 2 × 4-5/lato |
+
+### Stretching statico (dopo la seduta o la sera)
+
+| Muscolo | Esercizio | Dose adulti | Note |
+| --- | --- | --- | --- |
+| Polpaccio (gastrocnemio / soleo) | Al muro a ginocchio teso e flesso | 2-3 × 30" | Dorsiflessione completa: prevenzione caviglia e Achille |
+| Ischiocrurali | Supino con cinghia, bacino neutro | 2-3 × 30" | Stabilizzare il bacino |
+| Flessori d'anca | Affondo in ginocchio con gluteo contratto | 2-3 × 30" | Non inarcare la lombare |
+| Quadricipite / retto femorale | In piedi o prono, bacino neutro | 2-3 × 30" | Biarticolare: bacino e colonna neutri |
+| Adduttori | Farfalla, divaricata laterale | 2-3 × 30" | — |
+| Glutei / piriforme | Figura 4 supino | 2-3 × 30" | — |
+| Pettorali | Allo stipite della porta | 2-3 × 30" | Utile in chi lavora molto in spinta |
+| Gran dorsale | Inginocchiato con braccia su una panca | 2-3 × 30" | — |
+| Capsula posteriore di spalla (overhead) | Sleeper stretch [DV] o cross-body | 2-3 × 30" | Deficit di rotazione interna nei tennisti; delicato |
+| Estensori del polso | Gomito esteso, polso flesso | 20-30" × poche ripetizioni | Epicondilalgia |
+| Giovani (defaticamento) | Petto, ostacolista modificato, farfalla, quadricipite, estensione lombare da prono, polpaccio | 15-30" × 2-3 | Dopo la camminata di 3' |

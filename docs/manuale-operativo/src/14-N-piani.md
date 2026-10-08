@@ -1,4 +1,4 @@
-# PARTE N — Dieci piani svolti
+# PARTE N — Dodici piani svolti
 
 Ogni esempio segue lo stesso schema: **contesto → struttura → cosa c'è dentro → note critiche**. Sono modelli di partenza costruiti con i principi del manuale: si adattano ai tre input (chi, per cosa, quando), non si copiano.
 
@@ -12,6 +12,14 @@ Ogni esempio segue lo stesso schema: **contesto → struttura → cosa c'è dent
 | Fine inverno (~6-8 sett.) | Preparatorio speciale | Potenza, forza speciale, condizionamento specifico (intervalli 1:2-1:5) | Forza massima a volume ridotto |
 | Primavera-estate | Competitivo | Mantenimento e gestione del carico | Tutto, a volume minimo e alta qualità |
 | Fine estate (~3-4 sett.) | Transizione | Recupero, correzione squilibri | — |
+
+### Le settimane delle fasi preparatorie (2 sedute fisiche oltre al tennis)
+
+| Fase | Seduta A | Seduta B | Condizionamento |
+| --- | --- | --- | --- |
+| **Preparatorio generale** (forza, base) | Squat o goblet 4 × 6 @ 75-80% · RDL 3 × 8 · panca manubri 3 × 8 · rematore 3 × 10 · extrarotazioni a 45° e 90° 3 × 15 · core 5'; rec. 2-3' sui principali | Affondi 3 × 8/gamba · step-up 3 × 10 · trazioni/lat 3 × 8 · lento avanti 3 × 8 · iperestensioni 3 × 10 · extrarotazioni · core | Base aerobica: 20-30' continui o intervalli lunghi; velocità/agilità 10' a settimana (residuo breve) |
+| **Preparatorio speciale** (potenza) | Girate o jump shrug 4 × 3 · squat 4 × 4 @ 85% · lanci palla medica 4 × 4 (overhead, diritto, rovescio), rec. 2-3' | Complex: panca → passaggio al petto 2 × 8, affondo → lunge jump 2 × 8 · squat jump 4 × 3 · extrarotazioni | Intervalli tennis: 3-15" con 1:2-1:5, 10-15 rip, poi 1-2'; 2-3 serie |
+| **Competitivo** | Vedi settimana in stagione | — | Dentro il tennis |
 
 ### La settimana in stagione
 
@@ -53,6 +61,17 @@ Il carico esiste già: contare le ore di campo prima di aggiungere qualsiasi cos
 | 11-14 | Realizzazione | Basso-medio | 88-95% | Singole, tecnica di gara, comandi, attrezzatura, scelta dei tentativi |
 | 15-16 | Taper | Basso | Alta mantenuta | Volume giù, ultima seduta pesante lontana a sufficienza dalla gara |
 
+### La settimana tipo (4 sedute)
+
+| Blocco | Lun · squat + panca | Mer · stacco + panca | Ven · squat + panca | Sab · stacco/panca varianti |
+| --- | --- | --- | --- | --- |
+| **Accumulo (1-5)** | Squat 5 × 5 @ 70-75% · panca 5 × 6 @ 70% · rematore 4 × 8 | Stacco 4 × 5 @ 70-75% · panca presa stretta 4 × 8 · iperestensioni 3 × 10 | Squat 4 × 6 @ 72-78% (varianti: pausa) · panca 4 × 5 @ 75% · trazioni 4 × 6 | RDL 4 × 6 · lento avanti 4 × 6 · accessori punti deboli 3 × 10-12 |
+| **Intensificazione (6-10)** | Squat 5 × 3 @ 82-87% · panca 5 × 3 @ 82-87% | Stacco 4 × 2-3 @ 82-88% · panca 4 × 4 @ 80% | Squat 4 × 2 @ 85-90% · panca 4 × 2 @ 85-88% | Varianti leggere 3 × 5, accessori ridotti |
+| **Realizzazione (11-14)** | Squat: singola @ 88-93% + 3 × 2 @ 85% · panca idem con comandi | Stacco: singola @ 88-92% + 2 × 2 @ 85% | Squat e panca: singole @ 90-95% a settimane alterne | Tecnica di gara leggera |
+| **Taper (15-16)** | Squat e panca 3 × 1-2 @ 85-90% | Stacco 2 × 1 @ 85% (ultima volta pesante ~10 giorni prima) | Aperture @ ~90% a inizio sett. 16 | Riposo / mobilità |
+
+Dosi costruite con la tabella del continuum (forza ≥ 85%, 1-6 rip, rec. 3-5') e con la logica del piano.
+
 :::nota Note critiche
 La frequenza sulle alzate di gara resta alta tutto il ciclo · i comandi si provano dalla settimana 11 · nelle ultime due settimane non si costruisce più niente · dentro ogni blocco una sola modalità di progressione.
 :::
@@ -61,14 +80,14 @@ La frequenza sulle alzate di gara resta alta tutto il ciclo · i comandi si prov
 
 | Settimane | Focus | Serie settimanali per gruppo | Intensità |
 | --- | --- | --- | --- |
-| 1-3 | Accumulo 1 | Da moderato, in crescita | 67-78%, RIR 3-2 |
-| 4 | Scarico | −50% | Invariata |
-| 5-7 | Accumulo 2 | Ripartenza più alta della prima onda | 70-80%, RIR 2-1 |
-| 8 | Scarico | −50% | Invariata |
-| 9-11 | Intensificazione | Volume leggermente ridotto | 75-85%, RIR 1-2 |
-| 12 | Scarico + verifica | −50% | Invariata |
+| 1-3 | Accumulo 1 | **10 → 12 → 14** [DV] | 67-78%, RIR 3-2 |
+| 4 | Scarico | **~7** (−50%) | Invariata |
+| 5-7 | Accumulo 2 | **12 → 14 → 16** [DV] | 70-80%, RIR 2-1 |
+| 8 | Scarico | **~8** (−50%) | Invariata |
+| 9-11 | Intensificazione | **12 → 12 → 14** [DV] | 75-85%, RIR 1-2 |
+| 12 | Scarico + verifica | **~7** (−50%) | Invariata |
 
-Recuperi 30-90" sugli accessori; frequenza ~2× a settimana per gruppo. **La leva primaria è il volume**; la doppia progressione governa i singoli esercizi, la progressione del volume il mesociclo. Senza gara non c'è taper: la settimana 12 serve a consolidare e testare da scarichi.
+Esempio di distribuzione per un gruppo (es. pettorali, 12 serie): lun panca manubri 4 × 8-10 + croci 2 × 12; gio panca inclinata 4 × 8-10 + push-up zavorrati 2 × max−2. Per atleti con poco recupero partire dal basso del range (Parte E). Recuperi 30-90" sugli accessori; frequenza ~2× a settimana per gruppo. **La leva primaria è il volume**; la doppia progressione governa i singoli esercizi, la progressione del volume il mesociclo. Senza gara non c'è taper: la settimana 12 serve a consolidare e testare da scarichi.
 
 ## Piano 5 — Weightlifting, blocco verso una gara
 
@@ -78,6 +97,16 @@ Recuperi 30-90" sugli accessori; frequenza ~2× a settimana per gruppo. **La lev
 | 5-8 | Intensificazione | Volume ridotto, % alte sulle alzate di gara, meno derivati, singole |
 | 9-10 | Realizzazione | Singole a comando gara, gestione dei tentativi, riscaldamento standardizzato provato |
 | 11 | Taper | Volume giù, intensità e tecnica mantenute |
+
+### Volumi per seduta (strappo e slancio, con la tabella di Prilepin [DV])
+
+| Settimane | Strappo | Slancio | Squat | Tirate | Sedute/sett |
+| --- | --- | --- | --- | --- | --- |
+| 1-3 | 6-8 × 3 @ 65-75% (~20-24 alzate) | 6 × 2+1 @ 65-75% | Back squat 5 × 5 @ 75-80% | 4 × 4 @ 90-100% dell'alzata | 4-5 |
+| 4 (scarico) | 5 × 2 @ 65% | 5 × 1+1 @ 65% | 3 × 5 @ 70% | 3 × 3 | 3-4 |
+| 5-8 | 5-6 × 2 @ 80-87% (~10-15 alzate) | 5 × 1+1 @ 80-87% | Front squat 5 × 3 @ 80-87% | 4 × 3 @ 100-105% | 4-5 |
+| 9-10 | Singole: 3-5 @ 90-95% (~4 alzate ≥ 90%) | Singole: 3-4 @ 90-95% | 3 × 2 @ 85% | 3 × 2 | 4 |
+| 11 (taper) | Inizio sett.: 3 × 1 @ 85-90%; ultimi 3-4 giorni leggero | Idem | 2 × 2 @ 75% | — | 3 |
 
 Il carico si quantifica (tonnellaggio, numero di alzate, intensità media, alzate ad alta %). Il recupero è il vincolo. Il maxing si dosa.
 
@@ -156,3 +185,53 @@ Mesocicli **3:1**. **Biobanding** per gli esercizi più impegnativi. In fase di 
 | Sett. 9-12 | 3×6-8, carico che sale | Step-up veloce, lancio palla leggera 3×6 | Compiti doppi, perturbazioni | 30' × 5 gg o combinazione |
 
 Totale equilibrio **≥ 2 ore a settimana**. Niente esercizi "di riempimento" sottodosati. Con osteoporosi: niente flessione caricata del tronco. Attenzione a ipotensione nei cambi di posizione e ai farmaci (RPE).
+
+## Piano 11 — Running 5-10 km, intermedio, 10 settimane
+
+**Contesto**: corre già 3-4 volte a settimana, 25-35 km/settimana, ha corso un 10 km. Obiettivo: migliorare su 5 o 10 km. Test di partenza: **VAM** (5' al massimo o 2000 m) o una gara recente → zone (Parte H). Forza 2 volte a settimana, lontano dalle sedute di qualità.
+
+:::verifica Piano costruito con zone, distribuzione e progressioni esterne alla skill
+| Sett. | Volume (km) | Seduta di qualità 1 | Seduta di qualità 2 | Lungo (Z2) |
+| --- | --- | --- | --- | --- |
+| 1 | 30 | 5 × 1000 m a ritmo soglia (Z4), rec. 1'30" | 8 × 100 m allunghi | 10 km |
+| 2 | 32 | 3 × 2000 m Z4, rec. 2' | 6 × 2' a ~100% VAM (Z5), rec. 2' | 11 km |
+| 3 | 35 | 20' continui Z4 | 8 × 400 m a ~105% VAM, rec. 1'30" | 12 km |
+| 4 (scarico) | 26 | 4 × 1000 m Z4 | — | 9 km |
+| 5 | 34 | 2 × 12' Z4, rec. 3' | 5 × 3' a ~95% VAM, rec. 2'30" | 12 km |
+| 6 | 37 | 4 × 2000 m Z4/ritmo 10 km, rec. 2' | 10 × 400 m a ~105% VAM, rec. 1'30" | 13 km |
+| 7 | 40 | 25' continui Z4 | 6 × 1000 m a ritmo 5 km, rec. 2' | 14 km |
+| 8 (scarico) | 30 | 3 × 2000 m Z4 | 6 × 200 m veloci | 10 km |
+| 9 | 34 | 3 × 3 km a ritmo gara 10 km, rec. 2' (o 5 × 1000 ritmo 5 km) | 6 × 300 m veloci | 11 km |
+| 10 (taper) | 20-24 | 3 × 1000 m ritmo gara | 4 allunghi; **gara** | — |
+
+Le altre uscite sono facili (Z1-Z2): circa **80% del tempo facile, 20% di qualità**. Aumento del volume intorno al 10% a settimana, scarico ogni 4ª. Ritmi da ricalcolare dopo un test a metà piano (sett. 5).
+:::
+
+**Dalla skill**: progressione tempo → frequenza → intensità, una variabile per volta, scarichi, taper con volume ridotto e intensità mantenuta, forza e pliometria per l'economia di corsa, stop ai segnali di sovraccarico osseo e tendineo (Parte L).
+
+| Forza (2×/sett) | Dosi |
+| --- | --- |
+| Squat o split squat | 3 × 6-8 @ RIR 2 |
+| RDL monopodalico | 3 × 8 |
+| Calf raise monopodalico (anche eccentrico) | 3 × 12-15 |
+| Pogo e skip | 2-3 × 20 contatti |
+| Core anti-rotazione, side plank | 2-3 serie |
+
+## Piano 12 — Resistenza per sport di squadra, pre-season 6 settimane
+
+**Contesto**: squadra (calcio, basket, calcio a 5), 4 sedute di campo a settimana, test **30-15 IFT** in settimana 1 e 6. Gruppi per fasce di VIFT. Forza 2 volte a settimana (Piano 2).
+
+| Sett. | Seduta "intensità corta" (MD−4 logico) | Seduta "estensiva" (MD−3 logico) | Altre sedute |
+| --- | --- | --- | --- |
+| 1 | Test 30-15 IFT + SSG 4 vs 4, 4 × 4', rec. 3' | Corsa continua o intervalli lunghi 4 × 4' ~90% VAM / 3' (≈ 90-95% FCmax) | Tecnica, forza |
+| 2 | 15"/15" al 90% VIFT, 2 × 8', rec. 3' + SSG 3 vs 3 4 × 3' | SSG 7 vs 7, 3 × 8' + sprint 6 × 30 m rec. pieno | Forza, RSA 2 × 6 × 20 m / 20" |
+| 3 | 15"/15" al 95% VIFT, 3 × 7' + duelli 1 vs 1 6 × 45" | SSG grande 3 × 10' + 6 × 40 m veloci | Forza, tecnica |
+| 4 | 10"/20" al 100% VIFT, 2 × 8' + SSG 4 vs 4 | Partita a tema 2 × 15' + sprint lineari | Scarico parziale: −30% volume |
+| 5 | 15"/15" al 95% VIFT, 2 × 8' + RSA 3 × 6 × 30 m / 20" | Amichevole o partita a campo intero | Forza (potenza) |
+| 6 | Test 30-15 IFT; richiamo breve | Rifinitura | Prima partita |
+
+:::verifica Parti esterne alla skill
+Le % della VIFT, i formati 15"/15" e 10"/20" e le dimensioni degli SSG sono riferimenti pratici esterni alla skill (Parte H e Parte M). Dalla skill vengono: 4 × 4' al 90-95% FCmax con rec. 3', SSG 3 vs 3 e 5 vs 5, RSA 3 × 6 × 30 m con 20" e 4' tra le serie, sprint a recupero pieno, scarico dopo 3 settimane, giorni alti e bassi alternati.
+:::
+
+**Dosaggio della corsa a intervalli in metri**: VIFT 18 km/h = 5 m/s → 15" al 90% = **~67 m** (navetta: ~33 m andata e ritorno). Ogni fascia di VIFT ha i suoi coni.

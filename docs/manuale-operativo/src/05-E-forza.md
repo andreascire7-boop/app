@@ -169,3 +169,139 @@ Overhead/front squat → tirate → posizione di potenza (hang alto) → hang so
 
 ### ~Adattamenti nel tempo
 Nelle **prime ~4 settimane** i guadagni di forza sono soprattutto **neurali**; l'ipertrofia compare dopo 4-6 settimane. La forza cala dell'8-10% per decennio dalla terza decade in poi nei sedentari: negli adulti attivi il declino è più lento.
+
+## Insegnare i movimenti base
+
+La skill dà i punti tecnici e la progressione d'insegnamento (posizione → tenuta → ripetizioni → carico, velocità o complessità; nomina-spiega-mostra-fai eseguire; feedback su cosa fare, non su cosa non fare; dal cognitivo all'automatico). I **cue verbali** qui sotto sono la traduzione pratica di quei punti: frasi brevi, una per volta, possibilmente con un riferimento esterno ("spingi il pavimento") più che interno.
+
+:::nota
+Regola d'insegnamento: **un cue alla volta**, scelto sull'errore più importante. Prima si corregge ciò che mette a rischio (colonna, ginocchio), poi ciò che riduce la prestazione.
+:::
+
+### Squat
+
+| Punto tecnico | Cue | Errore tipico | Correzione |
+| --- | --- | --- | --- |
+| Piedi alla larghezza delle spalle, peso su tutto il piede | "Tre punti del piede a terra" | Talloni che si sollevano | Box squat, goblet, lavoro di dorsiflessione; mai rialzo come soluzione definitiva |
+| Ginocchia nella direzione delle punte | "Ginocchia fuori, sopra le dita" | Valgo (ginocchia verso l'interno) | Mini-band sopra le ginocchia, carico più basso, tenuta in fondo 5-10" |
+| Tronco con poca inclinazione, colonna neutra | "Petto alto, sguardo avanti" | Busto che crolla in avanti | Goblet o front squat; rinforzo del tronco |
+| Profondità controllata | "Siediti tra i talloni" | Bacino che si arrotonda in fondo ("butt wink") | Fermarsi prima del punto in cui si perde il neutro; box all'altezza giusta |
+| Risalita | "Spingi il pavimento via" | Anche che salgono prima delle spalle | Carico ridotto, tempo controllato |
+
+### Hinge (stacco, RDL)
+
+| Punto tecnico | Cue | Errore tipico | Correzione |
+| --- | --- | --- | --- |
+| Movimento dall'anca, ginocchia morbide | "Chiudi una porta col sedere" | Squattare invece di piegarsi all'anca | Hip hinge con bastone lungo la schiena (testa-dorso-sacro), pull-through |
+| Schiena neutra | "Lungo dalla testa al bacino" | Schiena che si arrotonda | ROM ridotto (da rialzo), carico più basso |
+| Bilanciere vicino | "Struscia le cosce" | Bilanciere che si allontana | Attivare i dorsali: "spalle in tasca" |
+| Ischiocrurali in tensione | "Senti il retro della coscia" | Discesa oltre il controllo | Fermarsi dove la schiena resta neutra |
+| Chiusura | "Glutei avanti, non schiena indietro" | Iperestensione lombare in alto | Finire con l'anca, costole giù |
+
+### Affondo e monolaterali
+
+| Punto tecnico | Cue | Errore tipico | Correzione |
+| --- | --- | --- | --- |
+| Ginocchio anteriore in linea con il piede | "Ginocchio sopra il secondo dito" | Ginocchio che cade verso l'interno | Appoggio della mano, carico ridotto, rinforzo gluteo medio |
+| Bacino orizzontale | "Fari del bacino avanti" | Bacino che ruota o cade | Split squat statico prima del camminato |
+| Lunghezza del passo | Passo lungo = più anca, corto = più ginocchio | Passo troppo corto con dolore anteriore | Allungare il passo, busto leggermente inclinato |
+| Discesa verticale | "Scendi come in ascensore" | Spinta in avanti sul ginocchio | Ginocchio posteriore verso il pavimento |
+
+### Spinta (panca, push-up, overhead)
+
+| Punto tecnico | Cue | Errore tipico | Correzione |
+| --- | --- | --- | --- |
+| Scapole stabili | "Spalle giù e indietro" (panca), "spingi il pavimento lontano" (push-up) | Scapole che si staccano (winging) | Push-up su rialzo, scapular push-up, serrato anteriore |
+| Gomiti a ~45° dal busto | "Gomiti verso i fianchi" | Gomiti larghi a 90° | Presa neutra, manubri |
+| Corpo in blocco (push-up) | "Plank che si muove" | Bacino che cede | Rialzo più alto |
+| Overhead | "Costole giù, bicipite vicino all'orecchio" | Inarcare la lombare per compensare la spalla | Landmine o lento seduto; mobilità toracica |
+| Respirazione | Espira nello sforzo | Apnea | Contare ad alta voce (Parte E, precauzioni) |
+
+### Trazione (rematore, trazioni)
+
+| Punto tecnico | Cue | Errore tipico | Correzione |
+| --- | --- | --- | --- |
+| Avviare con la scapola | "Prima porta le spalle in tasca" | Tirare solo con le braccia | Scapular pull-up, face pull |
+| Gomiti verso i fianchi | "Gomiti in tasca dietro" | Spalle che salgono alle orecchie | Carico più basso, pausa di 1" in chiusura |
+| Tronco fermo (rematore) | "Busto immobile" | Slancio del tronco | Rematore con appoggio al petto |
+| Trazioni complete | "Petto alla sbarra, discesa lenta" | Mezze ripetizioni | Assistite o negative 3-5" |
+
+### Atterraggio (riepilogo)
+Avampiede poi tutto il piede · ginocchia sopra le punte · anche indietro, "ginocchia morbide" · silenzioso. Progressione: step and hold → jump and hold → hop and hold (Parte F).
+
+## Numeri operativi della sala
+
+### Serie di avvicinamento (riscaldamento specifico)
+
+:::verifica Schema pratico prima delle serie pesanti
+| Serie di lavoro | Avvicinamento |
+| --- | --- |
+| 3-5 rip @ 80-85% | 1 × 8-10 a vuoto o ~40% · 1 × 5 @ ~60% · 1 × 3 @ ~75% · (1 × 1-2 @ ~80%) |
+| 1-3 rip @ ≥ 90% | Come sopra + 1 × 1 @ ~85% e 1 × 1 @ ~90% prima della prima serie |
+| 8-12 rip (ipertrofia) | 1-2 serie leggere sullo stesso esercizio bastano |
+
+Le serie di avvicinamento **non si contano** nel volume; poche ripetizioni man mano che il carico sale, per non affaticare.
+:::
+
+### Tempo di esecuzione
+
+La notazione a quattro cifre (es. **3-1-1-0**) indica in secondi: discesa – pausa in basso – salita – pausa in alto; "X" = il più veloce possibile. Dalla skill: l'eccentrico lento (3-4") è utile in prehab e riabilitazione (leg curl eccentrico, pesante-lento per i tendini); nei giovani si impara a velocità moderata e poi si lavora sempre con **intenzione di velocità** in salita.
+
+| Obiettivo | Tempo tipico | Note |
+| --- | --- | --- |
+| Forza / potenza | 2-0-X-0 | Salita più veloce possibile |
+| Ipertrofia, apprendimento | 3-0-1-0 o 3-1-1-0 | Controllo in discesa |
+| Tendini (pesante-lento) | 3-0-3-0 | Carico alto e lento |
+| Eccentrico prehab | 3/4-0-1-0 | Es. leg curl eccentrico |
+| Pliometria / balistici | — | Contatto breve, nessun tempo prescritto |
+
+### Volume settimanale per l'ipertrofia
+
+:::verifica Serie settimanali per gruppo muscolare
+La skill dice che **il volume è il driver dell'ipertrofia** e che la progressione si fa aumentando le serie settimanali allenanti per gruppo, con frequenza ~2× a settimana. Riferimenti usati nella pratica:
+
+| Livello | Serie "allenanti" per gruppo / settimana | Note |
+| --- | --- | --- |
+| Mantenimento | ~4-6 | Anche in-season |
+| Principiante | ~8-10 | Crescono quasi con qualsiasi volume |
+| Intermedio | ~10-16 | Range più usato |
+| Avanzato, blocchi di accumulo | ~16-20+ | Solo per periodi brevi, poi scarico |
+
+Si conta una serie "allenante" se è vicina al cedimento (RIR ≤ 3-4). Nel Piano 4 (Parte N) la progressione va dal basso verso l'alto del range dell'atleta.
+:::
+
+### Allenamento basato sulla velocità (VBT)
+
+:::verifica Zone di velocità media e perdita di velocità
+| Zona | Velocità media concentrica (indicativa) | % 1RM indicativa |
+| --- | --- | --- |
+| Forza massima | < 0,5 m/s | > 85-90% |
+| Forza-velocità (accelerativa) | 0,5-0,75 m/s | ~75-85% |
+| Forza-velocità | 0,75-1,0 m/s | ~60-75% |
+| Velocità-forza | 1,0-1,3 m/s | ~30-60% |
+| Velocità iniziale (starting strength) | > 1,3 m/s | < 30% |
+
+Le velocità cambiano da esercizio a esercizio (panca più lenta dello squat a pari %) e da persona a persona: meglio costruire il **profilo carico-velocità individuale**.
+
+| Obiettivo | Perdita di velocità nella serie (stop) |
+| --- | --- |
+| Potenza / velocità | ~10% |
+| Forza | ~15-20% |
+| Forza + ipertrofia | ~20-30% |
+| Ipertrofia / resistenza | > 30-40% |
+
+Prontezza: velocità di un carico fisso nel riscaldamento più bassa del solito di ~5-10% → giornata da ridurre (coerente con la skill: VBT come test di prontezza).
+:::
+
+### Weightlifting: volume per zona di intensità
+
+:::verifica Tabella di Prilepin (alzate olimpiche e derivati)
+| Zona | Rip per serie | Totale ottimale | Range totale |
+| --- | --- | --- | --- |
+| < 70% | 3-6 | 24 | 18-30 |
+| 70-80% | 3-6 | 18 | 12-24 |
+| 80-90% | 2-4 | 15 | 10-20 |
+| ≥ 90% | 1-2 | 4 | 1-10 |
+
+Indica il numero di alzate per esercizio e per seduta. È una guida storica per le alzate tecniche; per squat e tirate i volumi possono essere maggiori.
+:::

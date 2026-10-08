@@ -109,6 +109,87 @@
 
 **Verifica prima di consegnare**: la qualità prioritaria è a sistema nervoso fresco? · i giorni alti e bassi si alternano? · le qualità in conflitto sono separate? · il carico è compatibile con lo sport e con la gara? · c'è il criterio di uscita?
 
+## Questionario di screening da far compilare
+
+Modello ispirato ai questionari di pre-partecipazione (tipo PAR-Q), scritto con le domande della Parte A e le red flag della Parte L. **Un "sì" non è una diagnosi: significa parlarne e, se indicato, chiedere il parere del medico prima di iniziare.**
+
+:::grid
+| # | Domanda | Sì | No |
+| --- | --- | --- | --- |
+| 1 | Un medico ti ha mai detto che hai un problema di cuore o di pressione? | | |
+| 2 | Hai mai avuto dolore al petto, mancanza di fiato sproporzionata, palpitazioni o svenimenti durante o dopo lo sforzo? | | |
+| 3 | Ti capita di avere capogiri o di perdere l'equilibrio? | | |
+| 4 | In famiglia ci sono state morti improvvise o malattie di cuore prima dei 55 anni (uomini) / 65 (donne)? | | |
+| 5 | Hai diabete, asma, epilessia, malattie della tiroide o altre condizioni croniche? | | |
+| 6 | Prendi farmaci in modo continuativo? Quali? | | |
+| 7 | Hai avuto infortuni o interventi negli ultimi 12 mesi? Hai indicazioni di un medico o fisioterapista? | | |
+| 8 | Hai dolore adesso? Peggiora di notte o a riposo? | | |
+| 9 | Hai avuto di recente febbre, perdita di peso senza motivo, stanchezza insolita? | | |
+| 10 | (Donne) Sei in gravidanza o hai partorito negli ultimi 12 mesi? Il ciclo si è interrotto o è molto irregolare? | | |
+| 11 | (Minori) Hai mal di schiena da più di 6 settimane? Sei cresciuto molto di recente? | | |
+| 12 | C'è altro, anche se ti sembra non c'entri, che dovrei sapere? | | |
+:::
+
+Data, firma (dell'atleta o di un genitore per i minori), certificato medico presente e scadenza: ______________________
+
+## Scheda di monitoraggio settimanale
+
+:::grid
+| Giorno | Seduta (tipo) | Minuti | RPE (0-10) | sRPE (UA) | Sonno (1-5) | Fatica (1-5) | Dolori (1-5) | Umore/stress (1-5) | Note |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Lun | | | | | | | | | |
+| Mar | | | | | | | | | |
+| Mer | | | | | | | | | |
+| Gio | | | | | | | | | |
+| Ven | | | | | | | | | |
+| Sab | | | | | | | | | |
+| Dom | | | | | | | | | |
+:::
+
+:::grid
+| Indicatore | Valore | Come si calcola |
+| --- | --- | --- |
+| Carico acuto (questa settimana) | | Somma degli sRPE |
+| Carico cronico | | Media delle ultime 4 settimane |
+| Rapporto acuto:cronico | | Acuto / cronico: evitare i picchi improvvisi, leggerlo nel contesto |
+| Monotonia | | Media giornaliera / deviazione standard dei carichi della settimana |
+| Strain | | Carico settimanale × monotonia |
+| CMJ / test di prontezza | | Confronto con la media personale |
+| Decisione presa | | Se nessun dato cambia mai una decisione, smettere di raccoglierlo |
+:::
+
+## Checklist dei criteri di rientro
+
+Dentro i tempi minimi e le restrizioni del protocollo medico; i valori sono quelli della Parte L (esempio ginocchio), da adattare con l'équipe.
+
+:::grid
+| Fase | Criterio | Raggiunto (data) | Firmato da |
+| --- | --- | --- | --- |
+| 1 → 2 | Versamento in traccia; flessione > 130°; estensione attiva simmetrica; cammino di 30' senza dolore né zoppia | | |
+| 2 → 3 | Squat monopodalico ripetuto ~90" a ≥ 45°; Quad Index > 70%; Y-balance anteriore < 8 cm; plank laterale > 90" | | |
+| 3 → 4 | Quad Index e indice ischio > 90%; Y-balance < 4 cm | | |
+| 4 → 5 | Hop test (singolo, triplo, 6 m, crossover) > 90%; T-test < 10% di differenza | | |
+| 5 → gara | Forza ≥ 90% anche rispetto al pre-infortunio; COD pianificati e non pianificati senza dolore; carico di allenamento completo tollerato; test psicologici (paura di rilesione) | | |
+| Sempre | Risposta a 24 ore: dolore e gonfiore tornano al basale | | |
+:::
+
+## Report per allenatore e genitori
+
+Breve, visivo, una pagina, pensato per chi legge (Parte A).
+
+:::grid
+| Sezione | Contenuto |
+| --- | --- |
+| Atleta / periodo | |
+| Cosa abbiamo fatto | Sedute, presenze, obiettivo del blocco |
+| Test: prima → dopo | 2-3 numeri chiave, con l'errore di misura in mente |
+| Cosa va bene | |
+| Su cosa lavoriamo | Massimo 2 priorità |
+| Salute e carico | Dolori, crescita (giovani), ore totali di sport a settimana |
+| Cosa può fare a casa / cosa evitare | Sonno, alimentazione, idratazione, altri sport |
+| Prossimi passi e date | |
+:::
+
 ## Il promemoria in una pagina
 
 :::operativo Da tenere a mente

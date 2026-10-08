@@ -145,7 +145,7 @@ Depth jump con split-step e colpo (box 15-30 cm intermedi, 30-50 cm avanzati) ·
 ### ~Periodizzazione nel tennis
 Stagione lunga, nessuna vera off-season: **mantenimento** e gestione del carico in-season, forza massima e base aerobica in off-season (residui lunghi), picchi verso i tornei chiave, microcicli di 7-21 giorni, mesocicli legati alle superfici. **Sette aree da periodizzare**: tecnica (prioritaria 6-12 anni), tattica, fisico, psicologia, nutrizione, recupero, scuola/lavoro/famiglia. Periodizzazione di carriera: basi (niente tornei) → abilità → competizione con priorità allo sviluppo → tornei → picco e mantenimento.
 
-## Sport di squadra
+## Sport di squadra: principi dalla skill
 
 | Tema | Indicazione |
 | --- | --- |
@@ -153,9 +153,83 @@ Stagione lunga, nessuna vera off-season: **mantenimento** e gestione del carico 
 | In-season | **Si mantiene, non si costruisce**: 2 sedute brevi e intense a settimana mantengono forza e potenza |
 | Microciclo | Carico massimo il più lontano possibile dalla gara; il giorno dopo è il più leggero (Parte D) |
 | Pause di campionato | Le uniche finestre di costruzione: mini-blocchi di 2-3 settimane con obiettivo dichiarato, chiusi da una riduzione |
-| Condizionamento | Giochi a campo ridotto (utili quanto gli intervalli e con lavoro tecnico), RSA, base aerobica |
-| Prevenzione | Riscaldamento strutturato tipo FIFA 11+ (20'), Nordic, atterraggi, cambi di direzione |
-| Carico | Contare le ore di campo prima di aggiungere qualsiasi cosa; sRPE di squadra |
+| Condizionamento | Giochi a campo ridotto (utili quanto gli intervalli e con lavoro tecnico), RSA, base aerobica che serve al recupero tra gli sprint |
+| Velocità | Domina l'accelerazione sotto i 10-20 m; conta più la capacità di ripetere sprint che la velocità di punta |
+| Prevenzione | Riscaldamento strutturato tipo FIFA 11+ (20'), Nordic, atterraggi, cambi di direzione; interventi neuromuscolari −40/50% di sovraccarichi nei giovani |
+| Carico | Contare le ore di campo prima di aggiungere qualsiasi cosa; sRPE di squadra; evitare i picchi |
+
+## Le richieste di calcio, basket, pallavolo, padel
+
+:::verifica Profili indicativi (adulti; i valori cambiano molto per livello, ruolo, età e categoria)
+| | Calcio | Basket | Pallavolo | Padel |
+| --- | --- | --- | --- | --- |
+| Durata | 2 × 45' | 4 × 10' (12' NBA) effettivi, ~1,5-2 h reali | 3-5 set, ~60-120' | ~60-90' |
+| Distanza totale | ~9-12 km (élite) | ~5-7 km | Poca corsa: spostamenti brevi | ~2-4 km |
+| Alta velocità / sprint | ~0,5-1 km sopra ~20 km/h; ~20-40 sprint, molti sotto i 20 m | Centinaia di cambi di attività (ogni ~2-3"), sprint brevissimi | — | Scatti di pochi metri |
+| Azioni | Sprint brevi ogni ~60-90" in media | Azioni brevi ad alta intensità ripetute | Scambi ~5-10", pause ~10-20" e più | Scambi ~8-15", pause ~10-20" |
+| Salti | Pochi (testa, portiere) | Decine per partita | **Molti**: ~10-25 per set negli attaccanti e nei palleggiatori, ~40-100+ a partita | Pochi (smash) |
+| Energetica | Aerobica di base + sprint ripetuti | Intermittente ad alta intensità | Alattacida, recuperi lunghi | Intermittente, lavoro:recupero ~1:1-1:2 |
+| Qualità chiave | RSA, accelerazione, COD, forza, aerobico | Accelerazione, COD, salto, RSA | Salto ripetuto, forza reattiva, spalla | Primo passo, COD, potenza rotazionale, resistenza intermittente |
+| Infortuni tipici | Ischiocrurali, adduttori/inguine, caviglia, LCA | Caviglia, ginocchio (rotuleo, LCA) | Tendinopatia rotulea, caviglia, spalla, lombare | Gomito, spalla, polpaccio, caviglia, lombare |
+:::
+
+**Il padel nella logica della skill**: è uno sport di racchetta intermittente e a-ciclico come il tennis: valgono la catena cinetica dei colpi, il prehab di spalla, gomito e lombare, l'accelerazione breve, lo split-step, gli intervalli sul profilo lavoro:recupero reale e la gestione del carico nei tornei (Parte M, tennis). Spazi più piccoli, più rimbalzi sulle pareti e più gioco a rete: più **primo passo, decelerazioni e lavoro in posizione bassa**, meno corsa lunga.
+
+## La settimana di gara giorno per giorno
+
+Struttura dalla skill: giorno dopo la gara il più leggero; carico più alto il più lontano possibile dalla gara; poi discesa verso la freschezza; velocità toccata ogni settimana (residuo ~5 giorni); forza mantenuta con 2 sedute brevi. La notazione **MD** indica i giorni dalla partita (MD+1 = giorno dopo, MD−1 = vigilia).
+
+### Una partita a settimana (domenica)
+
+| Giorno | Obiettivo | Campo | Sala | Dosi indicative |
+| --- | --- | --- | --- | --- |
+| **MD+1** (lun) | Recupero | Titolari: bici o corsa facile 15-20', mobilità. Non utilizzati: seduta di compensazione (intervalli o SSG) | — | RPE ≤ 3 |
+| **MD+2** (mar) | Riposo | — | — | — |
+| **MD−4** (mer) | Carico più alto: forza e intensità "corta" | SSG piccoli (vedi tabella), duelli, accelerazioni e COD | **Forza**: 3-4 esercizi × 3 × 3-5 @ 80-85%, potenza (salti, lanci) 3 × 3-5 | Seduta più dura della settimana |
+| **MD−3** (gio) | Volume ed espansione "lunga" | Partita a campo grande, corsa ad alta velocità, sprint lineari 20-40 m con recupero pieno | Prehab + core breve; Nordic | Esposizione alla velocità alta |
+| **MD−2** (ven) | Tattica, carico basso | Esercitazioni tattiche a bassa intensità | Attivazione, mobilità | RPE 4-5, durata ridotta |
+| **MD−1** (sab) | Freschezza e reattività | Rapidità, sprint brevi 5-10 m × 4-6 recupero pieno, palle inattive | Attivazione 10' | Breve |
+| **MD** (dom) | Partita | Riscaldamento standard | — | — |
+
+### Due partite a settimana (es. domenica e mercoledì)
+
+| Giorno | Contenuto |
+| --- | --- |
+| Lun (MD+1) | Recupero; compensazione per chi non ha giocato |
+| Mar (MD−1) | Attivazione e rifinitura, breve |
+| **Mer (MD)** | Partita |
+| Gio (MD+1) | Recupero |
+| Ven (MD−2) | Unica seduta "di carico" possibile, ma breve: forza mantenimento 2-3 esercizi × 2-3 × 3 @ 80-85% + velocità breve |
+| Sab (MD−1) | Attivazione |
+| **Dom (MD)** | Partita |
+
+Con due gare a settimana **non si costruisce**: si recupera, si mantiene forza e velocità con dosi minime e si condiziona chi gioca poco.
+
+:::verifica Nota sulla struttura MD
+L'organizzazione per "giorni dalla partita" e i contenuti tipici di MD−4 (intensità corta, spazi stretti) e MD−3 (spazi ampi, alta velocità) sono una prassi diffusa negli sport di squadra, non un contenuto della skill. I principi che la reggono (giorno dopo il più leggero, carico lontano dalla gara, velocità ogni settimana) invece lo sono.
+:::
+
+## I giochi a campo ridotto (SSG)
+
+Dalla skill: gli SSG sono **utili quanto gli intervalli generici e allenano anche la tecnica**; per i giovani: età d'allenamento bassa **3 vs 3 semplice, 2 × 4' al 90-95% FCmax, rec. 3'**; alta **5 vs 5 sport-specifico, 4 × 4', rec. 3'**.
+
+:::verifica Come regolare l'intensità
+| Leva | Più intensità (aerobico/anaerobico) | Meno intensità |
+| --- | --- | --- |
+| **Numero di giocatori** | Meno giocatori (1 vs 1 – 4 vs 4) | Più giocatori (7 vs 7 e oltre) |
+| **Spazio per giocatore** | Calcio: area più ampia a parità di giocatori aumenta corsa e FC; spazio molto stretto aumenta accelerazioni e duelli | — |
+| Regole | Tocchi limitati (1-2), pressing obbligatorio, incoraggiamento del coach, palle sempre pronte | Tocchi liberi, portieri, pause lunghe |
+| Durata e recupero | Serie di 2-4' con recupero 1-3' | Serie lunghe continue |
+
+| Formato (calcio) | Spazio indicativo | Obiettivo | Dose |
+| --- | --- | --- | --- |
+| 1 vs 1 – 2 vs 2 | ~10×15 – 20×25 m | Anaerobico, duelli, accelerazioni | 4-6 × 30"-1'30", rec. 1:2-1:3 |
+| 3 vs 3 – 4 vs 4 | ~25×30 – 30×40 m (~75-150 m² a giocatore) | Aerobico ad alta intensità + accelerazioni | 4 × 4', rec. 2-3' |
+| 5 vs 5 – 7 vs 7 | ~40×30 – 55×40 m (~150-200 m² a giocatore) | Aerobico, tattica | 3-4 × 5-8', rec. 2-3' |
+| 8 vs 8 e oltre | Metà campo e oltre (> 200 m² a giocatore) | Corsa ad alta velocità, situazioni di gara | 2-3 × 8-12' |
+
+Limite degli SSG: **poca corsa ad alta velocità e pochi sprint lineari** → aggiungere sprint e corsa veloce a parte (MD−3). Nel basket e nella pallavolo la stessa logica si applica a 2 vs 2, 3 vs 3 a metà campo e alle situazioni a tema.
+:::
 
 ## Sport individuali
 

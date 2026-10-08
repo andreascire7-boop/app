@@ -111,3 +111,85 @@ Stadi da 3'; FC negli ultimi 15-30" del 2° e 3° minuto (se FC > 110 serve lo s
 | Nessuna macchina | Circuiti a corpo libero con durate controllate | Aggiungono fatica locale che interferisce con la forza |
 | Poco tempo | 8-10' di intervalli in chiusura di seduta | Valgono più di una seduta cardio separata che non farai mai |
 | Vicino a sedute di gambe | Bici invece di corsa | Riduce l'interferenza |
+
+## Prescrivere gli intervalli da un test
+
+FC e RPE vanno bene per il lavoro continuo, ma **negli intervalli brevi la frequenza cardiaca non fa in tempo a salire**: a 15" di lavoro misura il passato, non lo sforzo. Per questo, quando l'obiettivo è il condizionamento a intervalli, si prescrive la **velocità** (o la distanza da coprire) partendo da un test.
+
+:::verifica Il metodo della velocità di riferimento
+**1. Scegli il test e ricava la velocità di riferimento**
+
+| Test | Velocità che ottieni | Note |
+| --- | --- | --- |
+| **30-15 IFT** | **VIFT**: velocità dell'ultimo stadio completato (km/h) | Intermittente con cambi di direzione: il più adatto agli sport di squadra |
+| Navetta 20 m | Velocità dell'ultimo stadio | Include i cambi di direzione |
+| **VAM** (velocità aerobica massima) | Da prova a tempo: ~5' al massimo, oppure 1500-2000 m (distanza / tempo) | Corsa continua lineare; la VAM è più bassa della VIFT (~ −15/20%) |
+| Yo-Yo IR1 | Distanza totale | Ottimo per monitorare, ma non dà una velocità comoda da usare |
+
+**2. Prescrivi l'intervallo in % di quella velocità**
+
+| Formato | Intensità (% VIFT) | Intensità (% VAM) | Ripetizioni / serie |
+| --- | --- | --- | --- |
+| 10"/20" | 95-105% | 110-130% | 2-3 serie × 6-8' |
+| 15"/15" | 90-95% | 100-120% | 2-3 serie × 6-10' |
+| 30"/30" | 85-90% | 95-105% | 2-3 serie × 6-10' |
+| 2-4' / 2' | — | 90-95% | 4-6 ripetizioni |
+| 4' / 3' | — | ~90% | 4 ripetizioni (equivale al 4×4' al 90-95% FCmax della skill) |
+
+Recupero tra le serie 2-4'. Intervalli brevi con cambio di direzione: si usa la VIFT; intervalli lunghi lineari: la VAM.
+
+**3. Trasforma la velocità in metri**
+
+Distanza = velocità (m/s) × durata. Velocità in m/s = km/h ÷ 3,6.
+Esempio: VIFT 19 km/h (5,28 m/s) → 15"/15" al 90% → 5,28 × 0,9 × 15 = **~71 m** ogni 15". Con navetta (andata e ritorno) si toglie ~1 m per ogni cambio di direzione. Il gruppo si divide per **fasce di VIFT** (es. < 17, 17-19, > 19 km/h), ognuna con i suoi coni.
+:::
+
+Coerenza con la skill: l'intervallo si progetta sul **profilo temporale dello sport** (lavoro, recupero, numero di azioni), il lavoro:recupero decide il sistema energetico, e il condizionamento non deve rubare freschezza alla qualità prioritaria della settimana.
+
+## La corsa oltre il principiante
+
+### Zone d'intensità da un test
+
+La skill fornisce FCmax, FC di riserva, RPE e la regola "tempo → frequenza → intensità". Per chi corre con obiettivi di prestazione, le zone si ricavano meglio da un **test di corsa**.
+
+:::verifica Zone di corsa da una prova recente
+Test utili: **VAM** (5' al massimo o 2000 m), oppure una gara recente (5 km, 10 km) da cui ricavare i ritmi.
+
+| Zona | Uso | % VAM | Sensazione / FC |
+| --- | --- | --- | --- |
+| Z1 · facile / rigenerazione | Recupero, lunghi facili | ~60-70% | Si parla con frasi intere; RPE 3-4 |
+| Z2 · aerobico / lungo | Base, uscita lunga | ~70-80% | RPE 4-5 |
+| Z3 · medio / maratona | Ritmo "comodo-impegnativo" | ~80-85% | RPE 6 |
+| Z4 · soglia | Tempo run, ripetute lunghe | ~85-90% (ritmo sostenibile ~1 ora in gara) | RPE 7; frasi brevi |
+| Z5 · VO2max | Ripetute 2-5' | ~95-105% | RPE 8-9 |
+| Z6 · veloce / anaerobico | Ripetute brevi, allunghi | > 105% | Breve, recuperi lunghi |
+
+Esempio: VAM 16 km/h (3'45"/km). Soglia ~14 km/h (4'17"/km); facile ~10-11 km/h (5'27"-6'00"/km).
+:::
+
+### Distribuzione dell'intensità nella settimana
+
+:::verifica Quanto facile e quanto duro
+Riferimento diffuso per i runner intermedi e avanzati: **circa l'80% del tempo totale a bassa intensità (Z1-Z2) e circa il 20% a intensità moderata-alta** (soglia, VO2max, ritmi gara). Nei principianti quasi tutto facile, al massimo 1 seduta di qualità (come già nel manuale).
+
+| Livello | Uscite/sett | Sedute di qualità | Lungo |
+| --- | --- | --- | --- |
+| Intermedio | 4 | 2 (una soglia, una ripetute) | 1, facile |
+| Avanzato | 5-6 | 2 | 1 |
+:::
+
+### Progressione del volume e del lungo
+
+| Regola | Dalla skill |
+| --- | --- |
+| Prima il tempo, poi la frequenza, per ultima l'intensità | Sì |
+| Una variabile alla volta; incrementi contenuti; evitare i picchi (rapporto acuto:cronico) | Sì |
+| Scarico ogni 3-4 settimane | Sì (onde 3+1) |
+| Taper 1-3 settimane: volume −40/60%, intensità mantenuta | Sì |
+| Segnali di sovraccarico (osso, Achille, fascia plantare, ginocchio) | Sì |
+
+:::verifica Numeri pratici
+- Aumento del volume settimanale: indicativamente **non oltre il 10% circa** a settimana, con una settimana di scarico (−20/30%) ogni 3-4.
+- Il **lungo** non supera di solito il **25-30% del volume settimanale** e cresce di 1-2 km (o 10') per volta.
+- Le sedute di qualità non vanno in giorni consecutivi; il giorno dopo il lungo o le ripetute è facile o di riposo.
+:::
